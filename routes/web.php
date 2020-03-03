@@ -28,7 +28,7 @@ Route::get('test', function () {
 
         $servers = $compute->listServers(true);
         foreach ($servers as $server) {
-            var_dump($server);
+            dd($server);
         }
         
 });
