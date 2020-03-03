@@ -22,6 +22,7 @@ Route::get('test', function () {
         'scope' =>['project' =>['id' =>'{projectId}']]
     ]);
     $service = $openstack->objectStoreV1 ();
+    echo "test";
     dd ($service->listContainers ());
 });
 
