@@ -11,6 +11,8 @@
 |
 */
 
+use OpenStack\OpenStack;
+
 Route::get('test', function () {
     $openstack_server = new OpenStack([
         'authUrl' => 'http://10.85.49.148:5000/v2.0',
