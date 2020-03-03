@@ -26,7 +26,7 @@ Route::get('test', function () {
     ]);
         $compute = $openstack_server->computeV2(['region' => 'regionOne']);
 
-        $servers = $compute->listServers();
+        dd($servers = $compute->listServers());
 });
 
 Route::get('test1', function () {
