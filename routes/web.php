@@ -33,7 +33,7 @@ Route::get('test', function () {
         foreach ($servers as $server) {
             foreach($server->listAddresses() as $ips){
                 foreach($ips as $ip){
-                    dd($ip);
+                    dd($ip['addr']);
                 }
             }
         }
