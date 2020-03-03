@@ -27,7 +27,9 @@ Route::get('test', function () {
         $compute = $openstack_server->computeV2(['region' => 'regionOne']);
 
         $servers = $compute->listServers(true);
-        dd(count($servers->toArray()));
+
+        dd($servers->count());
+        
         foreach ($servers as $server) {
             dd($server->listAddresses());
         }
