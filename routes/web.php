@@ -32,12 +32,16 @@ Route::get('test', function () {
         
         
         foreach ($servers as $server) {
-            dd($server->listAddresses());
-            foreach($server->listAddresses() as $ips){
-                $newCollection = new Collection(ips);
-                dd($newCollection);
-            }
+            
+            $newCollection = new Collection($server->listAddresses());
+
+            dd($newCollection);
+            // foreach($server->listAddresses() as $ips){
+            //     $newCollection = new Collection(ips);
+            //     dd($newCollection);
+            // }
         }
+
         
 });
 
