@@ -28,7 +28,7 @@ Route::get('test', function () {
 
         $servers = $compute->listServers(true);
 
-        dd($servers);
+        
         
         foreach ($servers as $server) {
             foreach($server->listAddresses() as $ips){
