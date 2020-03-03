@@ -31,7 +31,9 @@ Route::get('test', function () {
         dd($servers);
         
         foreach ($servers as $server) {
-            dd($server->listAddresses());
+            foreach($server->listAddresses() as $ips){
+                dd($ips);
+            }
         }
         
 });
