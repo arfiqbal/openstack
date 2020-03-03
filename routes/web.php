@@ -26,4 +26,9 @@ Route::get('test', function () {
     dd ($service->listContainers ());
 });
 
+Route::get('test1', function () {
+    
+    dd('working');
+});
+
 Route::get('/', 'HomeController@index')->name('home');
