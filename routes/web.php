@@ -12,14 +12,14 @@
 */
 
 Route::get('test', function () {
-    $openstack = new OpenStack\OpenStack ([
-        'authUrl' =>'http://10.85.49.148:5000/v2/',
-        'region' =>'{region}',
-        'user' =>[
-            'id' =>'{userId}',
-            'password' =>'{password}'
+    $openstack_server = new OpenStack([
+        'authUrl' => 'http://10.85.49.148:5000/v2.0',
+         'region'  => 'nova',
+        'user'    => [
+            'id'       => 'admin',
+            'password' => 'ayZma3wpahjHWgpjBRQypFUYK'
         ],
-        'scope' =>['project' =>['id' =>'{projectId}']]
+        'scope'   => ['project' => ['id' => '4d9031e2761c482e873ee7fcdf73ba29']]
     ]);
     $service = $openstack->objectStoreV1 ();
     echo "test";
