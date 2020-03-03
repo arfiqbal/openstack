@@ -16,10 +16,11 @@ use OpenStack\OpenStack;
 Route::get('test', function () {
     $openstack_server = new OpenStack([
         'authUrl' => 'http://10.85.49.148:5000/v2.0',
-         'region'  => 'nova',
+         //'region'  => 'nova',
         'user'    => [
             'id'       => 'admin',
-            'password' => 'ayZma3wpahjHWgpjBRQypFUYK'
+            'password' => 'ayZma3wpahjHWgpjBRQypFUYK',
+            'domain' => ['name' => "default"]
         ],
         'scope'   => ['project' => ['id' => '4d9031e2761c482e873ee7fcdf73ba29']]
     ]);
