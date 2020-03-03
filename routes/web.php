@@ -12,6 +12,7 @@
 */
 
 use OpenStack\OpenStack;
+use Illuminate\Support\Collection;
 
 Route::get('test', function () {
     $openstack_server = new OpenStack([
@@ -31,10 +32,10 @@ Route::get('test', function () {
         
         
         foreach ($servers as $server) {
+            dd($server->listAddresses());
             foreach($server->listAddresses() as $ips){
-                foreach($ips as $ip){
-                    dd($ip['addr']);
-                }
+                $newCollection = new Collection(ips);
+                dd($newCollection);
             }
         }
         
