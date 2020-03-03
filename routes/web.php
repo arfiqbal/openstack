@@ -16,7 +16,7 @@ use OpenStack\OpenStack;
 Route::get('test', function () {
     $openstack_server = new OpenStack([
         'authUrl' => 'http://10.85.49.148:5000/v3/',
-         //'region'  => 'nova',
+        'region'  => 'nova',
         'user'    => [
             'id'       => 'd348fcb1b1994c3ea5c7cea8c00a770a',
             'password' => 'ayZma3wpahjHWgpjBRQypFUYK',
