@@ -35,7 +35,7 @@ Route::get('test', function () {
             
             $newCollection = new Collection($server->listAddresses());
 
-            dd($newCollection);
+            dd($newCollection->nr_provider);
             // foreach($server->listAddresses() as $ips){
             //     $newCollection = new Collection(ips);
             //     dd($newCollection);
