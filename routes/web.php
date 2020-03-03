@@ -28,7 +28,7 @@ Route::get('test', function () {
 
         $servers = $compute->listServers(true);
 
-        dd($servers->count());
+        dd($servers);
         
         foreach ($servers as $server) {
             dd($server->listAddresses());
