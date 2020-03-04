@@ -26,9 +26,9 @@ class HomeController extends Controller
         foreach ($identity->listProjects() as $project) {
             
             $projectsServer = $this->openstack->openstackProjectID($project->id);
-            $compute = $projectsServer->computeV2(['region' => '{region}']);
+            $compute = $projectsServer->computeV2();
 
-            $serverslist = $compute->listServers(['imageId' => '{imageId}']);
+            $serverslist = $compute->listServers();
 
             foreach ($serverslist as $server) {
                 $a++;
