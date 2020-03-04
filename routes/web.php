@@ -13,8 +13,49 @@
 
 use OpenStack\OpenStack;
 use Illuminate\Support\Collection;
+use IPv4\SubnetCalculator;
+
 
 Route::get('test', function () {
+
+    
+
+    $data = [
+        [
+            'name' => 'John Doe',
+            'emails' => [
+                'john@doe.com',
+                'john.doe@example.com',
+            ],
+            'contacts' => [
+                [
+                    'name' => 'Richard Tea',
+                    'emails' => [
+                        'richard.tea@example.com',
+                    ],
+                ],
+                [
+                    'name' => 'Fergus Douchebag', // Ya, this was randomly generated for me :)
+                    'emails' => [
+                        'fergus@douchebag.com',
+                    ],
+                ],
+            ],
+        ],
+    ];
+    
+    $collection = collect($data);
+
+    $collection->each(function ($item, $key) {
+        //var_dump($key);
+        collect($item)->each(function ($itm, $ky){
+            //var_dump($itm);
+            var_dump($ky);
+        });
+    });
+
+    dd($collection);
+
     $openstack_server = new OpenStack([
         'authUrl' => 'http://10.85.49.148:5000/v3/',
         'region'  => 'regionOne',
