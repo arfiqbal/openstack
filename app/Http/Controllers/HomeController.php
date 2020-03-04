@@ -24,7 +24,7 @@ class HomeController extends Controller
         $identity = $servers->identityV3();
         $a = 0;
         foreach ($identity->listProjects() as $project) {
-            echo $project->name;
+            echo $project->id;
             // $projectsServer = $this->openstack->openstackProjectID($project->id);
             // $compute = $projectsServer->computeV2();
 
