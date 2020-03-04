@@ -24,7 +24,7 @@ class HomeController extends Controller
         $identity = $servers->identityV3();
 
         foreach ($identity->listProjects() as $project) {
-             dd($project);
+             echo $project->name." ------> ".$project->id."<br>";
         }
         
     }
