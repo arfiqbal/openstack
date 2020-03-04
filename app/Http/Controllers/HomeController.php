@@ -22,9 +22,21 @@ class HomeController extends Controller
     {
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3();
-
+        $a = 0;
         foreach ($identity->listProjects() as $project) {
-             echo $project->name." ------> ".$project->id."<br>";
+            
+            $projectsServer = $this->openstack->openstackProjectID($project->id);
+            $compute = $projectsServer->computeV2(['region' => '{region}']);
+
+            $serverslist = $compute->listServers(['imageId' => '{imageId}']);
+
+            foreach ($serverslist as $server) {
+                $a++;
+            }
+
+            echo $project->name."=====================".$a."<br>";
+
+            $a = 0;
         }
         
     }
