@@ -9,6 +9,11 @@ use IPv4\SubnetCalculator;
 
 class OpenstackRepository
 {
+    // public function __construct(){
+
+    // }
+
+
     public function listIpAddress($ip_range,$subnet,$remove = 0)
     {
         $list = [];
@@ -63,7 +68,7 @@ class OpenstackRepository
         return $openstack_server;
     }
 
-    public function openstackDefault()
+    public function defaultAuthentication()
     {
         //'scope'   => ['project' => ['id' => '4d9031e2761c482e873ee7fcdf73ba29']]
         $openstack_server = new OpenStack([

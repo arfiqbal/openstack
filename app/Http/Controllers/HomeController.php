@@ -20,6 +20,17 @@ class HomeController extends Controller
     
     public function index()
     {
+        $servers = $this->openstack->defaultAuthentication();
+        $identity = $servers->identityV3();
+
+        foreach ($identity->listProjects() as $project) {
+             dd($project);
+        }
+        
+    }
+
+    public function refFunctionDelete()
+    {
         
         $ips = $this->openstack->createIp('10.85.50.115','10.209.100.0');
         dd($ips);
@@ -41,5 +52,7 @@ class HomeController extends Controller
 
         // dd($servers);
     }
+
+    
 
 }
