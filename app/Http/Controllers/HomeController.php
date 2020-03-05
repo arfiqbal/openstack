@@ -31,7 +31,7 @@ class HomeController extends Controller
            
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
-        $a = 0;
+       
         foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
             
 
@@ -43,12 +43,12 @@ class HomeController extends Controller
                 $serverslist = $compute->listServers();
 
                 foreach ($serverslist as $server) {
-                    $a++;
+                    echo $project->name."<br>";
+                   var_dump($server);
+                   echo "======= END ========<br>";
                 }
 
-                echo $project->name."=====================".$a."<br>";
-
-                $a = 0;
+                
             }
 
             
