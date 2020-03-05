@@ -91,7 +91,7 @@ class HomeController extends Controller
                
                 if(!in_array($new, $ipPool['nr_provider'])){
                     $nicIps = ['routeable'=> $value, 'non_routable' => $new];
-                   
+                break;
                 }
                 
             }
