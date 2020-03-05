@@ -87,7 +87,9 @@ class OpenstackRepository
 
     public function createArrayIfIpFound($server)
     {
-        $ipPool = array();
+        $ipPool['vssi_routable'] = array();
+        $ipPool['nr_provider'] = array();
+        $ipPool['r_provider'] = array();
 
         if($server){
             foreach($server->listAddresses() as $ipKey => $ipValue){
