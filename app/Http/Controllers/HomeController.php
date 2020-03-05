@@ -42,37 +42,37 @@ class HomeController extends Controller
                 $projectsServer = $this->openstack->openstackProjectID($project->id);
                 $compute = $projectsServer->computeV2();
                 $serverslist = $compute->listServers();
-                echo $project->name."<br>";
+                
                 foreach($serverslist as $server){
-                   
-                    var_dump($server);
-                   
-                    // if($server)
-                    //     foreach($server->listAddresses() as $ips => $ipv){
-                    //     //echo  $ips." = ".$ipv[0]['addr']."<br>";
-                    //         if($ips === 'vssi_routable'){
-                    //             array_push($vssi_routable, $ipv[0]['addr']);
+
+                    if($server){
+                        foreach($server->listAddresses() as $ipKey => $ipValue){
+                        
+                            if($ipKey === 'vssi_routable'){
+                                array_push($vssi_routable, $ipValue[0]['addr']);
                                 
-                    //         }
+                            }
             
-                    //         if($ips === 'nr_provider'){
-                    //             array_push($nr_provider, $ipv[0]['addr']);
+                            if($ipKey === 'nr_provider'){
+                                array_push($nr_provider, $ipValue[0]['addr']);
                                 
-                    //         }
+                            }
             
-                    //         if($ips === 'r_provider'){
-                    //             array_push($r_provider, $ipv[0]['addr']);
+                            if($ipKey === 'r_provider'){
+                                array_push($r_provider, $ipValue[0]['addr']);
                                 
-                    //         }
-                    //     }   
-                    // }
+                            }
+                        }   
+                    }
                 }
-                echo "=======end====<br>";
+
                 
             }
 
             
         }
+
+        dd($vssi_routable);
         
     }
 
