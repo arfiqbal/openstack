@@ -85,34 +85,7 @@ class OpenstackRepository
         return $openstack_server;
     }
 
-    public function createArrayIfIpFound($server)
-    {
-        
-
-        if($server){
-            foreach($server->listAddresses() as $ipKey => $ipValue){
-            
-                if($ipKey === 'vssi_routable'){
-                    array_push($ipPool['vssi_routable'], $ipValue[0]['addr']);
-                    
-                }
-
-                if($ipKey === 'nr_provider'){
-                    array_push($ipPool['nr_provider'], $ipValue[0]['addr']);
-                    
-                }
-
-                if($ipKey === 'r_provider'){
-                    array_push($ipPool['r_provider'], $ipValue[0]['addr']);
-                    
-                }
-            }  
-            
-            return $ipPool;
-        }
-
-        return false;
-    }
+    
 }
 
 //10.38.64.190
