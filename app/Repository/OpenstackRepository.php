@@ -32,7 +32,7 @@ class OpenstackRepository
         if(is_array($listOfIpAddress))
         {
             $collection = collect($listOfIpAddress);
-            if($collection->search($ip) == false){
+            if($collection->has($ip) == false){
                 return "not find";
             }
 
@@ -83,6 +83,29 @@ class OpenstackRepository
         ]);
 
         return $openstack_server;
+    }
+
+    public function createArrayIfIpFound($server,Array $vssi_routable,Array $nr_provider,Array $r_provider)
+    {
+        if($server){
+            foreach($server->listAddresses() as $ipKey => $ipValue){
+            
+                if($ipKey === 'vssi_routable'){
+                    array_push($vssi_routable, $ipValue[0]['addr']);
+                    
+                }
+
+                if($ipKey === 'nr_provider'){
+                    array_push($nr_provider, $ipValue[0]['addr']);
+                    
+                }
+
+                if($ipKey === 'r_provider'){
+                    array_push($r_provider, $ipValue[0]['addr']);
+                    
+                }
+            }   
+        }
     }
 }
 

@@ -45,25 +45,7 @@ class HomeController extends Controller
                 
                 foreach($serverslist as $server){
 
-                    if($server){
-                        foreach($server->listAddresses() as $ipKey => $ipValue){
-                        
-                            if($ipKey === 'vssi_routable'){
-                                array_push($vssi_routable, $ipValue[0]['addr']);
-                                
-                            }
-            
-                            if($ipKey === 'nr_provider'){
-                                array_push($nr_provider, $ipValue[0]['addr']);
-                                
-                            }
-            
-                            if($ipKey === 'r_provider'){
-                                array_push($r_provider, $ipValue[0]['addr']);
-                                
-                            }
-                        }   
-                    }
+                    $this->openstack->createArrayIfIpFound($server,$vssi_routable,$nr_provider,$r_provider);
                 }
 
                 
