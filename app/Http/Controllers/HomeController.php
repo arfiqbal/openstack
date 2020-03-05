@@ -84,7 +84,7 @@ class HomeController extends Controller
         $nicIps = [];
       
 
-       $totalIp1->each(function ($item, $key) use ($ipPool) {
+       $totalIp1->each(function ($item, $key) use ($ipPool, $nicIps) {
 
             if(!in_array($item, $ipPool['r_provider'])){
                 
@@ -92,7 +92,7 @@ class HomeController extends Controller
                
                 if(!in_array($new, $ipPool['nr_provider'])){
                     $nicIps = ['routeable'=> $item, 'non_routable' => $new];
-                    //return false;
+                    return false;
                 }
                 
             }
