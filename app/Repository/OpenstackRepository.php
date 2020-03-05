@@ -79,7 +79,7 @@ class OpenstackRepository
                 'password' => 'ayZma3wpahjHWgpjBRQypFUYK',
                 'domain' => ['name' => "default"]
             ],
-            'scope'   => ['project' => ['id' => '4d9031e2761c482e873ee7fcdf73ba29']]
+            'scope'   => ['project' => ['id' => '198f0660ae894787a5ad2522e6dec551']]
         ]);
 
         return $openstack_server;
