@@ -81,18 +81,19 @@ class HomeController extends Controller
         echo "=============================<br>";
        $totalIp1 = collect($this->openstack->listIpAddress('10.38.107.0',24,100));
        $totalIp2 = collect($this->openstack->listIpAddress('10.85.50.0',23,100));
-        $nicIps = [];
+        // $nicIps = [];
       
 
-       $totalIp1->each(function ($item, $key) use ($ipPool, $nicIps) {
+      $nicIps = $totalIp1->each(function ($item, $key) use ($ipPool, $nicIps) {
+    
 
             if(!in_array($item, $ipPool['r_provider'])){
                 
                 $new = $this->openstack->createIp($item,'10.85.50.0');
                
                 if(!in_array($new, $ipPool['nr_provider'])){
-                    $nicIps = ['routeable'=> $item, 'non_routable' => $new];
-                    return false;
+                    return ['routeable'=> $item, 'non_routable' => $new];
+                   
                 }
                 
             }
