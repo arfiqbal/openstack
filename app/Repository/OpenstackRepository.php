@@ -87,23 +87,23 @@ class OpenstackRepository
 
     public function createArrayIfIpFound($server)
     {
-        $ipPool = array('vssi_routable' => [],'nr_provider' => [],'r_provider' =>[]);
+        $ipPool = array();
 
         if($server){
             foreach($server->listAddresses() as $ipKey => $ipValue){
             
                 if($ipKey === 'vssi_routable'){
-                    array_push($ipPool[0]['vssi_routable'], $ipValue[0]['addr']);
+                    array_push($ipPool['vssi_routable'], $ipValue[0]['addr']);
                     
                 }
 
                 if($ipKey === 'nr_provider'){
-                    array_push($ipPool[1]['nr_provider'], $ipValue[0]['addr']);
+                    array_push($ipPool['nr_provider'], $ipValue[0]['addr']);
                     
                 }
 
                 if($ipKey === 'r_provider'){
-                    array_push($ipPool[2]['r_provider'], $ipValue[0]['addr']);
+                    array_push($ipPool['r_provider'], $ipValue[0]['addr']);
                     
                 }
             }  
