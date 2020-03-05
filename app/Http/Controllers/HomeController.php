@@ -20,6 +20,14 @@ class HomeController extends Controller
     
     public function index()
     {
+        $servers = $this->openstack->defaultAuthentication();
+        $identity = $servers->identityV3();
+        $a = 0;
+        foreach ($identity->listProjects(['domain' => ['name' => "default"]]) as $project) {
+            echo $project->name."<br>";
+        }
+
+        dd('project');
         $projectsServer = $this->openstack->openstackProjectID($project->id);
             $compute = $projectsServer->computeV2();
 
