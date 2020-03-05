@@ -84,7 +84,7 @@ class HomeController extends Controller
         $routable = "";
         $non_routable = "";
 
-       $totalIp->each(function ($item, $key) use ($ipPool) {
+       $totalIp1->each(function ($item, $key) use ($ipPool) {
             if(!in_array($item, $ipPool['r_provider'])){
                 
                $new = $this->openstack->createIp($item,'10.85.50.0');
