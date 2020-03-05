@@ -88,10 +88,11 @@ class HomeController extends Controller
             if(!in_array($item, $ipPool['r_provider'])){
                 
                $new = $this->openstack->createIp($item,'10.85.50.0');
-               if(!in_array($new, $ipPool['nr_provider'])){
-                $non_routable = $new;
-                $routable = $item;
-               }
+               echo $new;
+            //    if(!in_array($new, $ipPool['nr_provider'])){
+            //     $non_routable = $new;
+            //     $routable = $item;
+            //    }
             return false;
             }
             
