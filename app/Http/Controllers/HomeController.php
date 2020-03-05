@@ -28,17 +28,15 @@ class HomeController extends Controller
                 'fe9633e0641e4fb995aa64dd161b6c55'
             ];
 
-      
-       
+           
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
         $a = 0;
         foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
-            echo $project->id."<br>";
+            
 
-            $idCollection = collect($ids);
+            if(!in_array($project->id, $ids)){
 
-            if($idCollection->search($project->id) == false){
                 $projectsServer = $this->openstack->openstackProjectID($project->id);
                 $compute = $projectsServer->computeV2();
 
