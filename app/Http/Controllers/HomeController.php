@@ -84,7 +84,7 @@ class HomeController extends Controller
         // $nicIps = [];
       
 
-      $nicIps = $totalIp1->each(function ($item, $key) use ($ipPool, $nicIps) {
+      $nicIps = $totalIp1->each(function ($item, $key) use ($ipPool) {
     
 
             if(!in_array($item, $ipPool['r_provider'])){
