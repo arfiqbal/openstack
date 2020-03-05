@@ -75,17 +75,30 @@ class HomeController extends Controller
 
             
         }
+        var_dump($ipPool['nr_provider']);
+        echo "=============================<br>";
         var_dump($ipPool['r_provider']);
         echo "=============================<br>";
-       $totalIp = collect($this->openstack->listIpAddress('10.38.107.0',24,70));
+       $totalIp1 = collect($this->openstack->listIpAddress('10.38.107.0',24,100));
+       $totalIp2 = collect($this->openstack->listIpAddress('10.85.50.0',23,100));
+        $routable = "";
+        $non_routable = "";
+
        $totalIp->each(function ($item, $key) use ($ipPool) {
             if(!in_array($item, $ipPool['r_provider'])){
-                echo $item;
-                return false;
+                
+               $new = $this->openstack->createIp($item,'10.85.50.0');
+               if(!in_array($new, $ipPool['nr_provider'])){
+                $non_routable = $new;
+                $routable = $item;
+               }
+            return false;
             }
             
         });
-        
+        echo "=============================<br>";
+        echo "non_routable====================".$non_routable."<br>";
+        echo "routable=================".$routable."<br>";
     }
 
     public function refFunctionDelete()
