@@ -20,34 +20,40 @@ class HomeController extends Controller
     
     public function index()
     {
-        $projectsServer = $this->openstack->openstackProjectID($project->id);
-            $compute = $projectsServer->computeV2();
+        $ids = ['7200d61d8cc545aeb2e4bc28e29f3a2d',
+                '9a08dfd7eecc494a9ba750e5f86da626',
+                'b9156dd5582e46b68ace7d74e201968d',
+                'bb6617e566f2477ea09f6962207cff32',
+                'd6d0a6ab1c904199935f950f2c58de8d',
+                'fe9633e0641e4fb995aa64dd161b6c55'
+            ];
 
-            $serverslist = $compute->listServers();
-
-            foreach ($serverslist as $server) {
-                $a++;
-            }
-
-            dd('working');
+      
        
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
         $a = 0;
         foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
             echo $project->id."<br>";
-            $projectsServer = $this->openstack->openstackProjectID($project->id);
-            $compute = $projectsServer->computeV2();
 
-            $serverslist = $compute->listServers();
+            $idCollection = collect($ids);
 
-            foreach ($serverslist as $server) {
-                $a++;
+            if($collection->search($project->id) == false){
+                $projectsServer = $this->openstack->openstackProjectID($project->id);
+                $compute = $projectsServer->computeV2();
+
+                $serverslist = $compute->listServers();
+
+                foreach ($serverslist as $server) {
+                    $a++;
+                }
+
+                echo $project->name."=====================".$a."<br>";
+
+                $a = 0;
             }
 
-            echo $project->name."=====================".$a."<br>";
-
-            $a = 0;
+            
         }
         
     }
