@@ -25,18 +25,18 @@ class HomeController extends Controller
         $a = 0;
         foreach ($identity->listProjects() as $project) {
             echo $project->id."<br>";
-            // $projectsServer = $this->openstack->openstackProjectID($project->id);
-            // $compute = $projectsServer->computeV2();
+            $projectsServer = $this->openstack->openstackProjectID($project->id);
+            $compute = $projectsServer->computeV2();
 
-            // $serverslist = $compute->listServers();
+            $serverslist = $compute->listServers();
 
-            // foreach ($serverslist as $server) {
-            //     $a++;
-            // }
+            foreach ($serverslist as $server) {
+                $a++;
+            }
 
-            // echo $project->name."=====================".$a."<br>";
+            echo $project->name."=====================".$a."<br>";
 
-            // $a = 0;
+            $a = 0;
         }
         
     }
