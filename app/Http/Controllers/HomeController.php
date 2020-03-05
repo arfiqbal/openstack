@@ -27,7 +27,9 @@ class HomeController extends Controller
                 'd6d0a6ab1c904199935f950f2c58de8d',
                 'fe9633e0641e4fb995aa64dd161b6c55'
             ];
-        $ipPool = [];
+            $ipPool['vssi_routable'] = array();
+            $ipPool['nr_provider'] = array();
+            $ipPool['r_provider'] = array();
         
            
         $servers = $this->openstack->defaultAuthentication();
