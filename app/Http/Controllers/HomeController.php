@@ -41,12 +41,15 @@ class HomeController extends Controller
                 $compute = $projectsServer->computeV2();
 
                 $serverslist = $compute->listServers();
-
-                foreach ($serverslist as $server) {
-                    echo $project->name."<br>";
-                   var_dump($server);
+                echo $project->name."<br>";
+                   var_dump($serverslist);
                    echo "======= END ========<br>";
-                }
+                //  echo $project->name."<br>";
+                // foreach ($serverslist as $server) {
+                //     echo $project->name."<br>";
+                //    var_dump($server);
+                //    echo "======= END ========<br>";
+                // }
 
                 
             }
