@@ -38,7 +38,7 @@ class HomeController extends Controller
 
             $idCollection = collect($ids);
 
-            if($collection->search($project->id) == false){
+            if($idCollection->search($project->id) == false){
                 $projectsServer = $this->openstack->openstackProjectID($project->id);
                 $compute = $projectsServer->computeV2();
 
