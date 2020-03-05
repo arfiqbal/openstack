@@ -76,7 +76,14 @@ class HomeController extends Controller
             
         }
 
-        dd($ipPool);
+       $totalIp = collect($this->openstack->listIpAddress('10.38.107.0',24,70));
+       $totalIp->each(function ($item, $key) {
+            if(!in_array($itm, $ipPool['r_provider'])){
+                echo $itm;
+                return false;
+            }
+            
+        });
         
     }
 
