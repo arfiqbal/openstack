@@ -42,6 +42,8 @@ class HomeController extends Controller
 
                 $serverslist = $compute->listServers();
                 echo $project->name."<br>";
+                var_dump($compute);
+                echo "serverlist <br>";
                    var_dump($serverslist);
                    echo "======= END ========<br>";
                 //  echo $project->name."<br>";
