@@ -81,26 +81,25 @@ class HomeController extends Controller
         echo "=============================<br>";
        $totalIp1 = collect($this->openstack->listIpAddress('10.38.107.0',24,100));
        $totalIp2 = collect($this->openstack->listIpAddress('10.85.50.0',23,100));
-        $routable = "";
-        $non_routable = "";
+        $nicIps = [];
+      
 
        $totalIp1->each(function ($item, $key) use ($ipPool) {
+
             if(!in_array($item, $ipPool['r_provider'])){
-                echo $item;
-                echo "=============================<br>";
-               $new = $this->openstack->createIp($item,'10.85.50.0');
-               echo $new;
-            //    if(!in_array($new, $ipPool['nr_provider'])){
-            //     $non_routable = $new;
-            //     $routable = $item;
-            //    }
-            return false;
+                
+                $new = $this->openstack->createIp($item,'10.85.50.0');
+               
+                if(!in_array($new, $ipPool['nr_provider'])){
+                    $nicIps = ['routeable'=> $item, 'non_routable' => $new];
+                    return false;
+                }
+                
             }
             
         });
-        echo "=============================<br>";
-        echo "non_routable====================".$non_routable."<br>";
-        echo "routable=================".$routable."<br>";
+
+        dd($nicIps);
     }
 
     public function refFunctionDelete()
