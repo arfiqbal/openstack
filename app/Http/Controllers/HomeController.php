@@ -86,7 +86,8 @@ class HomeController extends Controller
 
        $totalIp1->each(function ($item, $key) use ($ipPool) {
             if(!in_array($item, $ipPool['r_provider'])){
-                
+                echo $item;
+                echo "=============================<br>";
                $new = $this->openstack->createIp($item,'10.85.50.0');
                echo $new;
             //    if(!in_array($new, $ipPool['nr_provider'])){
