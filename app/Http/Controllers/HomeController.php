@@ -79,26 +79,41 @@ class HomeController extends Controller
         echo "=============================<br>";
         var_dump($ipPool['r_provider']);
         echo "=============================<br>";
-       $totalIp1 = collect($this->openstack->listIpAddress('10.38.107.0',24,100));
-       $totalIp2 = collect($this->openstack->listIpAddress('10.85.50.0',23,100));
-        // $nicIps = [];
-      
+       $totalIp1 = $this->openstack->listIpAddress('10.38.107.0',24,100);
+       $totalIp2 = $this->openstack->listIpAddress('10.85.50.0',23,100);
+        $nicIps = [];
 
-      $nicIps = $totalIp1->each(function ($item, $key) use ($ipPool) {
-    
-
-            if(!in_array($item, $ipPool['r_provider'])){
+        foreach($totalIp1 as $key => $value)
+        {
+            if(!in_array($value, $ipPool['r_provider'])){
                 
-                $new = $this->openstack->createIp($item,'10.85.50.0');
+                $new = $this->openstack->createIp($value,'10.85.50.0');
                
                 if(!in_array($new, $ipPool['nr_provider'])){
-                    return ['routeable'=> $item, 'non_routable' => $new];
+                    $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                    
                 }
                 
             }
+        }
+      
+
+    //   $nicIps = $totalIp1->each(function ($item, $key) use ($ipPool) {
+    
+
+    //         if(!in_array($item, $ipPool['r_provider'])){
+                
+    //             $new = $this->openstack->createIp($item,'10.85.50.0');
+               
+    //             if(!in_array($new, $ipPool['nr_provider'])){
+    //                 return ['routeable'=> $item, 'non_routable' => $new];
+                   
+    //             }
+                
+    //         }
             
-        });
+    //     });
+
 
         dd($nicIps);
     }
