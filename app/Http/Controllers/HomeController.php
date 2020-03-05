@@ -27,7 +27,9 @@ class HomeController extends Controller
                 'd6d0a6ab1c904199935f950f2c58de8d',
                 'fe9633e0641e4fb995aa64dd161b6c55'
             ];
-
+        $vssi_routable = [];
+        $nr_provider = [];
+        $r_provider = [];
            
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
@@ -39,20 +41,33 @@ class HomeController extends Controller
 
                 $projectsServer = $this->openstack->openstackProjectID($project->id);
                 $compute = $projectsServer->computeV2();
-
                 $serverslist = $compute->listServers();
                 echo $project->name."<br>";
-                var_dump($compute);
-                echo "serverlist <br>";
-                   var_dump($serverslist);
-                   echo "======= END ========<br>";
-                //  echo $project->name."<br>";
-                // foreach ($serverslist as $server) {
-                //     echo $project->name."<br>";
-                //    var_dump($server);
-                //    echo "======= END ========<br>";
-                // }
-
+                foreach($serverslist as $server){
+                   
+                    var_dump($server);
+                   
+                    // if($server)
+                    //     foreach($server->listAddresses() as $ips => $ipv){
+                    //     //echo  $ips." = ".$ipv[0]['addr']."<br>";
+                    //         if($ips === 'vssi_routable'){
+                    //             array_push($vssi_routable, $ipv[0]['addr']);
+                                
+                    //         }
+            
+                    //         if($ips === 'nr_provider'){
+                    //             array_push($nr_provider, $ipv[0]['addr']);
+                                
+                    //         }
+            
+                    //         if($ips === 'r_provider'){
+                    //             array_push($r_provider, $ipv[0]['addr']);
+                                
+                    //         }
+                    //     }   
+                    // }
+                }
+                echo "=======end====<br>";
                 
             }
 
