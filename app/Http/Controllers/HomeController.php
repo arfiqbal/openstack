@@ -27,9 +27,8 @@ class HomeController extends Controller
                 'd6d0a6ab1c904199935f950f2c58de8d',
                 'fe9633e0641e4fb995aa64dd161b6c55'
             ];
-        $vssi_routable = [];
-        $nr_provider = [];
-        $r_provider = [];
+        $ipPool = [];
+        
            
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
@@ -45,7 +44,7 @@ class HomeController extends Controller
                 
                 foreach($serverslist as $server){
 
-                    $this->openstack->createArrayIfIpFound($server,$vssi_routable,$nr_provider,$r_provider);
+                    $ipPool = $this->openstack->createArrayIfIpFound($server);
                 }
 
                 
@@ -54,7 +53,7 @@ class HomeController extends Controller
             
         }
 
-        dd($vssi_routable);
+        dd($ipPool);
         
     }
 
