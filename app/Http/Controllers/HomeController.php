@@ -13,8 +13,7 @@ class HomeController extends Controller
 
 	public function __construct(OpenstackRepository $openstack){
 
-			$this->openstack = $openstack;
-            
+			$this->openstack = $openstack;      
 
 	}
     
@@ -27,9 +26,9 @@ class HomeController extends Controller
                 'd6d0a6ab1c904199935f950f2c58de8d',
                 'fe9633e0641e4fb995aa64dd161b6c55'
             ];
-            $ipPool['vssi_routable'] = array();
-            $ipPool['nr_provider'] = array();
-            $ipPool['r_provider'] = array();
+        $ipPool['vssi_routable'] = array();
+        $ipPool['nr_provider'] = array();
+        $ipPool['r_provider'] = array();
         
            
         $servers = $this->openstack->defaultAuthentication();
@@ -37,7 +36,6 @@ class HomeController extends Controller
        
         foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
             
-
             if(!in_array($project->id, $ids)){
 
                 $projectsServer = $this->openstack->openstackProjectID($project->id);
@@ -63,24 +61,24 @@ class HomeController extends Controller
                                 array_push($ipPool['r_provider'], $ipValue[0]['addr']);
                                 
                             }
-                        }  
+
+                        }  //listAddresses@foreach
                         
-                        
-                    }
+                    }//server@if
             
-                }
+                }//server@foreach
 
                 
-            }
+            }//array@if
 
             
-        }
+        }//listProjects@foreach
         var_dump($ipPool['nr_provider']);
         echo "=============================<br>";
         var_dump($ipPool['r_provider']);
         echo "=============================<br>";
-       $totalIp1 = $this->openstack->listIpAddress('10.38.107.0',24,100);
-       $totalIp2 = $this->openstack->listIpAddress('10.85.50.0',23,100);
+        $totalIp1 = $this->openstack->listIpAddress('10.38.107.0',24,100);
+        $totalIp2 = $this->openstack->listIpAddress('10.85.50.0',23,100);
         $nicIps = [];
 
         foreach($totalIp1 as $key => $value)
@@ -98,49 +96,10 @@ class HomeController extends Controller
         }
       
 
-    //   $nicIps = $totalIp1->each(function ($item, $key) use ($ipPool) {
-    
-
-    //         if(!in_array($item, $ipPool['r_provider'])){
-                
-    //             $new = $this->openstack->createIp($item,'10.85.50.0');
-               
-    //             if(!in_array($new, $ipPool['nr_provider'])){
-    //                 return ['routeable'=> $item, 'non_routable' => $new];
-                   
-    //             }
-                
-    //         }
-            
-    //     });
-
-
         dd($nicIps);
     }
 
-    public function refFunctionDelete()
-    {
-        
-        $ips = $this->openstack->createIp('10.85.50.115','10.209.100.0');
-        dd($ips);
-        dd($this->openstack->findIpAddress('10.85.50.104',$ips));
-        dd($ips);
-
-        // $openstack_server = new OpenStack([
-        //     'authUrl' => 'http://10.85.49.148:5000/v2.0',
-        //      'region'  => 'nova',
-        //     'user'    => [
-        //         'id'       => 'admin',
-        //         'password' => 'ayZma3wpahjHWgpjBRQypFUYK'
-        //     ],
-        //     'scope'   => ['project' => ['id' => '4d9031e2761c482e873ee7fcdf73ba29']]
-        // ]);
-        // $compute = $openstack_server->computeV2();
-
-        // $servers = $compute->listServers();
-
-        // dd($servers);
-    }
+    
 
     
 
