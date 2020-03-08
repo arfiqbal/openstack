@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Application;
-use App\IPs;
+use App\Network;
+use App\Network1;
 use App\VM;
 use Log;
 use File;
@@ -31,11 +32,13 @@ class VmController extends Controller
     public function index()
     {
         $apps = Application::orderBy('id','DESC')->get();
-        $allVM = VM::with('application')->orderBy('id','DESC')->where('active',1)->get();
+        $networks = Network::all();
+        $network1s = Network1::first();
+       
 
         //dd($allVM->toArray());
        
-        return view('welcome',['apps' => $apps,'allVM' => $allVM]);
+        return view('welcome',['apps' => $apps,'networks' => $networks, 'network1s' => $network1s]);
     }
 
     /**
@@ -56,6 +59,7 @@ class VmController extends Controller
      */
     public function store(Request $request)
     {
+        dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         ob_implicit_flush();

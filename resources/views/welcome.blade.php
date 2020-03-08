@@ -110,15 +110,16 @@ Create VM | All VM
                                     <label for="network">Routable Network</label>
                                     <select class="form-control"  id="network" required>
                                       <option value="">Select Network</option>
-                                      <option value="1">vssi_routable (10.38.64.0/22)</option>
-                                      <option value="1">r_provide (10.38.107.0/24)</option>  
+                                      @foreach($networks as $network)
+                                      <option value="{{$network->id}}">{{$network->name}} ({{$network->network}}/{{$network->subnet}})</option>
+                                      @endforeach 
                                     </select>
                                     <div class="invalid-feedback">Please select Network </div>
                                   </div>
 
                                   <div class="form-group">
                                     <label for="network">Non-Routable Network</label>
-                                    <select class="form-control"  id="network" required>
+                                    <select class="form-control"  id="network1" required>
                                       <option value="1">nr_provider (10.85.50.0/23)</option>  
                                     </select>
                                     <div class="invalid-feedback">Please select Network </div>
@@ -225,11 +226,11 @@ Create VM | All VM
       $("#launchVM").click(function(event) {
         //event.preventDefault()
         var vmname = $('#vmname').val();
-            var email = $('#email').val();
-            var nic1 = $('#ipAddress').val(); 
-            var nic2 = $('#ipAddress2').val();
-            var ip_id = $('#ip_id').val();
-            var app = $('#app option:selected').val();
+        var email = $('#email').val();
+        var project = $('#project option:selected').val();
+        var network = $('#network option:selected').val();
+        var network1 = $('#network1 option:selected').val();
+        var app = $('#app option:selected').val();
 
         // Fetch form to apply custom Bootstrap validation
         var form = $("#hide-vm")
@@ -250,7 +251,7 @@ Create VM | All VM
               $.ajax({
                   type:'POST',
                   url: "<?= URL::to("vm");?>",
-                  data: {vmname :vmname, email:email, nic1 :nic1, nic2 :nic2, app :app, ip_id :ip_id},
+                  data: {vmname :vmname, email:email, project :project, network :network, app :app, network1 :network1},
                   xhr: function () {
                       var xhr = $.ajaxSettings.xhr() ;
                       xhr.onprogress = function (e) {

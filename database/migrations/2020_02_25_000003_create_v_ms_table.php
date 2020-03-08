@@ -17,6 +17,8 @@ class CreateVMsTable extends Migration
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 $table->integer('application_id')->unsigned();
+                $table->integer('network_id')->unsigned(); //routable
+                $table->integer('network1_id')->unsigned(); //non-routable
                 $table->string('dir');
                 $table->string('name');
                 $table->string('email');
@@ -31,6 +33,8 @@ class CreateVMsTable extends Migration
         Schema::table('vm', function(Blueprint $table)
         {
             $table->foreign('application_id')->references('id')->on('application')->onDelete('cascade');
+            $table->foreign('network_id')->references('id')->on('network')->onDelete('cascade');
+            $table->foreign('network1_id')->references('id')->on('network1')->onDelete('cascade');
         });
 
     }
