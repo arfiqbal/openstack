@@ -98,8 +98,8 @@ Create VM | All VM
                                     <label for="project">Project</label>
                                     <select class="form-control"  id="project" required>
                                     <option value="">Select Project</option>
-                                    @foreach ($apps as $app)
-                                        <option value="{{$app->id}}">{{$app->name}}</option>
+                                    @foreach ($identity->listProjects(['domainId' => "default"]) as $project)
+                                        <option value="{{$project->id}}">{{$project->name}}</option>
                                     @endforeach
                                       
                                     </select>
