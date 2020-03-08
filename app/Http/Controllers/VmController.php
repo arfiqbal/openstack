@@ -71,12 +71,89 @@ class VmController extends Controller
         ob_implicit_flush(true);
         ob_implicit_flush();
         set_time_limit(0);
-        
+        $ids = ['7200d61d8cc545aeb2e4bc28e29f3a2d',
+                '9a08dfd7eecc494a9ba750e5f86da626',
+                'b9156dd5582e46b68ace7d74e201968d',
+                'bb6617e566f2477ea09f6962207cff32',
+                'd6d0a6ab1c904199935f950f2c58de8d',
+                'fe9633e0641e4fb995aa64dd161b6c55'
+            ];
+        $ipPool['vssi_routable'] = array();
+        $ipPool['nr_provider'] = array();
+        $ipPool['r_provider'] = array();
+        $nicIps = [];
+
+        $routable_networ = Network::find($request->id);
 
         if(count($request)){
 
+            $routable_network = Network::find($request->network);
+            $non_routable_network = Network1::find($request->network1);
+
+            $totalIp1 = $this->openstack->listIpAddress($routable_network->network,$routable_network->subnet,100);
+            $totalIp2 = $this->openstack->listIpAddress($non_routable_network->network,$routable_network->subnet,100);
+
+            $servers = $this->openstack->defaultAuthentication();
+            $identity = $servers->identityV3(['domainId' => "default"]);
+        
+            foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
+                
+
+                if(!in_array($project->id, $ids)){
+
+                    $projectsServer = $this->openstack->openstackProjectID($project->id);
+                    $compute = $projectsServer->computeV2();
+                    $serverslist = $compute->listServers();
+                    
+                    foreach($serverslist as $server){
+
+                        if($server){
+                            foreach($server->listAddresses() as $ipKey => $ipValue){
+                            
+                                if($ipKey === 'vssi_routable'){
+                                    array_push($ipPool['vssi_routable'], $ipValue[0]['addr']);
+                                    
+                                }
+                
+                                if($ipKey === 'nr_provider'){
+                                    array_push($ipPool['nr_provider'], $ipValue[0]['addr']);
+                                    
+                                }
+                
+                                if($ipKey === 'r_provider'){
+                                    array_push($ipPool['r_provider'], $ipValue[0]['addr']);
+                                    
+                                }
+                            }  
+                            
+                            
+                        }
+                
+                    }
+
+                    
+                }
+
+                
+            }
+
+            foreach($totalIp1 as $key => $value)
+            {
+                if(!in_array($value, $ipPool['r_provider'])){
+                    
+                    $new = $this->openstack->createIp($value,'10.85.50.0');
+                
+                    if(!in_array($new, $ipPool['nr_provider'])){
+                        $nicIps = ['routeable'=> $value, 'non_routable' => $new];
+                    break;
+                    }
+                    
+                }
+            }
+
+
             $dir = $request->vmname.'-'.uniqid();
-            //$dir = $request->vmname;
+            
 
             $path = storage_path('app/'.$dir);
             
@@ -85,8 +162,6 @@ class VmController extends Controller
 
             $app = Application::find($request->app);
              
-
-            // dd($template);
 
             $command = 'terraform12 apply -auto-approve -var="nic1='.$request->nic1.'" -var="nic2='.$request->nic2.'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="emailid='.$request->email.'"';
 
