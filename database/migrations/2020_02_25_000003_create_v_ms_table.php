@@ -16,11 +16,12 @@ class CreateVMsTable extends Migration
         Schema::create('vm', function (Blueprint $table) {
                 $table->engine = 'InnoDB';
                 $table->increments('id');
-                $table->integer('ip_id')->unsigned();
                 $table->integer('application_id')->unsigned();
                 $table->string('dir');
                 $table->string('name');
                 $table->string('email');
+                $table->string('nic1');
+                $table->string('nic2');
                 $table->boolean('active');
                 $table->timestamps();
             
@@ -28,7 +29,6 @@ class CreateVMsTable extends Migration
 
         Schema::table('vm', function(Blueprint $table)
         {
-            $table->foreign('ip_id')->references('id')->on('ips')->onDelete('cascade');
             $table->foreign('application_id')->references('id')->on('application')->onDelete('cascade');
         });
 

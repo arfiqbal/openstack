@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateIPsTable extends Migration
+class CreateNetworkTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,12 @@ class CreateIPsTable extends Migration
      */
     public function up()
     {
-        Schema::create('ips', function (Blueprint $table) {
+        Schema::create('network', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->increments('id');
-            $table->ipAddress('nic1');
-            $table->ipAddress('nic2');
-            $table->boolean('active');
+            $table->string('name');
+            $table->ipAddress('network');
+            $table->string('subnet');
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ class CreateIPsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('ips');
+        Schema::dropIfExists('network');
     }
 }
