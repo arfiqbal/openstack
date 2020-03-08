@@ -12,8 +12,9 @@
         "fideloper/proxy": "^4.0",
         "laravel/framework": "5.8.*",
         "laravel/tinker": "^1.0",
-        "php-opencloud/openstack": "^3.0",
+        "laravelcollective/html": "5.8.*",
         "markrogoyski/ipv4-subnet-calculator": "*",
+        "php-opencloud/openstack": "^3.0",
         "symfony/process": "^4.2"
     },
     "require-dev": {
