@@ -13,10 +13,7 @@ class VM extends Model
 	    return $this->belongsTo('App\Application','application_id');
 	}
 
-	public function ips()
-	{
-	    return $this->belongsTo('App\IPs','ip_id');
-	}
+	
 }
 
 

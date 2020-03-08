@@ -26,9 +26,7 @@ Create VM | All VM
                             <a class="nav-link active" id="pills-home-tab" data-toggle="pill" href="#pills-home" role="tab" aria-controls="pills-home" aria-selected="true">Create</a>
                           </li>
 
-                          <li class="nav-item">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All VM</a>
-                          </li>
+                         
                           <li class="nav-item">
                             <a class="nav-link" id="pills-terminal-tab" data-toggle="pill" href="#pills-terminal" role="tab" aria-controls="pills-terminal" aria-selected="false">Terminal</a>
                           </li>
@@ -152,44 +150,7 @@ Create VM | All VM
 
                               
                           </div>
-                            <!-- All VM -->
-                          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-                            <table class="table table-hover table-striped" id="showVm">
-                              <thead>
-                                <tr>
-                                  <th scope="col">Name</th>
-                                  <th scope="col">Email</th>
-                                  <th scope="col">Nic 1</th>
-                                  <th scope="col">Nic 2</th>
-                                  <th scope="col">Application</th>
-                                  <th scope="col">Action</th>
-                                </tr>
-                              </thead>
-                              <tbody>
-                                @if(count($allVM))
-                                    @foreach($allVM as $myVM)
-                                        <tr id="{{$myVM->id}}">
-                                          <th scope="row">{{$myVM->name}}</th>
-                                          <td>{{$myVM->email}}</td>
-                                          <td>{{$myVM->ips->nic1}}</td>
-                                          <td>{{$myVM->ips->nic2}}</td>
-                                          <td>{{$myVM->application->name}}</td>
-                                          <td>
-                                            
-                                            <a  class="btn btn-danger deletevm" data-order="{{ $myVM->name }}"
-                                            data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}"><img src="{{ asset('images/trash.svg') }}" alt="" width="24" height="24" title="DELETE VM"></a>
-                                            
-
-                                            <a  class="btn btn-info showlog" data-toggle="modal" data-target="#logs{{$myVM->id}}" data-order="{{$myVM->id}}"><img src="{{ asset('images/eye-fill.svg') }}" alt="" width="24" height="24" title="View log"></a>
-                                           </td>
-                                        </tr>
-                                        
-                                    @endforeach
-                                @endif
-                                
-                              </tbody>
-                            </table>
-                          </div> <!-- All vM -->
+                           
 
                             <!-- All VM -->
                           <div class="tab-pane fade" id="pills-terminal" role="tabpanel" aria-labelledby="pills-terminal-tab" style="color: #fff;background: #000">

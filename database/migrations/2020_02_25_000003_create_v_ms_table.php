@@ -20,6 +20,7 @@ class CreateVMsTable extends Migration
                 $table->string('dir');
                 $table->string('name');
                 $table->string('email');
+                $table->string('project');
                 $table->string('nic1');
                 $table->string('nic2');
                 $table->boolean('active');

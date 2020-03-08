@@ -31,13 +31,11 @@ class VmController extends Controller
     public function index()
     {
         $apps = Application::orderBy('id','DESC')->get();
-        $ips  = IPs::orderBy('id','ASC')->where('active',1)->first();
-        $available_ips  = IPs::orderBy('id','ASC')->where('active',1)->get();
-        $allVM = VM::with('application','ips')->orderBy('id','DESC')->where('active',1)->get();
+        $allVM = VM::with('application')->orderBy('id','DESC')->where('active',1)->get();
 
         //dd($allVM->toArray());
        
-        return view('welcome',['apps' => $apps,'ips' => $ips, 'available_ips' => $available_ips,'allVM' => $allVM]);
+        return view('welcome',['apps' => $apps,'allVM' => $allVM]);
     }
 
     /**
