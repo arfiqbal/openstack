@@ -14,13 +14,16 @@ use File;
 use Storage;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
+use OpenStack\OpenStack;
+use  App\Repository\OpenstackRepository;
 
 
 class VmController extends Controller
 {
 
-    public function __construct()
-    {
+    public function __construct(OpenstackRepository $openstack){
+
+        $this->openstack = $openstack;
         $this->middleware('auth');
     }
 
@@ -34,11 +37,15 @@ class VmController extends Controller
         $apps = Application::orderBy('id','DESC')->get();
         $networks = Network::all();
         $network1s = Network1::first();
+        $servers = $this->openstack->defaultAuthentication();
+        $identity = $servers->identityV3(['domainId' => "default"]);
        
 
         //dd($allVM->toArray());
        
-        return view('welcome',['apps' => $apps,'networks' => $networks, 'network1s' => $network1s]);
+        return view('welcome',
+        ['apps' => $apps,'networks' => $networks, 'network1s' => $network1s, 
+        'identity' => $identity]);
     }
 
     /**
