@@ -124,6 +124,17 @@ Create VM | All VM
                                     </select>
                                     <div class="invalid-feedback">Please select Network </div>
                                   </div>
+
+                                  <div class="form-group">
+                                    <label for="flavor">Flavors</label>
+                                    <select class="form-control"  id="flavor" required>
+                                      <option value="">Select Flavor</option>  
+                                      @foreach($flavors as $flavor)
+                                      <option value="{{$flavor->id}}">{{$flavor->name}}</option>
+                                      @endforeach
+                                    </select>
+                                    <div class="invalid-feedback">Please select flavor </div>
+                                  </div>
                                 
                                   <div class="form-group">
                                     <label for="exampleFormControlSelect1">Application</label>
@@ -231,6 +242,7 @@ Create VM | All VM
         var network = $('#network option:selected').val();
         var network1 = $('#network1 option:selected').val();
         var app = $('#app option:selected').val();
+        var flavor = $('#flavor option:selected').val();
 
         // Fetch form to apply custom Bootstrap validation
         var form = $("#hide-vm")
@@ -251,7 +263,7 @@ Create VM | All VM
               $.ajax({
                   type:'POST',
                   url: "<?= URL::to("vm");?>",
-                  data: {vmname :vmname, email:email, project :project, network :network, app :app, network1 :network1},
+                  data: {vmname :vmname, email:email, project :project, network :network, app :app, network1 :network1, flavor:flavor},
                   xhr: function () {
                       var xhr = $.ajaxSettings.xhr() ;
                       xhr.onprogress = function (e) {
@@ -267,9 +279,9 @@ Create VM | All VM
                        $('#hide-vm').show();
                       // console.log(data);
                        //alert(vmname+ ' VM Created');
-                       setTimeout(function() {
-                        location.reload(true);
-                      }, 10000);
+                      //  setTimeout(function() {
+                      //   location.reload(true);
+                      // }, 10000);
                        
                   }
                   

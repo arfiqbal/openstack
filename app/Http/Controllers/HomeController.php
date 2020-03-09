@@ -44,6 +44,7 @@ class HomeController extends Controller
                 $projectsServer = $this->openstack->openstackProjectID($project->id);
                 $compute = $projectsServer->computeV2();
                 $serverslist = $compute->listServers();
+                $flavors = $compute->listFlavors();
                 
                 foreach($serverslist as $server){
 
@@ -116,9 +117,11 @@ class HomeController extends Controller
     //     });
 
 
-        dd($nicIps);
+       
     }
 
     
 
 }
+//creating OpenStack server: Bad request with: [POST http://10.85.49.148:8774/v2.1/os-volumes_boot], error message: {"badRequest": {"message": "Fixed IP address 10.85.50.177 is already in use on instance .", "code": 400}}[0m
+//main.tf line 24, in resource "openstack_compute_instance_v2" "cpns": 24: resource "openstack_compute_instance_v2" "cpns" 

@@ -39,13 +39,15 @@ class VmController extends Controller
         $network1s = Network1::first();
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
+        $compute = $servers->computeV2();
+        $flavors = $compute->listFlavors();
        
 
         //dd($allVM->toArray());
        
         return view('welcome',
         ['apps' => $apps,'networks' => $networks, 'network1s' => $network1s, 
-        'identity' => $identity]);
+        'identity' => $identity, 'flavors' => $flavors]);
     }
 
     /**
@@ -66,7 +68,7 @@ class VmController extends Controller
      */
     public function store(Request $request)
     {
-       
+        
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         ob_implicit_flush();
@@ -97,8 +99,8 @@ class VmController extends Controller
             ob_flush();
             flush();
 
-            $totalIp1 = $this->openstack->listIpAddress($routable_network->network,$routable_network->subnet,100);
-            $totalIp2 = $this->openstack->listIpAddress($non_routable_network->network,$routable_network->subnet,100);
+            $totalIp1 = $this->openstack->listIpAddress($routable_network->network,$routable_network->subnet,150);
+            $totalIp2 = $this->openstack->listIpAddress($non_routable_network->network,$routable_network->subnet,150);
 
             $servers = $this->openstack->defaultAuthentication();
             $identity = $servers->identityV3(['domainId' => "default"]);
@@ -147,27 +149,31 @@ class VmController extends Controller
 
                 
             }
-
+            //dd($ipPool);
             echo "Comparing possible ips......<br>";
             ob_flush();
             flush();
 
             foreach($totalIp1 as $key => $value)
             {
-                if(!in_array($value, $ipPool['r_provider'])){
+                if(!in_array($value, $ipPool['vssi_routable'])){
                     
                     $new = $this->openstack->createIp($value,'10.85.50.0');
                 
                     if(!in_array($new, $ipPool['nr_provider'])){
                         $nicIps = ['routeable'=> $value, 'non_routable' => $new];
-                    break;
+                        break;
                     }
                     
                 }
             }
 
-            //dd($nicIps);
-
+            echo "</br>";
+            echo "======================================================= <br>";
+            echo  "NIC 1 === ".$nicIps['routeable']."<br>";
+            echo  "NIC 2 === ".$nicIps['non_routable']."<br>";
+            echo "=======================================================<br>";
+           
             $dir = $request->vmname.'-'.uniqid();
             
 
@@ -177,17 +183,19 @@ class VmController extends Controller
             $template = public_path('template/template.tf');
 
             $app = Application::find($request->app);
+            $pluginPath = public_path('plugin');
              
-
-            $command = 'terraform12 apply -auto-approve -var="nic1='.$nicIps['routeable'].'" -var="nic2='.$nicIps['non_routable'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="emailid='.$request->email.'"';
+            //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
+            $command = 'terraform12 apply -auto-approve -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="emailid='.$request->email.'"';
 
             if(!File::isDirectory($path)){
 
                 File::makeDirectory($path, 0777, true, true);
                 File::copy($template, $path.'/main.tf');
-                Log::useFiles($path.'/output.log');
-
-                $process = new Process('terraform12 init -input=false');
+                //Log::useFiles($path.'/output.log');
+                dd('end');
+                $init = 'terraform12 init -input=false -plugin-dir='.$pluginPath.'';
+                $process = new Process($init);
                 $process->setTimeout(3600);
                 $process->setWorkingDirectory($path);
                 $process->run(function ($type, $buffer) {
@@ -230,6 +238,8 @@ class VmController extends Controller
                     }
                
                 });
+
+              
                     Log::debug($process->getOutput()); 
 
                         if (!$process->isSuccessful()) {
@@ -237,21 +247,21 @@ class VmController extends Controller
                             Log::critical($process->getOutput());
                             // throw new ProcessFailedException($process);
                         }else{
-
+                            $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
-                            $newvm->ip_id = $request->ip_id;
                             $newvm->application_id = $request->app;
                             $newvm->dir = $dir;
+                            $newvm->network_id = $request->network;
+                            $newvm->network1_id = $request->network1;
                             $newvm->name = $request->vmname;
                             $newvm->email = $request->email;
+                            $newvm->project = $request->project;
+                            $newvm->nic1 = $nicIps['routeable'];
+                            $newvm->nic2 = $nicIps['non_routable'];
                             $newvm->active = 1;
                             if($newvm->save()){
 
-                                $updateip = IPs::find($newvm->ip_id);
-                                $updateip->active = 0;
-                                $updateip->save(); 
-
-                                
+                               
                                 Log::info($request->vmname.'- VM created');
 
                                 echo "</br><br>";
