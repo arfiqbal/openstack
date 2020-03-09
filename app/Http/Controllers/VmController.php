@@ -66,11 +66,12 @@ class VmController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request->toArray());
+       
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         ob_implicit_flush();
         set_time_limit(0);
+
         $ids = ['7200d61d8cc545aeb2e4bc28e29f3a2d',
                 '9a08dfd7eecc494a9ba750e5f86da626',
                 'b9156dd5582e46b68ace7d74e201968d',
@@ -78,23 +79,33 @@ class VmController extends Controller
                 'd6d0a6ab1c904199935f950f2c58de8d',
                 'fe9633e0641e4fb995aa64dd161b6c55'
             ];
+
         $ipPool['vssi_routable'] = array();
         $ipPool['nr_provider'] = array();
         $ipPool['r_provider'] = array();
         $nicIps = [];
 
+        
         $routable_networ = Network::find($request->id);
 
-        if(count($request)){
+        if($request){
 
             $routable_network = Network::find($request->network);
             $non_routable_network = Network1::find($request->network1);
+            
+            echo "Fetching all the ips from openstack <br>";
+            ob_flush();
+            flush();
 
             $totalIp1 = $this->openstack->listIpAddress($routable_network->network,$routable_network->subnet,100);
             $totalIp2 = $this->openstack->listIpAddress($non_routable_network->network,$routable_network->subnet,100);
 
             $servers = $this->openstack->defaultAuthentication();
             $identity = $servers->identityV3(['domainId' => "default"]);
+
+            echo "This may take some time... Please donot refresh the page <br>";
+            ob_flush();
+            flush();
         
             foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
                 
@@ -137,6 +148,10 @@ class VmController extends Controller
                 
             }
 
+            echo "Comparing possible ips......<br>";
+            ob_flush();
+            flush();
+
             foreach($totalIp1 as $key => $value)
             {
                 if(!in_array($value, $ipPool['r_provider'])){
@@ -151,6 +166,7 @@ class VmController extends Controller
                 }
             }
 
+            //dd($nicIps);
 
             $dir = $request->vmname.'-'.uniqid();
             
@@ -163,7 +179,7 @@ class VmController extends Controller
             $app = Application::find($request->app);
              
 
-            $command = 'terraform12 apply -auto-approve -var="nic1='.$request->nic1.'" -var="nic2='.$request->nic2.'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="emailid='.$request->email.'"';
+            $command = 'terraform12 apply -auto-approve -var="nic1='.$nicIps['routeable'].'" -var="nic2='.$nicIps['non_routable'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="emailid='.$request->email.'"';
 
             if(!File::isDirectory($path)){
 
