@@ -107,25 +107,6 @@ Create VM | All VM
                                   </div>
 
                                   <div class="form-group">
-                                    <label for="network">Routable Network</label>
-                                    <select class="form-control"  id="network" required>
-                                      <option value="">Select Network</option>
-                                      @foreach($networks as $network)
-                                      <option value="{{$network->id}}">{{$network->name}} ({{$network->network}}/{{$network->subnet}})</option>
-                                      @endforeach 
-                                    </select>
-                                    <div class="invalid-feedback">Please select Network </div>
-                                  </div>
-
-                                  <div class="form-group">
-                                    <label for="network">Non-Routable Network</label>
-                                    <select class="form-control"  id="network1" required>
-                                      <option value="1">nr_provider (10.85.50.0/23)</option>  
-                                    </select>
-                                    <div class="invalid-feedback">Please select Network </div>
-                                  </div>
-
-                                  <div class="form-group">
                                     <label for="flavor">Flavors</label>
                                     <select class="form-control"  id="flavor" required>
                                       <option value="">Select Flavor</option>  
@@ -155,7 +136,7 @@ Create VM | All VM
                                 
                             </div>
                             <div class="col-md-6 float-right">
-                              <h2>IP</h2>
+                              <!-- Side section -->
                             </div>
                         </div>
                             

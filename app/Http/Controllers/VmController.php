@@ -35,8 +35,6 @@ class VmController extends Controller
     public function index()
     {
         $apps = Application::orderBy('id','DESC')->get();
-        $networks = Network::all();
-        $network1s = Network1::first();
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
         $compute = $servers->computeV2();
@@ -46,7 +44,7 @@ class VmController extends Controller
         //dd($allVM->toArray());
        
         return view('welcome',
-        ['apps' => $apps,'networks' => $networks, 'network1s' => $network1s, 
+        ['apps' => $apps, 
         'identity' => $identity, 'flavors' => $flavors]);
     }
 
@@ -92,12 +90,9 @@ class VmController extends Controller
         $nicIps = [];
 
         
-        $routable_network = Network::find($request->id);
+       
 
         if($request){
-
-            $routable_network = Network::find($request->network);
-            $non_routable_network = Network1::find($request->network1);
             
             echo "Fetching all the ips from openstack <br>";
             ob_flush();
@@ -157,6 +152,8 @@ class VmController extends Controller
             echo "Comparing possible ips......<br>";
             ob_flush();
             flush();
+
+            //foreach()
 
             foreach($totalIp1 as $key => $value)
             {
