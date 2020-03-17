@@ -90,6 +90,3 @@ class OpenstackRepository
 
     
 }
-
-//10.38.64.190
-//10.85.51.190
