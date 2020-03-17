@@ -65,10 +65,14 @@ class VmController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * vssi_routable_subnet 10.38.64.0/22 
+     * nr_provider_subnet 10.85.50.0/23 
+     * r_subnet 10.38.107.0/24  
      */
+
     public function store(Request $request)
     {
-        
+        //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         ob_implicit_flush();
@@ -88,7 +92,7 @@ class VmController extends Controller
         $nicIps = [];
 
         
-        $routable_networ = Network::find($request->id);
+        $routable_network = Network::find($request->id);
 
         if($request){
 
@@ -129,12 +133,12 @@ class VmController extends Controller
                                 }
                 
                                 if($ipKey === 'nr_provider'){
-                                    array_push($ipPool['nr_provider'], $ipValue[0]['addr']);
+                                    array_push($ipPool['nr_provider'], $ipValue[0]['addr']); //50.85
                                     
                                 }
                 
                                 if($ipKey === 'r_provider'){
-                                    array_push($ipPool['r_provider'], $ipValue[0]['addr']);
+                                    array_push($ipPool['r_provider'], $ipValue[0]['addr']); //107
                                     
                                 }
                             }  
@@ -173,6 +177,8 @@ class VmController extends Controller
             echo  "NIC 1 === ".$nicIps['routeable']."<br>";
             echo  "NIC 2 === ".$nicIps['non_routable']."<br>";
             echo "=======================================================<br>";
+
+            dd('End');
            
             $dir = $request->vmname.'-'.uniqid();
             
@@ -186,14 +192,15 @@ class VmController extends Controller
             $pluginPath = public_path('plugin');
              
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
-            $command = 'terraform12 apply -auto-approve -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="emailid='.$request->email.'"';
+
+            $command = 'terraform12 apply -auto-approve -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="emailid='.$request->email.'"';
 
             if(!File::isDirectory($path)){
 
                 File::makeDirectory($path, 0777, true, true);
                 File::copy($template, $path.'/main.tf');
                 //Log::useFiles($path.'/output.log');
-                dd('end');
+                
                 $init = 'terraform12 init -input=false -plugin-dir='.$pluginPath.'';
                 $process = new Process($init);
                 $process->setTimeout(3600);

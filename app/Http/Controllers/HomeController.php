@@ -34,6 +34,14 @@ class HomeController extends Controller
         
            
         $servers = $this->openstack->defaultAuthentication();
+
+        $networking = $servers->networkingV2();
+        $port = $networking->getPort('00684ab6-e973-4b62-9b7c-3a7fe3f94d90');
+
+        dd($port);
+
+        $port = $networking->getPort('{portId}');
+
         $identity = $servers->identityV3(['domainId' => "default"]);
        
         foreach ($identity->listProjects(['domainId' => "default"]) as $project) {

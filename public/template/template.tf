@@ -3,12 +3,15 @@ variable "nic1" {}
 variable "nic2" {}
 variable "vmname" {}
 variable "emailid" {}
+variable "flavor" {}
+variable "project" {}
+
 
 
 
 provider "openstack" {
   user_name   = "admin"
-  tenant_name = "admin"
+  tenant_name = var.project
   password    = "ayZma3wpahjHWgpjBRQypFUYK"
   auth_url    = "http://10.85.49.148:5000/v2.0"
 }
@@ -30,7 +33,7 @@ resource "openstack_compute_instance_v2" "cpns" {
     uuid            = openstack_blockstorage_volume_v1.volume_1.id
   }
 
-  flavor_id       = "58420862-09c7-4c38-8b2e-269ca24a66ad"
+  flavor_id       = var.flavor
   key_pair        = "vdf-key1"
   security_groups = ["all-open"]
 
