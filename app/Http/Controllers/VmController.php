@@ -221,7 +221,7 @@ class VmController extends Controller
                 File::copy($template, $path.'/main.tf');
                 //Log::useFiles($path.'/output.log');
                 
-                $init = 'terraform12 init -var="project='.$request->project.'" -input=false -plugin-dir='.$pluginPath.'';
+                $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
                 $process = new Process($init);
                 $process->setTimeout(3600);
                 $process->setWorkingDirectory($path);
@@ -359,14 +359,8 @@ class VmController extends Controller
     public function destroy($id)
     {
         $deleteVM = VM::find($id);
-        //dd($deleteVM->toArray());
-        // $deleteVM->active = 0;
-        //     if($deleteVM->save()){
-        //         return $deleteVM->id;
-        //     }
-
         $path = storage_path('app/'.$deleteVM->dir);
-        $process = new Process('terraform12 destroy -auto-approve');
+        $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
         $process->setTimeout(3600);
         $process->setWorkingDirectory($path);
