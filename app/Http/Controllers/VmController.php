@@ -198,7 +198,7 @@ class VmController extends Controller
             echo  "NIC 2 === ".$nicIps['non_routable']."<br>";
             echo "=======================================================<br>";
 
-            dd('End');
+            //dd('End');
            
             $dir = $request->vmname.'-'.uniqid();
             
