@@ -18,9 +18,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('create-vm', 'VmController@index');
+Route::get('create-vm', 'VmController@index')->name('createVM');
 Route::post('vm', 'VmController@store')->name('vm');;
 Route::get('vm', 'VmController@show')->name('showVmLogs');
+Route::get('all-vm', 'VmController@create')->name('allVM');
 Route::post('vm/{id}', 'VmController@destroy')->name('deletevm');
 Auth::routes();
 

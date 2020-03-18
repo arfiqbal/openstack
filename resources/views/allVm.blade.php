@@ -24,9 +24,9 @@ Create VM | All VM
                         <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
                          
                           <li class="nav-item">
-                            <a class="nav-link" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="false">All VM</a>
+                            <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">All Openstack VMs</a>
                           </li>
-                         
+                          
                           
                         </ul>
                     </div>
@@ -37,7 +37,7 @@ Create VM | All VM
 
                         
                             <!-- All VM -->
-                          <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
+                          
                             <table class="table table-hover table-striped" id="showVm">
                               <thead>
                                 <tr>
@@ -55,8 +55,8 @@ Create VM | All VM
                                         <tr id="{{$myVM->id}}">
                                           <th scope="row">{{$myVM->name}}</th>
                                           <td>{{$myVM->email}}</td>
-                                          <td>{{$myVM->ips->nic1}}</td>
-                                          <td>{{$myVM->ips->nic2}}</td>
+                                          <td>{{$myVM->nic1}}</td>
+                                          <td>{{$myVM->nic2}}</td>
                                           <td>{{$myVM->application->name}}</td>
                                           <td>
                                             
@@ -73,7 +73,7 @@ Create VM | All VM
                                 
                               </tbody>
                             </table>
-                          </div> <!-- All vM -->
+                          
 
                           
                         </div>

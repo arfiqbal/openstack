@@ -53,7 +53,9 @@ class VmController extends Controller
      */
     public function create()
     {
-        //
+        $allVM = VM::with('application')->get();
+        return view('allVm',
+        ['allVM' => $allVM]);
     }
 
     /**
@@ -178,20 +180,7 @@ class VmController extends Controller
                 }
             }
 
-            // foreach($totalIp1 as $key => $value)
-            // {
-            //     if(!in_array($value, $ipPool['vssi_routable'])){
-                    
-            //         $new = $this->openstack->createIp($value,'10.85.50.0');
-                
-            //         if(!in_array($new, $ipPool['nr_provider'])){
-            //             $nicIps = ['routeable'=> $value, 'non_routable' => $new];
-            //             break;
-            //         }
-                    
-            //     }
-            // }
-
+          
             echo "</br>";
             echo "============================================================= <br>";
             echo  "NIC 1 === ".$nicIps['routeable']."<br>";
@@ -369,10 +358,6 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
             if($deleteVM->save()){
-                $releaseIP = IPs::find($deleteVM->ip_id);
-                $releaseIP->active = 1;
-                $releaseIP->save();
-            
                 Log::info($deleteVM->vmname.'- VM deleted');
                 return $deleteVM->id;
             }
