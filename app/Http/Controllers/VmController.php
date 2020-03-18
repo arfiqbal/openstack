@@ -281,6 +281,7 @@ class VmController extends Controller
                             $newvm->name = $request->vmname;
                             $newvm->email = $request->email;
                             $newvm->project = $request->project;
+                            $newvm->flavor = $request->flavor;
                             $newvm->nic1 = $nicIps['routeable'];
                             $newvm->nic2 = $nicIps['non_routable'];
                             $newvm->active = 1;
