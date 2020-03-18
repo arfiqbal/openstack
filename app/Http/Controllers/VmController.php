@@ -6,8 +6,6 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Http\Controllers\Controller;
 use App\Application;
-use App\Network;
-use App\Network1;
 use App\VM;
 use Log;
 use File;
@@ -15,7 +13,7 @@ use Storage;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use OpenStack\OpenStack;
-use  App\Repository\OpenstackRepository;
+use App\Repository\OpenstackRepository;
 
 
 class VmController extends Controller
@@ -98,7 +96,7 @@ class VmController extends Controller
             ob_flush();
             flush();
 
-            $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23 ',55);
+            $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23',55);
             $totalRproviderIP = $this->openstack->listIpAddress('10.38.107.0','24',55);
             $totalVssiIP = $this->openstack->listIpAddress('10.38.64.0','22',55);
 
@@ -159,7 +157,7 @@ class VmController extends Controller
                 if(!in_array($value, $ipPool['nr_provider'])){
                     
                     $explodeIp = explode('.',$value);
-                    
+
                     if($explodeIp['2'] == '51'){
                         $new = $this->openstack->createIp($value,'10.38.64.0');
                         if(!in_array($new, $ipPool['vssi_routable'])){
@@ -280,8 +278,6 @@ class VmController extends Controller
                             $newvm = New VM;
                             $newvm->application_id = $request->app;
                             $newvm->dir = $dir;
-                            $newvm->network_id = $request->network;
-                            $newvm->network1_id = $request->network1;
                             $newvm->name = $request->vmname;
                             $newvm->email = $request->email;
                             $newvm->project = $request->project;
