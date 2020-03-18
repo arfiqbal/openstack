@@ -182,9 +182,9 @@ Create VM | All VM
                           $('#deleteModal').modal('hide');
                           //$('#'+data).hide();
                           alert('VM Deleted');
-                          setTimeout(function() {
-                            location.reload(true);
-                          }, 10000);
+                          
+                          location.reload(true);
+                         
                           
                           
                     }).fail(function() {
