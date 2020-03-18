@@ -13,10 +13,10 @@ provider "openstack" {
   user_name   = "admin"
   tenant_name = var.project
   password    = "ayZma3wpahjHWgpjBRQypFUYK"
-  auth_url    = "http://10.85.49.148:5000/v2.0"
+  auth_url    = "http://10.85.49.148:5000//v3"
 }
 
-resource "openstack_blockstorage_volume_v1" "volume_1" {
+resource "openstack_blockstorage_volume_v2" "volume_1" {
 
   name        = var.vmname
   description = var.vmname
@@ -30,7 +30,7 @@ resource "openstack_compute_instance_v2" "cpns" {
     boot_index      = 0
     source_type     = "volume"
     destination_type  = "volume"
-    uuid            = openstack_blockstorage_volume_v1.volume_1.id
+    uuid            = openstack_blockstorage_volume_v2.volume_1.id
   }
 
   flavor_id       = var.flavor
