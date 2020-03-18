@@ -221,7 +221,7 @@ class VmController extends Controller
                 File::copy($template, $path.'/main.tf');
                 //Log::useFiles($path.'/output.log');
                 
-                $init = 'terraform12 init -input=false -plugin-dir='.$pluginPath.'';
+                $init = 'terraform12 init -var="project='.$request->project.'" -input=false -plugin-dir='.$pluginPath.'';
                 $process = new Process($init);
                 $process->setTimeout(3600);
                 $process->setWorkingDirectory($path);
@@ -292,7 +292,7 @@ class VmController extends Controller
 
                                 echo "</br><br>";
                                 echo "======================================================= <br>";
-                                echo "====".$request->vmname."- VM created successfully =====";
+                                echo "====".$request->vmname."- VM created successfully ===== <br>";
                                 echo "=======================================================<br>";
                             }
 
