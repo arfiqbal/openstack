@@ -53,7 +53,7 @@ class VmController extends Controller
      */
     public function create()
     {
-        $allVM = VM::with('application')->get();
+        $allVM = VM::with('application')->where('active',1)->get();
         return view('allVm',
         ['allVM' => $allVM]);
     }
