@@ -13,7 +13,7 @@ variable "netname" {}
 
 provider "openstack" {
   user_name   = "admin"
-  tenant_name = var.project
+  tenant_id   = var.project
   password    = "ayZma3wpahjHWgpjBRQypFUYK"
   auth_url    = "http://10.85.49.148:5000//v3"
 }
