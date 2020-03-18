@@ -5,6 +5,8 @@ variable "vmname" {}
 variable "emailid" {}
 variable "flavor" {}
 variable "project" {}
+variable "netname" {}
+
 
 
 
@@ -24,7 +26,7 @@ resource "openstack_blockstorage_volume_v2" "volume_1" {
   image_id    = var.app
 }
 
-resource "openstack_compute_instance_v2" "cpns" {
+resource "openstack_compute_instance_v2" "vm" {
   name            = var.vmname
   block_device {
     boot_index      = 0
@@ -48,7 +50,7 @@ resource "openstack_compute_instance_v2" "cpns" {
   }
 
   network {
-    name = "vssi_routable"
+    name = var.netname
      fixed_ip_v4    = var.nic2
   }
 

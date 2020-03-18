@@ -161,7 +161,7 @@ class VmController extends Controller
                     if($explodeIp['2'] == '51'){
                         $new = $this->openstack->createIp($value,'10.38.64.0');
                         if(!in_array($new, $ipPool['vssi_routable'])){
-                            $nicIps = ['routeable'=> $value, 'non_routable' => $new];
+                            $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
                             break;
                         }
 
@@ -169,7 +169,7 @@ class VmController extends Controller
                     if($explodeIp['2'] == '50'){
                         $new = $this->openstack->createIp($value,'10.38.107.0');
                         if(!in_array($new, $ipPool['r_provider'])){
-                            $nicIps = ['routeable'=> $value, 'non_routable' => $new];
+                            $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
                             break;
                         }
                     }
@@ -213,7 +213,7 @@ class VmController extends Controller
              
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
 
-            $command = 'terraform12 apply -auto-approve -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="emailid='.$request->email.'"';
+            $command = 'terraform12 apply -auto-approve -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="emailid='.$request->email.'"';
 
             if(!File::isDirectory($path)){
 
