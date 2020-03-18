@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Application;
 use App\VM;
 use Log;
+use Auth;
 use File;
 use Storage;
 use Symfony\Component\Process\Process;
@@ -110,7 +111,9 @@ class VmController extends Controller
             flush();
         
             foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
-                
+                echo ".";
+                ob_flush();
+                flush();
 
                 if(!in_array($project->id, $ids)){
 
@@ -183,8 +186,8 @@ class VmController extends Controller
           
             echo "</br>";
             echo "============================================================= <br>";
-            echo  "NIC 1 === ".$nicIps['routeable']."<br>";
-            echo  "NIC 2 === ".$nicIps['non_routable']."<br>";
+            echo  "NIC 1 === ".$nicIps['non_routable']."<br>";
+            echo  "NIC 2 === ".$nicIps['routeable']."<br>";
             echo "============================================================= <br>";
 
             //dd('End');
@@ -273,6 +276,7 @@ class VmController extends Controller
                             $newvm->flavor = $request->flavor;
                             $newvm->nic1 = $nicIps['routeable'];
                             $newvm->nic2 = $nicIps['non_routable'];
+                            $newvm->created_by = Auth::user()->name;
                             $newvm->active = 1;
                             if($newvm->save()){
 

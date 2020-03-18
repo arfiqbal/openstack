@@ -24,6 +24,7 @@ class CreateVMsTable extends Migration
                 $table->string('nic1');
                 $table->string('nic2');
                 $table->string('flavor');
+                $table->string('created_by');
                 $table->boolean('active');
                 $table->timestamps();
             
