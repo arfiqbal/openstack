@@ -43,10 +43,11 @@
           </li>
             
           <li class="nav-item active">
-            <a class="nav-link" >Hi {{ Auth::user()->name }}
+            <a class="nav-link" >Hi {{ dd(Auth::user()) }} //{{ Auth::user()->name }}
               <span class="sr-only">(current)</span>
             </a>
           </li>
+          
           <li class="nav-item ">
             <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
               Logout
