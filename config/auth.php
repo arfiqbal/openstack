@@ -36,9 +36,14 @@ return [
     */
 
     'guards' => [
+        // 'web' => [
+        //     'driver' => 'session',
+        //     'provider' => 'users',
+        // ],
+
         'web' => [
             'driver' => 'session',
-            'provider' => 'users',
+            'provider' => 'ldap',
         ],
 
         'api' => [
@@ -69,6 +74,11 @@ return [
         'users' => [
             'driver' => 'eloquent',
             'model' => App\User::class,
+        ],
+
+        'ldap' => [
+            'driver' => 'ldap',
+            'model' => LdapRecord\Models\ActiveDirectory\User::class,
         ],
 
         // 'users' => [

@@ -7,9 +7,9 @@ Create VM | All VM
 @section('content')
 
   <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid">
         <div class="row">
-            <div class="col-md-12 ">
+            <div class="col-md-12">
                 @if (session('vms'))
                 <div class="alert alert-warning alert-dismissible fade show" role="alert">
                   {{ session('vms') }} has been created successfully
