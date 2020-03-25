@@ -46,8 +46,20 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         return [
-            'uid' => $request->get('username'),
+            'samaccountname' => $request->get('username'),
             'password' => $request->get('password'),
         ];
     }
+
+    // public function authenticate(Request $request)
+    // {
+    //     $credentials = $request->only('username', 'password');
+
+    //     if (Auth::attempt($credentials)) {
+    //         dd('login');
+    //         //return redirect()->intended('dashboard');
+    //     }
+
+    //     dd('no login');
+    // }
 }

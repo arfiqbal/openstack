@@ -79,6 +79,12 @@ return [
         'ldap' => [
             'driver' => 'ldap',
             'model' => LdapRecord\Models\ActiveDirectory\User::class,
+            'database' => [    
+                'sync_attributes' => [
+                    'name' => 'cn',
+                    'username' => 'samaccountname',
+                ],
+            ],
         ],
 
         // 'users' => [
