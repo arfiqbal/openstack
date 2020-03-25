@@ -51,15 +51,15 @@ class LoginController extends Controller
         ];
     }
 
-    // public function authenticate(Request $request)
-    // {
-    //     $credentials = $request->only('username', 'password');
+    public function authenticate(Request $request)
+    {
+        $credentials = $request->only('username', 'password');
 
-    //     if (Auth::attempt($credentials)) {
-    //         dd('login');
-    //         //return redirect()->intended('dashboard');
-    //     }
+        if (Auth::attempt($this->$credentials)) {
+            dd('login');
+            //return redirect()->intended('dashboard');
+        }
 
-    //     dd('no login');
-    // }
+        dd('no login');
+    }
 }
