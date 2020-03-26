@@ -45,13 +45,13 @@ class LoginController extends Controller
     //     return 'username';
     // }
 
-    // protected function credentials(Request $request)
-    // {
-    //     return [
-    //         'samaccountname' => $request->get('username'),
-    //         'password' => $request->get('password'),
-    //     ];
-    // }
+    protected function credentials(Request $request)
+    {
+        return [
+            'samaccountname' => $request->get('username'),
+            'password' => $request->get('password'),
+        ];
+    }
 
     public function getLogin()
     {
@@ -62,7 +62,7 @@ class LoginController extends Controller
     {
        // $credentials = $request->only('username', 'password');
 
-        if (Auth::attempt($this->$credentials)) {
+        if (Auth::attempt($this->credentials($request))) {
             dd('login');
             //return redirect()->intended('dashboard');
         }
