@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LdapRecord\Laravel\Auth\ListensForLdapBindFailure;
 use App\Ldap\User;
+use LdapRecord\Container;
 
 class LoginController extends Controller
 {
@@ -58,6 +59,8 @@ class LoginController extends Controller
     {
         // $users = User::get();
         // dd($users);
+        $connection = Container::getDefaultConnection();
+        dd($connection);
         return view('auth.login');
     }
 
