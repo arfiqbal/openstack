@@ -57,7 +57,7 @@ class LoginController extends Controller
     public function getLogin()
     {
         $users = User::where('company', '=', 'Acme')->get();
-        dd($user);
+        dd($users);
         return view('auth.login');
     }
 
