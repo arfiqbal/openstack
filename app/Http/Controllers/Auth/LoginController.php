@@ -7,6 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LdapRecord\Laravel\Auth\ListensForLdapBindFailure;
+use App\Ldap\User;
 
 class LoginController extends Controller
 {
@@ -41,9 +42,9 @@ class LoginController extends Controller
         $this->listenForLdapBindFailure();
     }
 
-    // public function username(){
-    //     return 'username';
-    // }
+    public function username(){
+        return 'username';
+    }
 
     protected function credentials(Request $request)
     {
@@ -55,6 +56,8 @@ class LoginController extends Controller
 
     public function getLogin()
     {
+        $users = User::where('company', '=', 'Acme')->get();
+        dd($user);
         return view('auth.login');
     }
 
