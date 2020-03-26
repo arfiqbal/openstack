@@ -49,15 +49,15 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         return [
-            'samaccountname' => $request->get('username'),
+            'username' => $request->get('username'),
             'password' => $request->get('password'),
         ];
     }
 
     public function getLogin()
     {
-        $users = User::get();
-        dd($users);
+        // $users = User::get();
+        // dd($users);
         return view('auth.login');
     }
 
