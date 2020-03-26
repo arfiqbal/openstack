@@ -28,7 +28,7 @@ class LoginController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/all-vm';
+   
 
     /**
      * Create a new controller instance.
@@ -52,6 +52,11 @@ class LoginController extends Controller
     //         'password' => $request->get('password'),
     //     ];
     // }
+
+    public function getLogin()
+    {
+        return view('auth.login');
+    }
 
     public function authenticate(Request $request)
     {

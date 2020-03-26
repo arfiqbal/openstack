@@ -12,9 +12,12 @@
 */
 
 
-Route::get('/ip', 'HomeController@index')->name('home');
+Route::get('auth/login', 'Auth\LoginController@getLogin');
+Route::post('auth/login', 'Auth\LoginController@authenticate');
+Route::get('auth/logout', 'Auth\LoginController@getLogout');
 
-Auth::routes();
+
+Route::get('/ip', 'HomeController@index')->name('home');
 
 Route::get('/home', 'HomeController@index')->name('home');
 
