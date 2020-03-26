@@ -15,6 +15,8 @@ class User extends Model
         'top',
         'person',
         'organizationalperson',
-        'user',
+        'inetorgperson',
+        'inetuser',
+        'posixaccount'
     ];
 }
