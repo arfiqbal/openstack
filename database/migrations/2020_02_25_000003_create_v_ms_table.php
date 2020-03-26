@@ -19,6 +19,9 @@ class CreateVMsTable extends Migration
                 $table->integer('application_id')->unsigned();
                 $table->string('dir');
                 $table->string('name');
+                $table->string('firstname');
+                $table->string('lastname');
+                $table->string('username');
                 $table->string('email');
                 $table->string('project');
                 $table->string('nic1');
