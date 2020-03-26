@@ -87,6 +87,16 @@ Create VM | All VM
                                     <input type="text" class="form-control"  id="vmname" required>
                                   
                                   </div>
+                                  <div class="form-group">
+                                    <label for="firstName">First Name</label>
+                                    <input type="text" class="form-control"  id="firstName" required>
+                                  
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="LastName">Last Name</label>
+                                    <input type="text" class="form-control"  id="LastName" required>
+                                  
+                                  </div>
 
                                   <div class="form-group">
                                     <label for="uname1">Email</label>
@@ -218,6 +228,8 @@ Create VM | All VM
       $("#launchVM").click(function(event) {
         //event.preventDefault()
         var vmname = $('#vmname').val();
+        var firstName = $('#firstName').val();
+        var lastName = $('#lastName').val();
         var email = $('#email').val();
         var project = $('#project option:selected').val();
         var network = $('#network option:selected').val();
