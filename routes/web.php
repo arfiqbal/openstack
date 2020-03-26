@@ -13,7 +13,7 @@
 
 
 Route::get('auth/login', 'Auth\LoginController@getLogin');
-Route::post('auth/login', 'Auth\LoginController@authenticate');
+Route::post('auth/login', 'Auth\LoginController@authenticate')->name('loginPost');
 Route::get('auth/logout', 'Auth\LoginController@getLogout');
 
 
