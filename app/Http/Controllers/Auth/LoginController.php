@@ -60,7 +60,13 @@ class LoginController extends Controller
         // $users = User::get();
         // dd($users);
         $connection = Container::getDefaultConnection();
-        dd($connection);
+        if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
+            dd('good');
+        }else{
+            $message = $connection->getLdapConnection()->getDiagnosticMessage();
+            dd($message);
+        }
+        
         return view('auth.login');
     }
 
