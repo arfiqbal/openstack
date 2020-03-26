@@ -78,13 +78,13 @@ return [
 
         'ldap' => [
             'driver' => 'ldap',
-            'model' => LdapRecord\Models\ActiveDirectory\User::class,
+            'model' => App\Ldap\User::class,
             'database' => [  
                 'model' => App\User::class,
                 'sync_passwords' => false,  
                 'sync_attributes' => [
                     'name' => 'cn',
-                    'username' => 'samaccountname',
+                    'username' => 'uid',
                 ],
             ],
         ],

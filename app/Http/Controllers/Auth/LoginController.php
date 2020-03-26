@@ -50,7 +50,7 @@ class LoginController extends Controller
     protected function credentials(Request $request)
     {
         return [
-            'username' => $request->get('username'),
+            'uid' => $request->get('username'),
             'password' => $request->get('password'),
         ];
     }
@@ -59,15 +59,15 @@ class LoginController extends Controller
     {
         // $users = User::get();
         // dd($users);
-        $user = User::findByOrFail('uid', 'arif');
-        dd($user);
-        $connection = Container::getDefaultConnection();
-        if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
-            dd('good');
-        }else{
-            $message = $connection->getLdapConnection()->getDiagnosticMessage();
-            dd($message);
-        }
+        // $user = User::findByOrFail('uid', 'arif');
+        // dd($user);
+        // $connection = Container::getDefaultConnection();
+        // if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
+        //     dd('good');
+        // }else{
+        //     $message = $connection->getLdapConnection()->getDiagnosticMessage();
+        //     dd($message);
+        // }
         
         return view('auth.login');
     }
