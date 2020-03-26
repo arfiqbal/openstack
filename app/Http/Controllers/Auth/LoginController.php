@@ -7,8 +7,7 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LdapRecord\Laravel\Auth\ListensForLdapBindFailure;
-//use App\Ldap\User;
-use LdapRecord\Models\ActiveDirectory\User;
+use App\Ldap\User;
 use LdapRecord\Container;
 
 class LoginController extends Controller
@@ -60,8 +59,8 @@ class LoginController extends Controller
     {
         // $users = User::get();
         // dd($users);
-        $user = User::findByOrFail('samaccountname', 'arif');
-        dd($users);
+        $user = User::findByOrFail('uid', 'arif');
+        dd($user);
         $connection = Container::getDefaultConnection();
         if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
             dd('good');
