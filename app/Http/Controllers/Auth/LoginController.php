@@ -59,6 +59,8 @@ class LoginController extends Controller
     {
         // $users = User::get();
         // dd($users);
+        $user = User::findByOrFail('samaccountname', 'arif');
+        dd($users);
         $connection = Container::getDefaultConnection();
         if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
             dd('good');
