@@ -7,7 +7,8 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use LdapRecord\Laravel\Auth\ListensForLdapBindFailure;
-use App\Ldap\User;
+//use App\Ldap\User;
+use LdapRecord\Models\ActiveDirectory\User;
 use LdapRecord\Container;
 
 class LoginController extends Controller
