@@ -5,6 +5,7 @@ namespace App\Repository;
 use OpenStack\OpenStack;
 use Illuminate\Support\Collection;
 use IPv4\SubnetCalculator;
+use App\VM;
 
 
 class OpenstackRepository
@@ -86,7 +87,20 @@ class OpenstackRepository
     }
 
 
-    
+    public function createUsername($request)
+    {
+        $username = $request->firstName."".$request->lastName[0];
+        $i = 0;
+        while (VM::where('username', $username)->exists()) {
+
+            $username = $request->firstName."".$request->lastName[0]."".$i;
+
+        }
+        return $username;
+       
+        
+
+    }
 
     
 }

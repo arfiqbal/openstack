@@ -266,11 +266,17 @@ class VmController extends Controller
                             Log::critical($process->getOutput());
                             // throw new ProcessFailedException($process);
                         }else{
+
+                            $username = $this->openstack->createUsername($request);
+
                             $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
                             $newvm->application_id = $request->app;
                             $newvm->dir = $dir;
                             $newvm->name = $request->vmname;
+                            $newvm->firstname = $request->firstName;
+                            $newvm->lastname = $request->lastName;
+                            $newvm->username = $username;
                             $newvm->email = $request->email;
                             $newvm->project = $request->project;
                             $newvm->flavor = $request->flavor;
