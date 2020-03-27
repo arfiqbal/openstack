@@ -6,6 +6,7 @@ use OpenStack\OpenStack;
 use Illuminate\Support\Collection;
 use IPv4\SubnetCalculator;
 use App\VM;
+use Illuminate\Support\Str;
 
 
 class OpenstackRepository
@@ -89,17 +90,24 @@ class OpenstackRepository
 
     public function createUsername($request)
     {
-        $username = $request->firstName."".$request->lastName[0];
+        $name =  Str::words($request->firstName, 1, '');
+        $username = $name."".$request->lastName[0];
         $i = 0;
         while (VM::where('username', $username)->exists()) {
-
-            $username = $request->firstName."".$request->lastName[0]."".$i;
+            $i++;
+            $username = $name."".$request->lastName[0]."".$i;
 
         }
-        return $username;
+        return strtolower($username);
        
         
 
+    }
+
+    public function createHostname($request)
+    {
+        $host = $this->createUsername($request);
+        return $host.'.'."cloud.vssi.com";
     }
 
     

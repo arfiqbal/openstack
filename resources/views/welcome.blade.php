@@ -93,8 +93,8 @@ Create VM | All VM
                                   
                                   </div>
                                   <div class="form-group">
-                                    <label for="LastName">Last Name</label>
-                                    <input type="text" class="form-control"  id="LastName" required>
+                                    <label for="lastName">Last Name</label>
+                                    <input type="text" class="form-control"  id="lastName" required>
                                   
                                   </div>
 
@@ -256,7 +256,13 @@ Create VM | All VM
               $.ajax({
                   type:'POST',
                   url: "<?= URL::to("vm");?>",
-                  data: {vmname :vmname, email:email, project :project, network :network, app :app, network1 :network1, flavor:flavor},
+                  data: {vmname :vmname, 
+                    email:email, 
+                    project :project, 
+                    firstName :firstName, 
+                    app :app, 
+                    lastName :lastName, 
+                    flavor:flavor},
                   xhr: function () {
                       var xhr = $.ajaxSettings.xhr() ;
                       xhr.onprogress = function (e) {
