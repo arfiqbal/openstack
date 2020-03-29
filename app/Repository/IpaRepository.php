@@ -41,7 +41,7 @@ class IpaRepository
         
         $content = curl_exec($ch);
         curl_close($ch);
-        return;
+        return $content;
     }
     
 }
