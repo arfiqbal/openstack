@@ -59,15 +59,8 @@ class VmController extends Controller
      */
     public function create()
     {
-        $user = User::create([
-            
-            'givenname' => 'Steve',
-            'sn'        => 'Bauman',
-            'mail' => "rms@fsf.org",
-            'userpassword' => 'Secret123'
-            
-        ]);
-        $user->inside('uid=bauman,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
+       dd($this->ipa->login('cookie1'))
+        
         dd('created');
         
         $allVM = VM::with('application')->where('active',1)->get();

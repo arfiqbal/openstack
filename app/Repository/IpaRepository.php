@@ -23,7 +23,7 @@ class IpaRepository
         return json_encode(array($data));
     }
 
-    public function ipaLogin($cookieName)
+    public function login($cookieName)
     {
         $certPath =  storage_path('app/public/ipa.ca.crt');
         $cookiePath =  storage_path('app/public/'.$cookieName);
