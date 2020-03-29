@@ -22,6 +22,8 @@ class CreateVMsTable extends Migration
                 $table->string('firstname');
                 $table->string('lastname');
                 $table->string('username');
+                $table->string('hostname');
+                $table->string('pass');
                 $table->string('email');
                 $table->string('project');
                 $table->string('nic1');

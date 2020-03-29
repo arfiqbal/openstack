@@ -15,6 +15,8 @@ use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 use OpenStack\OpenStack;
 use App\Repository\OpenstackRepository;
+use Illuminate\Support\Str;
+use App\Ldap\User;
 
 
 class VmController extends Controller
@@ -54,6 +56,14 @@ class VmController extends Controller
      */
     public function create()
     {
+        $user = User::create([
+            'uid'        => 'ariftest',
+            'givenname' => 'arif',
+            'sn'        => 'Bauman',
+            'userpassword' => 'redhat'
+        ]);
+        dd('created');
+        
         $allVM = VM::with('application')->where('active',1)->get();
         return view('allVm',
         ['allVM' => $allVM]);
@@ -111,7 +121,7 @@ class VmController extends Controller
             flush();
         
             foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
-                echo ".";
+                echo "Searching...";
                 ob_flush();
                 flush();
 
@@ -153,6 +163,7 @@ class VmController extends Controller
                 
             }
             //dd($ipPool);
+            echo "<br>";
             echo "Comparing possible ips......<br>";
             ob_flush();
             flush();
@@ -196,8 +207,9 @@ class VmController extends Controller
             
 
             $path = storage_path('app/'.$dir);
-            
 
+            $username = $this->openstack->createUsername($request);
+            $hostname = $this->openstack->createHostname($username);
             $template = public_path('template/template.tf');
 
             $app = Application::find($request->app);
@@ -267,7 +279,9 @@ class VmController extends Controller
                             // throw new ProcessFailedException($process);
                         }else{
 
-                            $username = $this->openstack->createUsername($request);
+                           
+                           
+                            $randomPass = Str::random(6);
 
                             $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
@@ -277,7 +291,9 @@ class VmController extends Controller
                             $newvm->firstname = $request->firstName;
                             $newvm->lastname = $request->lastName;
                             $newvm->username = $username;
+                            $newvm->hostname = $hostname;
                             $newvm->email = $request->email;
+                            $newvm->pass = $randomPass;
                             $newvm->project = $request->project;
                             $newvm->flavor = $request->flavor;
                             $newvm->nic1 = $nicIps['routeable'];

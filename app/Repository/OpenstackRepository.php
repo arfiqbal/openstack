@@ -104,10 +104,9 @@ class OpenstackRepository
 
     }
 
-    public function createHostname($request)
+    public function createHostname($username)
     {
-        $host = $this->createUsername($request);
-        return $host.'.'."cloud.vssi.com";
+        return $username.'.cloud.vssi.com';
     }
 
     

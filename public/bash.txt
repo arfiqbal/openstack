@@ -1,0 +1,18 @@
+#!/bin/bash
+
+ "echo ${var.pw} | sudo -S apt-get update",
+sudo sh -c "echo nameserver 10.85.50.19 > /etc/resolv.conf"
+
+sudo hostnamectl set-hostname $1
+
+yum install ipa-client -y ipa-client-install --mkhomedir -p arif@VSSI.COM -w 'redhat123' --server=$1 --domain mylab.local -U
+
+apt-get install freeipa-client -y ipa-client-install --mkhomedir -p arif@VSSI.COM -w 'redhat123' --server=$1 --domain mylab.local -U
+
+DISTRO=$(cat /etc/*-release | grep -w NAME | cut -d= -f2 | tr -d '"')
+
+if [[ "$DISTRO"=="Ubuntu" || "$DISTRO"=="Debian" ]] ; then
+    sudo apt-get install freeipa-client -y
+elif [[ "$DISTRO"=="CentOS" || "$DISTRO"=="RedHat" || "$DISTRO"=="Fedora" ]]
+    sudo yum install ipa-client -y ipa-client-install
+fi

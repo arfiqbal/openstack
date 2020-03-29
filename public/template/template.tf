@@ -54,5 +54,32 @@ resource "openstack_compute_instance_v2" "vm" {
      fixed_ip_v4    = var.nic2
   }
 
+  connection {
+    type = "ssh"
+    user = "ubuntu"
+    private_key = file()
+    host = var.nic1
+  }
+
+  provisioner "file" {
+    source = 
+    destination = 
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "chmod +x /tmp/get-public-ip.sh",
+      "sh /tmp/get-public-ip.sh ",
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "sudo mkfs -t ext4 /dev/nvme0n1",
+    ]
+  }
+
+
+
 }
 
