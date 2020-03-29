@@ -42,7 +42,7 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_CAPATH, $certPath);
         // curl_setopt($ch, CURLOPT_HEADER, 0);
         $content = curl_exec($ch);
-        // curl_close($ch);
+        curl_close($ch);
         return $content;
     }
     
