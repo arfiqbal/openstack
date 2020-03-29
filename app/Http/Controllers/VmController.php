@@ -56,23 +56,12 @@ class VmController extends Controller
      */
     public function create()
     {
-        // $user = User::create([
-        //     'uid'        => 'ariftest',
-        //     // 'cn'        => 'users',
-        //     // 'cn'        => 'accounts',
-        //     'givenname' => 'ariftest',
-        //     'sn'        => 'Bauman',
-        //     'userpassword' => 'redhat'
-        // ]);
-        // $user->inside('cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
-
-        $user = new User();
-       
-        $user->givenname = 'John';
-        $user->sn = 'Doe';
-
-        $user->setDn('uid=jhoon,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
-
+        $user = User::create([
+            
+            'givenname' => 'Steve',
+            'sn'        => 'Bauman',
+            'company'   => 'Acme',
+        ]);
         dd('created');
         
         $allVM = VM::with('application')->where('active',1)->get();
