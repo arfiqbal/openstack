@@ -60,7 +60,10 @@ class VmController extends Controller
             
             'givenname' => 'Steve',
             'sn'        => 'Bauman',
-            'company'   => 'Acme',
+            'uid'       => 'stallman',
+            'mail' => "rms@fsf.org",
+            'userpassword' => 'Secret123'
+            
         ]);
         dd('created');
         
