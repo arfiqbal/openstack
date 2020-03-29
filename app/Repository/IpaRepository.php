@@ -48,7 +48,7 @@ class IpaRepository
 
     public function addUser($username, $cookieName)
     {   
-        $data = '{"method":"hbacrule_add","params":[['.$username.'],{"version":"2.231"}]}';
+        $data = '{"method":"hbacrule_add","params":[["'.$username.'"],{"version":"2.231"}]}';
 
         $certPath =  public_path('include/ipa.ca.crt');
 
