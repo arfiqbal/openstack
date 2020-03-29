@@ -43,7 +43,7 @@
           </li>
             
           <li class="nav-item active">
-            <a class="nav-link" >Hi {{ Auth::user()->getFirstAttribute('cn') }} //{{ Auth::user()->name }}
+            <a class="nav-link" >Hi {{ Auth::user()->name }} 
               <span class="sr-only">(current)</span>
             </a>
           </li>
