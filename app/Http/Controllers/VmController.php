@@ -17,14 +17,17 @@ use OpenStack\OpenStack;
 use App\Repository\OpenstackRepository;
 use Illuminate\Support\Str;
 use App\Ldap\User;
+use App\Repository\IpaRepository;
 
 
 class VmController extends Controller
 {
+    
 
-    public function __construct(OpenstackRepository $openstack){
+    public function __construct(OpenstackRepository $openstack,IpaRepository $ipa ){
 
         $this->openstack = $openstack;
+        $this->ipa = $ipa;
         $this->middleware('auth');
     }
 
@@ -57,14 +60,14 @@ class VmController extends Controller
     public function create()
     {
         $user = User::create([
-            'cn' => 'users',
+            
             'givenname' => 'Steve',
             'sn'        => 'Bauman',
-            'uid'       => 'stallman',
             'mail' => "rms@fsf.org",
             'userpassword' => 'Secret123'
             
         ]);
+        $user->inside('uid=bauman,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
         dd('created');
         
         $allVM = VM::with('application')->where('active',1)->get();
