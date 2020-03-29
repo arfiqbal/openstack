@@ -25,8 +25,8 @@ class IpaRepository
 
     public function login($cookieName)
     {
-        $certPath =  storage_path('app/public/ipa.ca.crt');
-        dd($certPath);
+        $certPath =  public_path('include/ipa.ca.crt');
+        
         $cookiePath =  storage_path('app/public/'.$cookieName);
         $ch = curl_init();
         
