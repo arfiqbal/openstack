@@ -12,7 +12,12 @@ apt-get install freeipa-client -y ipa-client-install --mkhomedir -p arif@VSSI.CO
 DISTRO=$(cat /etc/*-release | grep -w NAME | cut -d= -f2 | tr -d '"')
 
 if [[ "$DISTRO"=="Ubuntu" || "$DISTRO"=="Debian" ]] ; then
+
     sudo apt-get install freeipa-client -y
+    sudo sh -c "echo nameserver 10.85.50.19 >> /etc/resolv.conf"
+
 elif [[ "$DISTRO"=="CentOS" || "$DISTRO"=="RedHat" || "$DISTRO"=="Fedora" ]]
+
     sudo yum install ipa-client -y ipa-client-install
+    sudo sh -c "echo nameserver 10.85.50.19 >> /etc/resolv.conf"
 fi

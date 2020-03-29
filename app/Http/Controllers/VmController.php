@@ -59,9 +59,6 @@ class VmController extends Controller
      */
     public function create()
     {
-       //$this->ipa->login('cookie1.txt');
-       $this->ipa->addUser('arifpoc','arf','arf','redhat', 'arck.txt');
-
         
         $allVM = VM::with('application')->where('active',1)->get();
         return view('allVm',
@@ -98,9 +95,7 @@ class VmController extends Controller
         $ipPool['nr_provider'] = array();
         $ipPool['r_provider'] = array();
         $nicIps = [];
-
-        
-       
+    
 
         if($request){
             
@@ -206,9 +201,11 @@ class VmController extends Controller
             
 
             $path = storage_path('app/'.$dir);
-
+            $randomPass = Str::random(6);
             $username = $this->openstack->createUsername($request);
             $hostname = $this->openstack->createHostname($username);
+            $this->ipa->login($username.'.txt');
+            $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $username.'.txt');
             $template = public_path('template/template.tf');
 
             $app = Application::find($request->app);
@@ -279,9 +276,6 @@ class VmController extends Controller
                         }else{
 
                            
-                           
-                            $randomPass = Str::random(6);
-
                             $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
                             $newvm->application_id = $request->app;

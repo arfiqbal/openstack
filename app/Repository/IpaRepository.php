@@ -41,7 +41,7 @@ class IpaRepository
         return curl_getinfo($ch, CURLINFO_HTTP_CODE);
     }
 
-    protected function login($cookieName)
+    public function login($cookieName)
     {
         $certPath =  public_path('include/ipa.ca.crt');
         
@@ -70,7 +70,7 @@ class IpaRepository
         $data = '{"method":"user_add","params":[["'.$username.'"],{"givenname":"'.$firstname.'","sn":"'.$lastname.'","userpassword":"'.$password.'","version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
         $cookiePath =  storage_path('app/public/'.$cookieName);
-        $this->login($cookieName);
+        
         $this->curlCommon($cookiePath,$certPath,$data);
     }
 
