@@ -41,7 +41,7 @@ class IpaRepository
         return curl_getinfo($ch, CURLINFO_HTTP_CODE);
     }
 
-    public function login($cookieName)
+    protected function login($cookieName)
     {
         $certPath =  public_path('include/ipa.ca.crt');
         
@@ -64,9 +64,46 @@ class IpaRepository
         return curl_getinfo($ch, CURLINFO_HTTP_CODE);
     }
 
-    public function addUser($username, $cookieName)
+    public function addUser($username,$firstname,$lastname,$password, $cookieName)
     {   
-        $data = '{"method":"hbacrule_add","params":[["'.$username.'"],{"version":"2.231"}]}';
+       
+        $data = '{"method":"user_add","params":[["'.$username.'"],{"givenname":"'.$firstname.'","sn":"'.$lastname.'","'.$password.'":"redhat","version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->login($cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+    
+
+    public function addHbacRule($rule, $cookieName)
+    {   
+        $data = '{"method":"hbacrule_add","params":[["'.$rule.'"],{"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+
+    protected function addHbacRuleUser($rule,$username, $cookieName)
+    {   
+        $data = '{"method":"hbacrule_add_user","params":[["'.$rule.'"],{"user":["'.$username.'"],"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+    protected function addHbacRuleHost($rule,$hostname, $cookieName)
+    {   
+        $data = '{"method":"hbacrule_add_host","params":[["'.$rule.'"],{"host":["'.$hostname.'"],"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+    protected function addHbacRuleService($rule, $cookieName)
+    {   
+        $data = '{"method":"hbacrule_add_service","params":[["'.$rule.'"],{"hbacsvc":["sshd"],"version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
         $cookiePath =  storage_path('app/public/'.$cookieName);
         $this->curlCommon($cookiePath,$certPath,$data);
