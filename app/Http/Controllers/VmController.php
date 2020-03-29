@@ -67,11 +67,11 @@ class VmController extends Controller
         // $user->inside('cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
 
         $user = new User();
-        $user->uid = 'John';
+       
         $user->givenname = 'John';
         $user->sn = 'Doe';
 
-        $user->setDn('cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
+        $user->setDn('uid=jhoon,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
 
         dd('created');
         
