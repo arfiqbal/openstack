@@ -18,6 +18,6 @@ if [[ "$DISTRO"=="Ubuntu" || "$DISTRO"=="Debian" ]] ; then
 
 elif [[ "$DISTRO"=="CentOS" || "$DISTRO"=="RedHat" || "$DISTRO"=="Fedora" ]]
 
-    sudo yum install ipa-client -y ipa-client-install
+    sudo yum install ipa-client -y 
     sudo sh -c "echo nameserver 10.85.50.19 >> /etc/resolv.conf"
 fi
