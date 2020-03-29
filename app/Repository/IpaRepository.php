@@ -26,6 +26,7 @@ class IpaRepository
     public function login($cookieName)
     {
         $certPath =  storage_path('app/public/ipa.ca.crt');
+        dd($certPath);
         $cookiePath =  storage_path('app/public/'.$cookieName);
         $ch = curl_init();
         
@@ -37,7 +38,7 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_POST, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, "user=arif&password=redhat");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-        curl_setopt($ch, CURLOPT_CAINFO, $certPath);
+        // curl_setopt($ch, CURLOPT_CAINFO, $certPath);
         curl_setopt($ch, CURLOPT_CAPATH, $certPath);
         // curl_setopt($ch, CURLOPT_HEADER, 0);
         $content = curl_exec($ch);
