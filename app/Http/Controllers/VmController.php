@@ -64,6 +64,8 @@ class VmController extends Controller
             'sn'        => 'Bauman',
             'userpassword' => 'redhat'
         ]);
+        $user->inside('cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
+
         dd('created');
         
         $allVM = VM::with('application')->where('active',1)->get();
