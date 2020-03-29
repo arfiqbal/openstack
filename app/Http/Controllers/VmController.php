@@ -71,7 +71,7 @@ class VmController extends Controller
         $user->givenname = 'John';
         $user->sn = 'Doe';
 
-        $user->setDn('uid=jhon, cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
+        $user->setDn('cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com')->save();
 
         dd('created');
         
