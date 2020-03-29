@@ -40,10 +40,10 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CAINFO, $certPath);
         curl_setopt($ch, CURLOPT_CAPATH, $certPath);
-        
+        curl_setopt($ch, CURLOPT_HEADER, 0);
         $content = curl_exec($ch);
-        curl_close($ch);
-        return $content;
+        // curl_close($ch);
+        return curl_getinfo($ch, CURLINFO_HTTP_CODE);
     }
     
 }
