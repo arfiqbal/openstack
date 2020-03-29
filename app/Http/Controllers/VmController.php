@@ -58,8 +58,8 @@ class VmController extends Controller
     {
         $user = User::create([
             'uid'        => 'ariftest',
-            'cn'        => 'users',
-            'cn'        => 'accounts',
+            // 'cn'        => 'users',
+            // 'cn'        => 'accounts',
             'givenname' => 'ariftest',
             'sn'        => 'Bauman',
             'userpassword' => 'redhat'
