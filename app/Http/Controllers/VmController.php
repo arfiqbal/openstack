@@ -59,9 +59,7 @@ class VmController extends Controller
      */
     public function create()
     {
-       dd($this->ipa->login('cookie1'))
-        
-        dd('created');
+       dd($this->ipa->login('cookie1'));
         
         $allVM = VM::with('application')->where('active',1)->get();
         return view('allVm',
