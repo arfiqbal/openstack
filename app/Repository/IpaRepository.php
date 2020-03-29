@@ -35,7 +35,7 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiePath);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiePath);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($curlhandle, CURLOPT_VERBOSE, true);
+        curl_setopt($ch, CURLOPT_VERBOSE, true);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $this->credential());
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CAINFO, $certPath);
