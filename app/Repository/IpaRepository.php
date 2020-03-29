@@ -23,7 +23,7 @@ class IpaRepository
         return json_encode(array($data));
     }
 
-    protected function curlCommon($cookiePath,$certPath,$data){
+    public function curlCommon($cookiePath,$certPath,$data){
         $ch = curl_init();
         
         curl_setopt($ch, CURLOPT_URL, $this->ipa_post);
@@ -37,7 +37,7 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_CAINFO, $certPath);
         curl_setopt($ch, CURLOPT_CAPATH, $certPath);
         $content = curl_exec($ch);
-         curl_close($ch);
+        //  curl_close($ch);
         return curl_getinfo($ch, CURLINFO_HTTP_CODE);
     }
 
