@@ -67,7 +67,7 @@ class IpaRepository
     public function addUser($username,$firstname,$lastname,$password, $cookieName)
     {   
        
-        $data = '{"method":"user_add","params":[["'.$username.'"],{"givenname":"'.$firstname.'","sn":"'.$lastname.'","'.$password.'":"redhat","version":"2.231"}]}';
+        $data = '{"method":"user_add","params":[["'.$username.'"],{"givenname":"'.$firstname.'","sn":"'.$lastname.'","userpassword":"'.$password.'","version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
         $cookiePath =  storage_path('app/public/'.$cookieName);
         $this->login($cookieName);
