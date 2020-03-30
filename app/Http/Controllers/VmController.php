@@ -113,9 +113,9 @@ class VmController extends Controller
             echo "This may take some time... Please donot refresh the page <br>";
             ob_flush();
             flush();
-        
+            echo "Searching.";
             foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
-                echo "Searching...";
+                echo "...";
                 ob_flush();
                 flush();
 
