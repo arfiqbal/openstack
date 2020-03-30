@@ -191,8 +191,8 @@ class VmController extends Controller
           
             echo "</br>";
             echo "============================================================= <br>";
-            echo  "NIC 1 === ".$nicIps['non_routable']."<br>";
-            echo  "NIC 2 === ".$nicIps['routeable']."<br>";
+            echo  "<b>NIC 1 === ".$nicIps['non_routable']."</b><br>";
+            echo  "<b>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
 
             //dd('End');
@@ -209,6 +209,7 @@ class VmController extends Controller
             $cookieName = $username;
             $this->ipa->login($cookieName);
             $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
+            echo  "<b>".$username." USER CREATED</b><br>";
             $template = public_path('template/template.tf');
 
             $app = Application::find($request->app);
@@ -227,7 +228,7 @@ class VmController extends Controller
             -var="script_source='.$script_source.'"
             -var="private_key='.$private_key.'" 
             -var="hostname='.$hostname.'" 
-            -var="username='.$username.'"
+            -var="username='.$username.'@CLOUD.VSSI.COM"
             -var="password='.$randomPass.'"
             -var="emailid='.$request->email.'"';
 
@@ -310,11 +311,11 @@ class VmController extends Controller
                             $newvm->created_by = Auth::user()->name;
                             $newvm->active = 1;
                             if($newvm->save()){
-                                //rule = hostname
-                                $this->ipa->addHbacRule($hostname, $cookieName);
-                                $this->ipa->addHbacRuleUser($hostname,$username, $cookieName);
-                                $this->ipa->addHbacRuleHost($hostname,$hostname, $cookieName);
-                                $this->ipa->addHbacRuleService($hostname, $cookieName);
+                                //rule = username
+                                $this->ipa->addHbacRule($username, $cookieName);
+                                $this->ipa->addHbacRuleUser($username,$username, $cookieName);
+                                $this->ipa->addHbacRuleHost($username,$hostname, $cookieName);
+                                $this->ipa->addHbacRuleService($username, $cookieName);
 
                                 Log::info($request->vmname.'- VM created');
 
