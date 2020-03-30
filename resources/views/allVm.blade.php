@@ -41,8 +41,10 @@ Create VM | All VM
                             <table class="table table-hover table-striped" id="showVm">
                               <thead>
                                 <tr>
-                                  <th scope="col">Name</th>
+                                  <th scope="col">VM</th>
                                   <th scope="col">Email</th>
+                                  <th scope="col">User</th>
+                                  <th scope="col">Password</th>
                                   <th scope="col">Nic 1</th>
                                   <th scope="col">Nic 2</th>
                                   <th scope="col">Application</th>
@@ -57,6 +59,8 @@ Create VM | All VM
                                         <tr id="{{$myVM->id}}">
                                           <th scope="row">{{$myVM->name}}</th>
                                           <td>{{$myVM->email}}</td>
+                                          <td>{{$myVM->username}}</td>
+                                          <td>{{$myVM->pass}}</td>
                                           <td>{{$myVM->nic1}}</td>
                                           <td>{{$myVM->nic2}}</td>
                                           <td>{{$myVM->application->name}}</td>
