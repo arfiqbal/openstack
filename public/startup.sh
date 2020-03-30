@@ -7,6 +7,7 @@ DISTRO=$(cat /etc/*-release | grep -w NAME | cut -d= -f2 | tr -d '"')
 if [ "$DISTRO"=="Ubuntu"  ] ; then
 
     sudo apt-get update -y
+    sudo apt install nscd -y 
     export DEBIAN_FRONTEND=noninteractive
     sudo -E apt -y -qq install freeipa-client
     unset DEBIAN_FRONTEND
