@@ -204,8 +204,11 @@ class VmController extends Controller
             $randomPass = Str::random(6);
             $username = $this->openstack->createUsername($request);
             $hostname = $this->openstack->createHostname($username);
-            $this->ipa->login($username.'.txt');
-            $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $username.'.txt');
+            $script_source = public_path('startup.sh');
+            $private_key = public_path('include/vdf-key1.pem');
+            $cookieName = $username;
+            $this->ipa->login($cookieName);
+            $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
             $template = public_path('template/template.tf');
 
             $app = Application::find($request->app);
@@ -213,7 +216,20 @@ class VmController extends Controller
              
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
 
-            $command = 'terraform12 apply -auto-approve -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="emailid='.$request->email.'"';
+            $command = 'terraform12 apply -auto-approve 
+            -var="project='.$request->project.'" 
+            -var="nic1='.$nicIps['non_routable'].'" 
+            -var="nic2='.$nicIps['routeable'].'" 
+            -var="netname='.$nicIps['netName'].'" 
+            -var="vmname='.$request->vmname.'" 
+            -var="app='.$app->uid.'" 
+            -var="flavor='.$request->flavor.'"
+            -var="script_source='.$script_source.'"
+            -var="private_key='.$private_key.'" 
+            -var="hostname='.$hostname.'" 
+            -var="username='.$username.'"
+            -var="password='.$randomPass.'"
+            -var="emailid='.$request->email.'"';
 
             if(!File::isDirectory($path)){
 
@@ -294,8 +310,12 @@ class VmController extends Controller
                             $newvm->created_by = Auth::user()->name;
                             $newvm->active = 1;
                             if($newvm->save()){
+                                //rule = hostname
+                                $this->ipa->addHbacRule($hostname, $cookieName);
+                                $this->ipa->addHbacRuleUser($hostname,$username, $cookieName);
+                                $this->ipa->addHbacRuleHost($hostname,$hostname, $cookieName);
+                                $this->ipa->addHbacRuleService($hostname, $cookieName);
 
-                               
                                 Log::info($request->vmname.'- VM created');
 
                                 echo "</br><br>";

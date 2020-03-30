@@ -6,9 +6,11 @@ variable "emailid" {}
 variable "flavor" {}
 variable "project" {}
 variable "netname" {}
-
-
-
+variable "script_source" {}
+variable "private_key" {}
+variable "hostname" {}
+variable "username" {}
+variable "password" {}
 
 
 provider "openstack" {
@@ -46,36 +48,43 @@ resource "openstack_compute_instance_v2" "vm" {
 
   network {
     name = "nr_provider"
-    fixed_ip_v4    = var.nic1
+    fixed_ip_v4   = var.nic1
   }
 
   network {
     name = var.netname
-     fixed_ip_v4    = var.nic2
+     fixed_ip_v4  = var.nic2
   }
 
   connection {
     type = "ssh"
     user = "ubuntu"
-    private_key = file()
+    private_key = file(var.private_key)
     host = var.nic1
   }
 
   provisioner "file" {
-    source = 
-    destination = 
+    source = var.script_source
+    destination = "/tmp/startup.sh"
   }
 
   provisioner "remote-exec" {
     inline = [
-      "chmod +x /tmp/get-public-ip.sh",
-      "sh /tmp/get-public-ip.sh ",
+      "sudo hostnamectl set-hostname ${var.hostname}"
     ]
   }
 
   provisioner "remote-exec" {
     inline = [
-      "sudo mkfs -t ext4 /dev/nvme0n1",
+      "chmod +x /tmp/startup.sh",
+      "sh /tmp/startup.sh ",
+      
+    ]
+  }
+
+  provisioner "remote-exec" {
+    inline = [
+      "ipa-client-install --mkhomedir -p ${var.username} -w '${var.password}' --server=${var.hostname} --domain cloud.vssi.com -U"
     ]
   }
 

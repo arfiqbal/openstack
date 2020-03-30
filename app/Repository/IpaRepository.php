@@ -85,7 +85,7 @@ class IpaRepository
     }
 
 
-    protected function addHbacRuleUser($rule,$username, $cookieName)
+    public function addHbacRuleUser($rule,$username, $cookieName)
     {   
         $data = '{"method":"hbacrule_add_user","params":[["'.$rule.'"],{"user":["'.$username.'"],"version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
@@ -93,7 +93,7 @@ class IpaRepository
         $this->curlCommon($cookiePath,$certPath,$data);
     }
 
-    protected function addHbacRuleHost($rule,$hostname, $cookieName)
+    public function addHbacRuleHost($rule,$hostname, $cookieName)
     {   
         $data = '{"method":"hbacrule_add_host","params":[["'.$rule.'"],{"host":["'.$hostname.'"],"version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
@@ -101,7 +101,7 @@ class IpaRepository
         $this->curlCommon($cookiePath,$certPath,$data);
     }
 
-    protected function addHbacRuleService($rule, $cookieName)
+    public function addHbacRuleService($rule, $cookieName)
     {   
         $data = '{"method":"hbacrule_add_service","params":[["'.$rule.'"],{"hbacsvc":["sshd"],"version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
