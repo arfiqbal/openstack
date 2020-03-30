@@ -43,6 +43,7 @@ Create VM | All VM
                                 <tr>
                                   <th scope="col">VM</th>
                                   <th scope="col">Email</th>
+                                  <th scope="col">Host</th>
                                   <th scope="col">User</th>
                                   <th scope="col">Password</th>
                                   <th scope="col">Nic 1</th>
@@ -59,6 +60,7 @@ Create VM | All VM
                                         <tr id="{{$myVM->id}}">
                                           <th scope="row">{{$myVM->name}}</th>
                                           <td>{{$myVM->email}}</td>
+                                          <td>{{$myVM->hostname}}</td>
                                           <td>{{$myVM->username}}</td>
                                           <td>{{$myVM->pass}}</td>
                                           <td>{{$myVM->nic1}}</td>
