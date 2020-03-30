@@ -9,8 +9,7 @@ variable "netname" {}
 variable "script_source" {}
 variable "private_key" {}
 variable "hostname" {}
-variable "username" {}
-variable "password" {}
+
 
 
 provider "openstack" {
