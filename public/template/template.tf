@@ -84,7 +84,7 @@ resource "openstack_compute_instance_v2" "vm" {
 
   provisioner "remote-exec" {
     inline = [
-      "sudo ipa-client-install --mkhomedir -p ${var.username} -w '${var.password}' --server=${var.hostname} --domain cloud.vssi.com -U"
+      "sudo ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"
     ]
   }
 
