@@ -108,5 +108,29 @@ class IpaRepository
         $cookiePath =  storage_path('app/public/'.$cookieName);
         $this->curlCommon($cookiePath,$certPath,$data);
     }
+
+    public function deleteUser($username, $cookieName)
+    {   
+        $data = '{"method":"batch","params":[[{"method":"user_del","params":[["'.$username.'"],{"preserve":"false"}]}],{"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+    public function deleteHost($hostname, $cookieName)
+    {   
+        $data = '{"method":"batch","params":[[{"method":"host_del","params":[["'.$hostname.'"],{"updatedns":false}]}],{"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+    public function deletePolicy($rule, $cookieName)
+    {   
+        $data = '{"method":"batch","params":[[{"method":"hbacrule_del","params":[["'.$rule.'"],{}]}],{"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
     
 }
