@@ -9,6 +9,15 @@
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" crossorigin="anonymous">
 
     <title>@yield('title')</title>
+    <style>
+      body {
+        background: url('https://source.unsplash.com/twukN12EN7c/1920x1080') no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        background-size: cover;
+        -o-background-size: cover;
+      }
+    </style>
   </head>
    
    <body>
