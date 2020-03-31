@@ -309,7 +309,7 @@ class VmController extends Controller
                                 echo "</br><br>";
                                 echo "<span color='#20ff00'>";
                                 echo "======================================================= <br>";
-                                echo "====".$request->vmname."- VM created successfully ===== <br>";
+                                echo "======".$request->vmname."- VM created successfully ===== <br>";
                                 echo  "<b>Username === ".$username."</b><br>";
                                 echo  "<b>Password === ".$randomPass."</b><br>";
                                 echo  "<b>Hostname === ".$hostname."</b><br>";
