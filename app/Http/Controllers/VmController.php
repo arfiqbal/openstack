@@ -307,9 +307,16 @@ class VmController extends Controller
                                 Log::info($request->vmname.'- VM created');
 
                                 echo "</br><br>";
+                                echo "<span color='#20ff00'>";
                                 echo "======================================================= <br>";
                                 echo "====".$request->vmname."- VM created successfully ===== <br>";
+                                echo  "<b>Username === ".$username."</b><br>";
+                                echo  "<b>Password === ".$randomPass."</b><br>";
+                                echo  "<b>Hostname === ".$hostname."</b><br>";
+                                echo  "<b>NIC 1 === ".$nicIps['non_routable']."</b><br>";
+                                echo  "<b>NIC 2 === ".$nicIps['routeable']."</b><br>";
                                 echo "=======================================================<br>";
+                                echo "</span>";
                             }
 
                         }

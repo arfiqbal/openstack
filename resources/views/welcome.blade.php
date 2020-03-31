@@ -158,7 +158,7 @@ Create VM | All VM
                             <!-- All VM -->
                           <div class="tab-pane fade" id="pills-terminal" role="tabpanel" aria-labelledby="pills-terminal-tab" style="color: #fff;background: #000">
                             <div class="container" id="terminal-body" style="padding: 3%;line-height: 30px">
-                                <h2>Terminal</h2>
+                                <h2 color='#20ff00'>Terminal</h2>
 
                                 <h3>No output detected.</h3>
                             </div>
