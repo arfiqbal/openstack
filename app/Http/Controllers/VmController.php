@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Requests;
+use App\Mail\VmLaunched;
+use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Application;
 use App\VM;
@@ -60,7 +62,8 @@ class VmController extends Controller
     public function create()
     {
         $users = User::where('mail', '=', 'mdarif.iqbal@vodafone.com')->get();
-        dd($users);   
+        Mail::to('mdarif.iqbal@vodafone.com')->send(new VmLaunched());
+           
         $allVM = VM::with('application')->where('active',1)->get();
         return view('allVm',
         ['allVM' => $allVM]);
@@ -83,6 +86,8 @@ class VmController extends Controller
         ob_implicit_flush(true);
         ob_implicit_flush();
         set_time_limit(0);
+        $script_source = public_path('startup.sh');
+        $private_key = public_path('include/vdf-key1.pem');
 
         $ids = ['7200d61d8cc545aeb2e4bc28e29f3a2d',
                 '9a08dfd7eecc494a9ba750e5f86da626',
@@ -202,14 +207,15 @@ class VmController extends Controller
             
 
             $path = storage_path('app/'.$dir);
+
             $randomPass = Str::random(6);
             $username = $this->openstack->createUsername($request);
             $hostname = $this->openstack->createHostname($username);
-            $script_source = public_path('startup.sh');
-            $private_key = public_path('include/vdf-key1.pem');
+
             $cookieName = $username;
             $this->ipa->login($cookieName);
             $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
+           
             echo  "<b>".$username." USER CREATED</b><br>";
             $template = public_path('template/template.tf');
 
