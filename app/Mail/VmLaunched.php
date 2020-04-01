@@ -12,7 +12,7 @@ class VmLaunched extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $vm;
+    public $vm;
 
     /**
      * Create a new message instance.
