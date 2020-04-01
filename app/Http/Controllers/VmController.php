@@ -63,7 +63,7 @@ class VmController extends Controller
     public function create()
     {
         $users = User::where('mail', '=', 'mdarif.iqbal@vodafone.com')->get();
-        dd($users->mail);
+        dd(Auth::user()->mail);
         Mail::to('mdarif.iqbal@vodafone.com')->send(new VmLaunched());
         
         $allVM = VM::with('application')->where('active',1)->get();
