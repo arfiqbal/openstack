@@ -280,7 +280,7 @@
             <!-- START CENTERED WHITE CONTAINER -->
             
             <div style="background: #000; border-bottom: 1px solid #FC561F">
-              <img src="https://buyessay.co.uk/images/logo.png" width="230px" height="70px" style="padding: 2% 2%">
+              <span>Vodafone</span>
             </div>
 
          
