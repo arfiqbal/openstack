@@ -48,7 +48,7 @@
         display: block;
         Margin: 0 auto !important;
         /* makes it centered */
-        /* max-width: 580px; */
+        width: 980px; 
         padding: 10px;
         width: auto !important;
         width: 580px; }
@@ -58,7 +58,7 @@
         box-sizing: border-box;
         display: block;
         Margin: 0 auto;
-       /* max-width: 580px; */
+        width: 980px;
         padding: 10px; }
 
       /* -------------------------------------
