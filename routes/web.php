@@ -28,3 +28,5 @@ Route::post('vm/{id}', 'VmController@destroy')->name('deletevm');
 Route::get('/', 'VmController@index')->name('home');
 
 
+
+

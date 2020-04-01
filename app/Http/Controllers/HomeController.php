@@ -14,10 +14,12 @@ class HomeController extends Controller
 	public function __construct(OpenstackRepository $openstack){
 
             $this->openstack = $openstack;
-            $this->middleware('auth');
+            // $this->middleware('auth');
             
 
     }
+
+    
     
     public function store1(Request $request)
     {

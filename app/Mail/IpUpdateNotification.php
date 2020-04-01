@@ -8,7 +8,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use App\VM;
 
-class VmLaunched extends Mailable
+class IpUpdateNotification extends Mailable
 {
     use Queueable, SerializesModels;
 

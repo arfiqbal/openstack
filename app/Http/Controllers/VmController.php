@@ -54,6 +54,7 @@ class VmController extends Controller
         'identity' => $identity, 'flavors' => $flavors]);
     }
 
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -62,8 +63,9 @@ class VmController extends Controller
     public function create()
     {
         $users = User::where('mail', '=', 'mdarif.iqbal@vodafone.com')->get();
+        dd($user->mail);
         Mail::to('mdarif.iqbal@vodafone.com')->send(new VmLaunched());
-           
+        
         $allVM = VM::with('application')->where('active',1)->get();
         return view('allVm',
         ['allVM' => $allVM]);
