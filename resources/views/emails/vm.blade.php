@@ -298,20 +298,18 @@
                         <p>Hi,</p>
 
                         <table class="table table-bordered">
-                            <thead>
-                              <tr>
-                               
-                                <th scope="col">Nic 1</th>
-                                <th scope="col">Nic 2</th>
-                                
-                              </tr>
-                            </thead>
                             <tbody>
                               <tr>
-                               
-                                <td>Mark</td>
-                                <td>Otto</td>
-                               
+                                <td>VM Name</td>
+                                <td>{{$vm->name}}</td>
+                              </tr>
+                              <tr>
+                                <td>UserName</td>
+                                <td>{{$vm->username}}</td>
+                              </tr>
+                              <tr>
+                                <td>Password</td>
+                                <td>{{$vm->pass}}</td>
                               </tr>
                              
 
