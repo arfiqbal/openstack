@@ -28,6 +28,6 @@ class VmLaunched extends Mailable
      */
     public function build()
     {
-        return $this->view('views.emails.vm');
+        return $this->view('emails.vm');
     }
 }
