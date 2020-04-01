@@ -11,7 +11,7 @@
     <title>@yield('title')</title>
     <style>
       body {
-        background: url('{{asset("images/Presentaion3.jpg")}}') no-repeat center center fixed;
+        background: url('{{asset("images/Presentation3.jpg")}}') no-repeat center center fixed;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         background-size: cover;
