@@ -64,11 +64,12 @@ class VmController extends Controller
     {
         $users = User::where('mail', '=', 'mdarif.iqbal@vodafone.com')->get();
         
-        
-        
-        $allVM = VM::with('application')->first();
-        Mail::to('mdarif.iqbal@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new VmLaunched($allVM));
-        dd('mail sent');
+        if(count($users)){
+            dd('found');
+        }
+        dd('Not found');
+        $allVM = VM::with('application')->where('active',1)->get();
+    
         return view('allVm',
         ['allVM' => $allVM]);
     }
@@ -316,6 +317,8 @@ class VmController extends Controller
                                 $this->ipa->addHbacRuleService($username, $cookieName);
 
                                 Log::info($request->vmname.'- VM created');
+                                Mail::to($newvm->email)->bcc('dcops-cloud-vssi@vodafone.com')->send(new VmLaunched($newvm));
+                                Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
 
                                 echo "</br><br>";
                                 echo "<span color='#20ff00'>";

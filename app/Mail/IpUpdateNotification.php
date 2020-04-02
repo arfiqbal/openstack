@@ -12,7 +12,7 @@ class IpUpdateNotification extends Mailable
 {
     use Queueable, SerializesModels;
 
-    protected $vm;
+    public $vm;
 
     /**
      * Create a new message instance.
@@ -31,6 +31,6 @@ class IpUpdateNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.vm');
+        return $this->view('emails.ipNotification');
     }
 }
