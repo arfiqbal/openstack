@@ -63,7 +63,7 @@ class VmController extends Controller
     public function create()
     {
         $users = User::where('mail', '=', 'mdarif.iqbal@vodafone.com')->first();
-        dd($users->uid);
+        dd($users->uid[0]);
         
         if(count($users)){
             dd('found');
