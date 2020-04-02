@@ -62,13 +62,7 @@ class VmController extends Controller
      */
     public function create()
     {
-        $users = User::where('mail', '=', 'mdarif.iqbal@vodafone.com')->first();
-        dd($users->uid[0]);
-        
-        if(count($users)){
-            dd('found');
-        }
-        dd('Not found');
+       
         $allVM = VM::with('application')->where('active',1)->get();
     
         return view('allVm',
@@ -94,6 +88,7 @@ class VmController extends Controller
         set_time_limit(0);
         $script_source = public_path('startup.sh');
         $private_key = public_path('include/vdf-key1.pem');
+        $username = "";
 
         $ids = ['7200d61d8cc545aeb2e4bc28e29f3a2d',
                 '9a08dfd7eecc494a9ba750e5f86da626',
@@ -215,14 +210,21 @@ class VmController extends Controller
             $path = storage_path('app/'.$dir);
 
             $randomPass = Str::random(6);
-            $username = $this->openstack->createUsername($request);
-            $hostname = $this->openstack->createHostname($username);
-
+            $checkUser = User::where('mail', '=', $request->email)->first();
             $cookieName = $username;
             $this->ipa->login($cookieName);
-            $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
-           
-            echo  "<b>".$username." USER CREATED</b><br>";
+
+            if (count($checkUser)){
+                $username = $checkUser[0];
+                echo  "<b>".$username." Found</b><br>";
+            }else{
+                $username = $this->openstack->createUsername($request);
+                $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
+                echo  "<b>".$username." USER CREATED</b><br>";
+            }
+            
+            $hostname = $this->openstack->createHostname($username);
+
             $template = public_path('template/template.tf');
 
             $app = Application::find($request->app);
@@ -409,7 +411,7 @@ class VmController extends Controller
             if($deleteVM->save()){
                 $cookieName = 'del-'.$deleteVM->name;
                 $this->ipa->login($cookieName);
-                $this->ipa->deleteUser($deleteVM->username, $cookieName);
+               // $this->ipa->deleteUser($deleteVM->username, $cookieName);
                 $this->ipa->deleteHost($deleteVM->hostname, $cookieName);
                 $this->ipa->deletePolicy($deleteVM->username, $cookieName);
                 Log::info($deleteVM->vmname.'- VM deleted');
