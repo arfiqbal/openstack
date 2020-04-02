@@ -26,7 +26,7 @@ PAAS Notification </td>
 </tr>
 <tr>
 <td valign="top" style="padding:7px 0 0 0; font-family:Arial; font-size:11px; color:#FFF">
-vm name </td>
+Test Mail </td>
 </tr>
 </tbody>
 </table>
@@ -49,7 +49,7 @@ vm name </td>
 <div style="font-family:Arial; font-size:14px; line-height:150%; text-align:left">
 <h4 style="display:block; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0">
 VM NAme</h4>
-<span style="font-size:12px; color:#8a8a8a">Summary of events occurring during the 1&#43; minute(s) prior to Sat Mar 28 19:50:57 PDT 2020:</span>
+<span style="font-size:12px; color:#8a8a8a">Please ignore below mail... </span>
 </div>
 </td>
 </tr>
