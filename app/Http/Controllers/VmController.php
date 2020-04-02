@@ -67,7 +67,7 @@ class VmController extends Controller
         
         
         $allVM = VM::with('application')->first();
-        Mail::to('mdarif.iqbal@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->subject($allVM->name." VM Created")->send(new VmLaunched($allVM));
+        Mail::to('mdarif.iqbal@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new VmLaunched($allVM));
         dd('mail sent');
         return view('allVm',
         ['allVM' => $allVM]);
