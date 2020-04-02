@@ -66,8 +66,8 @@ class VmController extends Controller
         
         
         
-        $allVM = VM::with('application')->first();
-        Mail::to('mdarif.iqbal@vodafone.com')->send(new VmLaunched($allVM));
+        $allVM = VM::with('application')->where('active',1)->get();
+        Mail::to('mdarif.iqbal@vodafone.com')->send(new VmLaunched());
         return view('allVm',
         ['allVM' => $allVM]);
     }
