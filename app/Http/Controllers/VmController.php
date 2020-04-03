@@ -82,6 +82,13 @@ class VmController extends Controller
     public function store(Request $request)
     {
         //dd($request->toArray());
+        $checkUser = User::where('mail', '=', $request->email)->first();
+        if(count($checkUser)){
+            echo "found";
+        }else{
+            echo "no found";
+        }
+        dd('done');
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         ob_implicit_flush();
@@ -198,8 +205,8 @@ class VmController extends Controller
           
             echo "</br>";
             echo "============================================================= <br>";
-            echo  "<b>NIC 1 === ".$nicIps['non_routable']."</b><br>";
-            echo  "<b>NIC 2 === ".$nicIps['routeable']."</b><br>";
+            echo  "<b style='color:#08c31c'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
+            echo  "<b style='color:#08c31c'>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
 
             //dd('End');
