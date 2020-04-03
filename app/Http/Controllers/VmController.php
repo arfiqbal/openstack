@@ -83,7 +83,7 @@ class VmController extends Controller
     {
         //dd($request->toArray());
         $checkUser = User::where('mail', '=', $request->email)->first();
-        if(count($checkUser)){
+        if($checkUser){
             echo "found";
         }else{
             echo "no found";
