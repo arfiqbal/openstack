@@ -102,7 +102,6 @@ class VmController extends Controller
         $ipPool['nr_provider'] = array();
         $ipPool['r_provider'] = array();
         $nicIps = [];
-    
 
         if($request){
             
@@ -151,16 +150,13 @@ class VmController extends Controller
                                     array_push($ipPool['r_provider'], $ipValue[0]['addr']); //107
                                     
                                 }
-                            }  
-                            
+                            }                              
                             
                         }
                 
                     }
-
                     
                 }
-
                 
             }
             //dd($ipPool);
@@ -194,7 +190,6 @@ class VmController extends Controller
                     
                 }
             }
-
           
             echo "</br>";
             echo "============================================================= <br>";
@@ -206,22 +201,23 @@ class VmController extends Controller
            
             $dir = $request->vmname.'-'.uniqid();
             
-
             $path = storage_path('app/'.$dir);
-
             $randomPass = Str::random(6);
             $checkUser = User::where('mail', '=', $request->email)->first();
-            $cookieName = $username;
+            $cookieName = Str::random(16);
             $this->ipa->login($cookieName);
 
             if ($checkUser){
-                $username = $checkUser[0];
-                echo  "<b>".$username." Found</b><br>";
+                $username = $checkUser->uid[0];
+                echo  "<b style='color:#08c31c'>".$username." already exist</b><br>";
             }else{
+
                 $username = $this->openstack->createUsername($request);
+               
                 $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
-                echo  "<b>".$username." USER CREATED</b><br>";
+                echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
             }
+
             
             $hostname = $this->openstack->createHostname($username);
 
@@ -326,11 +322,11 @@ class VmController extends Controller
                                 echo "<span color='#20ff00'>";
                                 echo "======================================================= <br>";
                                 echo "======".$request->vmname."- VM Created Successfully ===== <br>";
-                                echo  "<b>Username === ".$username."</b><br>";
-                                echo  "<b>Password === ".$randomPass."</b><br>";
-                                echo  "<b>Hostname === ".$hostname."</b><br>";
-                                echo  "<b>NIC 1 === ".$nicIps['non_routable']."</b><br>";
-                                echo  "<b>NIC 2 === ".$nicIps['routeable']."</b><br>";
+                                echo  "<b color='#20ff00'>Username === ".$username."</b><br>";
+                                echo  "<b color='#20ff00'>Password === ".$randomPass."</b><br>";
+                                echo  "<b color='#20ff00'>Hostname === ".$hostname."</b><br>";
+                                echo  "<b color='#20ff00'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
+                                echo  "<b color='#20ff00'>NIC 2 === ".$nicIps['routeable']."</b><br>";
                                 echo "=======================================================<br>";
                                 echo "</span>";
                             }
