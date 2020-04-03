@@ -217,7 +217,7 @@ class VmController extends Controller
                 $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
                 echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
             }
-
+            dd($username);
             
             $hostname = $this->openstack->createHostname($username);
 
