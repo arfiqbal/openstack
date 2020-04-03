@@ -49,7 +49,7 @@ Update IP Sheet </td>
 <div style="font-family:Arial; font-size:14px; line-height:150%; text-align:left">
 <h4 style="display:block; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0">
 {{$vm->name}}</h4>
-<span style="font-size:12px; color:#8a8a8a">Hello, Please update uour inventory sheet with the below details </span>
+<span style="font-size:12px; color:#8a8a8a">Hello, Below Ip set are free now so please update your record </span>
 </div>
 </td>
 </tr>

@@ -218,7 +218,6 @@ class VmController extends Controller
                 echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
             }
             
-            
             $hostname = $this->openstack->createHostname($username);
 
             $template = public_path('template/template.tf');
@@ -243,8 +242,7 @@ class VmController extends Controller
                 $process->run(function ($type, $buffer) {
     
                     if (Process::ERR === $type) {
-                        
-                        
+
                         echo $buffer."<br>";
                         ob_flush();
                         flush();
@@ -265,8 +263,7 @@ class VmController extends Controller
                     $process->run(function ($type, $buffer) {
     
                     if (Process::ERR === $type) {
-                        
-                        
+                               
                         echo $buffer."<br>";
                         ob_flush();
                         flush();
@@ -319,29 +316,24 @@ class VmController extends Controller
                                // Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
 
                                 echo "</br><br>";
-                                echo "<span color='#20ff00'>";
+                                echo "<span style='color:#20ff00'>";
                                 echo "======================================================= <br>";
                                 echo "======".$request->vmname."- VM Created Successfully ===== <br>";
-                                echo  "<b color='#20ff00'>Username === ".$username."</b><br>";
-                                echo  "<b color='#20ff00'>Password === ".$randomPass."</b><br>";
-                                echo  "<b color='#20ff00'>Hostname === ".$hostname."</b><br>";
-                                echo  "<b color='#20ff00'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
-                                echo  "<b color='#20ff00'>NIC 2 === ".$nicIps['routeable']."</b><br>";
+                                echo  "<b style='color:#20ff00'>Username === ".$username."</b><br>";
+                                echo  "<b style='color:#20ff00'>Password === ".$randomPass."</b><br>";
+                                echo  "<b style='color:#20ff00'>Hostname === ".$hostname."</b><br>";
+                                echo  "<b style='color:#20ff00'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
+                                echo  "<b style='color:#20ff00'>NIC 2 === ".$nicIps['routeable']."</b><br>";
                                 echo "=======================================================<br>";
                                 echo "</span>";
                             }
 
                         }
-
-                    
-                
+        
                 }else{
                         //throw new ProcessFailedException($process);
                         
                     }
-
-                
-
 
             }
         }
