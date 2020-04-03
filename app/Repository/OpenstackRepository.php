@@ -98,14 +98,13 @@ class OpenstackRepository
             $username = $name."".$request->lastName[0]."".$i;
 
         }
-        return strtolower($username);
-       
-        
+        return strtolower($username);     
 
     }
 
     public function createHostname($username)
-    {
+    {  
+        // in<appname><openstack><os><no>
         return $username.'.cloud.vssi.com';
     }
 
