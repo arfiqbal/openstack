@@ -294,7 +294,6 @@ class VmController extends Controller
                             // throw new ProcessFailedException($process);
                         }else{
 
-                           
                             $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
                             $newvm->application_id = $request->app;
@@ -320,8 +319,8 @@ class VmController extends Controller
                                 $this->ipa->addHbacRuleService($username, $cookieName);
 
                                 Log::info($request->vmname.'- VM created');
-                                Mail::to($newvm->email)->bcc('dcops-cloud-vssi@vodafone.com')->send(new VmLaunched($newvm));
-                                Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
+                                Mail::to($newvm->email)->send(new VmLaunched($newvm));
+                               // Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
 
                                 echo "</br><br>";
                                 echo "<span color='#20ff00'>";
