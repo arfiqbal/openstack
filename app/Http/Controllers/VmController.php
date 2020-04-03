@@ -82,13 +82,6 @@ class VmController extends Controller
     public function store(Request $request)
     {
         //dd($request->toArray());
-        $checkUser = User::where('mail', '=', $request->email)->first();
-        if($checkUser){
-            echo "found";
-        }else{
-            echo "no found";
-        }
-        dd('done');
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         ob_implicit_flush();
@@ -221,7 +214,7 @@ class VmController extends Controller
             $cookieName = $username;
             $this->ipa->login($cookieName);
 
-            if (count($checkUser)){
+            if ($checkUser){
                 $username = $checkUser[0];
                 echo  "<b>".$username." Found</b><br>";
             }else{
