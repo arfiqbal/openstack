@@ -43,10 +43,13 @@ resource "openstack_compute_instance_v2" "vm" {
   #cloud-config
   package_upgrade: true
   packages:
-    - wget
-    - bash-completion
-    - freeipa-client
-    - apache2
+   - wget
+   - bash-completion
+   - freeipa-client
+   - apache2
+  runcmd:
+   - [ sh, -c, "hostnamectl set-hostname ${var.hostname}" ]
+   - [sh, -c , "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
 EOF
 
 
