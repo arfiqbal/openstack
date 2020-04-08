@@ -105,6 +105,7 @@ class OpenstackRepository
     public function createHostname($username)
     {  
         // in<appname><openstack><os><no>
+        
         return $username.'.cloud.vssi.com';
     }
 
