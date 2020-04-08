@@ -86,7 +86,8 @@ class VmController extends Controller
         ob_implicit_flush(true);
         ob_implicit_flush();
         set_time_limit(0);
-        $script_source = public_path('startup.sh');
+       // $script_source = public_path('startup.sh');
+        $script_source = public_path();
         $private_key = public_path('include/vdf-key1.pem');
         $username = "";
 

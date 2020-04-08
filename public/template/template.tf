@@ -63,7 +63,7 @@ resource "openstack_compute_instance_v2" "vm" {
   }
 
   provisioner "file" {
-    source = var.script_source
+    source = var.script_source+"/startup.sh"
     destination = "/tmp/startup.sh"
   }
 
@@ -86,7 +86,7 @@ resource "openstack_compute_instance_v2" "vm" {
 
 resource "null_resource" "ansible-main" {
   provisioner "local-exec" {
-    command = "ansible-playbook -e sshKey=${var.pvt_key} -i '${var.nic1},' ./ansible/setup-ipa.yaml -v"
+    command = "ansible-playbook -e sshKey=${var.pvt_key} -i '${var.nic1},' var.script_source+"/ansible/install.yaml" -v"
   }
 
   depends_on = ["openstack_compute_instance_v2.vm"]
