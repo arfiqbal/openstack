@@ -37,8 +37,8 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_CAINFO, $certPath);
         curl_setopt($ch, CURLOPT_CAPATH, $certPath);
         $content = curl_exec($ch);
-        //  curl_close($ch);
-        return curl_getinfo($ch, CURLINFO_HTTP_CODE);
+         curl_close($ch);
+        return $content;
     }
 
     public function login($cookieName)
@@ -131,6 +131,15 @@ class IpaRepository
         $certPath =  public_path('include/ipa.ca.crt');
         $cookiePath =  storage_path('app/public/'.$cookieName);
         $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
+    public function findHost($hostname, $cookieName)
+    {   
+        $data = '{"method":"host_find","params":[["'.$hostname.'"],{"pkey_only":true,"sizelimit":0,"version":"2.231"}]}
+        ';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+       return $this->curlCommon($cookiePath,$certPath,$data);
     }
     
 }

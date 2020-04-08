@@ -62,6 +62,10 @@ class VmController extends Controller
      */
     public function create()
     {
+        $this->ipa->login('ch3484j');
+        $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j');
+
+        dd($otput);
        
         $allVM = VM::with('application')->where('active',1)->get();
     
@@ -234,7 +238,7 @@ class VmController extends Controller
 
                 File::makeDirectory($path, 0777, true, true);
                 File::copy($template, $path.'/main.tf');
-                File::copy(public_path('template/cloudinit.conf'), $path.'/cloudinit.conf');
+              
                 //Log::useFiles($path.'/output.log');
                 
                 $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
