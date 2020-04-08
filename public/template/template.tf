@@ -90,7 +90,7 @@ resource "openstack_compute_instance_v2" "vm" {
 
 resource "null_resource" "ansible-main" {
   provisioner "local-exec" {
-    command = "ansible-playbook -e sshKey=${var.private_key} -i ${var.nic1} ${local.default_ansible} -v "
+    command = "ansible-playbook -e sshKey=${var.private_key} -i '${var.nic1}' ${local.default_ansible} -v "
   }
 
   depends_on = [openstack_compute_instance_v2.vm]
