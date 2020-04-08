@@ -65,7 +65,7 @@ class VmController extends Controller
         $this->ipa->login('ch3484j');
         $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j');
         $outArray = json_decode($otput, true);
-        dd($outArray);
+        dd($outArray.result[0].count);
        
         $allVM = VM::with('application')->where('active',1)->get();
     
