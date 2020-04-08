@@ -234,6 +234,7 @@ class VmController extends Controller
 
                 File::makeDirectory($path, 0777, true, true);
                 File::copy($template, $path.'/main.tf');
+                File::copy(public_path('template/cloudinit.conf'), $path.'/cloudinit.conf');
                 //Log::useFiles($path.'/output.log');
                 
                 $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';

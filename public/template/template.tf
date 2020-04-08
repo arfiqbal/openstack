@@ -10,11 +10,6 @@ variable "script_source" {}
 variable "private_key" {}
 variable "hostname" {}
 
-locals {
-  default_shellscript = join("/",list(var.script_source, "startup.sh"))
-  default_ansible  = join("/",list(var.script_source, "ansible/install.yml"))
-}
-
 
 provider "openstack" {
   user_name   = "admin"
@@ -59,42 +54,15 @@ resource "openstack_compute_instance_v2" "vm" {
      fixed_ip_v4  = var.nic2
   }
 
-  connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file(var.private_key)
-    host = var.nic1
-  }
-
-  provisioner "file" {
-    source = local.default_shellscript
-    destination = "/tmp/startup.sh"
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "sudo hostnamectl set-hostname ${var.hostname}"
-    ]
-  }
-
-  provisioner "remote-exec" {
-    inline = [
-      "chmod +x /tmp/startup.sh",
-      "sh /tmp/startup.sh ",
+  data "template_file" "init" {
+    template = file("cloudinit.conf")
+    var = {
+      hostnm = var.hostname
+    }
       
-    ]
   }
 
 
 }
-
-resource "null_resource" "ansible-main" {
-  provisioner "local-exec" {
-    command = "ansible-playbook -e sshKey=${var.private_key} -i '${var.nic1}' ${local.default_ansible} -v "
-  }
-
-  depends_on = [openstack_compute_instance_v2.vm]
-}
-
 
 
