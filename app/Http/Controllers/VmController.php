@@ -310,14 +310,14 @@ class VmController extends Controller
                                 //rule = username
                                 $otput = $this->ipa->findHost($hostname, $cookieName);
                                 $outArray = json_decode($otput, true);
-                                $foundHostname = $outArray[0].result.count;
+                                $foundHostname = $outArray['result']['count'];
                                 echo "</br>";
                                 while($foundHostname == 1){
                                     echo "=";
                                     sleep(5);
                                     $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j');
                                     $outArray = json_decode($otput, true);
-                                    $foundHostname = $outArray[0].result.count;
+                                    $foundHostname = $outArray['result']['count'];
 
                                 }
                                 $this->ipa->addHbacRule($username, $cookieName);
