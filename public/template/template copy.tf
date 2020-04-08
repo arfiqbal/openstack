@@ -81,32 +81,12 @@ resource "openstack_compute_instance_v2" "vm" {
     ]
   }
 
-
-}
-
-resource "null_resource" "ansible-main" {
-  provisioner "local-exec" {
-    command = "ansible-playbook -e sshKey=${var.pvt_key} -i '${var.nic1},' ./ansible/setup-ipa.yaml -v"
-  }
-
-  depends_on = ["openstack_compute_instance_v2.vm"]
-}
-
-resource "null_resource" "ipa-setup" {
   provisioner "remote-exec" {
     inline = [
       "sudo ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"
     ]
-  
-
-    connection {
-    type = "ssh"
-    user = "ubuntu"
-    private_key = file(var.private_key)
-    host = var.nic1
-    }
   }
 
-  depends_on = ["null_resource.ansible-main"]
+
 }
 

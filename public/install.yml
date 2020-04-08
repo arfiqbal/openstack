@@ -1,0 +1,14 @@
+---
+- hosts: all
+  become: yes
+  become_method: sudo
+  tasks:
+    - name: upgrade the  packages
+      apt: upgrade=yes update_cache=yes
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+ 
+    - name: install free ipa-client
+      apt:
+        name: freeipa-client
+        state: present
+      when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
