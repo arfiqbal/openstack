@@ -63,7 +63,7 @@ resource "openstack_compute_instance_v2" "vm" {
   }
 
   provisioner "file" {
-    source = var.script_source"/startup.sh"
+    source = ${var.script_source}"/startup.sh"
     destination = "/tmp/startup.sh"
   }
 
