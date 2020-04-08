@@ -62,10 +62,6 @@ class VmController extends Controller
      */
     public function create()
     {
-        $this->ipa->login('ch3484j');
-        $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j');
-        $outArray = json_decode($otput, true);
-        dd($outArray[0].result.count);
        
         $allVM = VM::with('application')->where('active',1)->get();
     
@@ -312,6 +308,18 @@ class VmController extends Controller
                             $newvm->active = 1;
                             if($newvm->save()){
                                 //rule = username
+                                $otput = $this->ipa->findHost($hostname, $cookieName);
+                                $outArray = json_decode($otput, true);
+                                $foundHostname = $outArray[0].result.count;
+                                echo "</br>";
+                                while($foundHostname == 1){
+                                    echo "=";
+                                    sleep(5);
+                                    $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j');
+                                    $outArray = json_decode($otput, true);
+                                    $foundHostname = $outArray[0].result.count;
+
+                                }
                                 $this->ipa->addHbacRule($username, $cookieName);
                                 $this->ipa->addHbacRuleUser($username,$username, $cookieName);
                                 $this->ipa->addHbacRuleHost($username,$hostname, $cookieName);
