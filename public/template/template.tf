@@ -49,7 +49,8 @@ resource "openstack_compute_instance_v2" "vm" {
    - apache2
   runcmd:
    - [ sh, -c, "hostnamectl set-hostname ${var.hostname}" ]
-   - [sh, -c , "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
+   - [ sh, -c , "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
+   - [ sh, -c, "ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"]
 EOF
 
 
