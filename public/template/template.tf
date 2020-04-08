@@ -12,7 +12,7 @@ variable "hostname" {}
 
 locals {
   default_shellscript = join("/",list(var.script_source, "startup.sh"))
-  default_ansible  = join("/",list(var.script_source, "ansible/install.yaml"))
+  default_ansible  = join("/",list(var.script_source, "ansible/install.yml"))
 }
 
 
