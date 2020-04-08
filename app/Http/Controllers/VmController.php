@@ -62,7 +62,21 @@ class VmController extends Controller
      */
     public function create()
     {
-       
+        $otput = $this->ipa->findHost('rfi.cloud.vssi.com', 'ch3484j3');
+        $outArray = json_decode($otput, true);
+        $foundHostname = $outArray['result']['count'];
+        dd($foundHostname);
+        echo "</br>";
+                                while($foundHostname == 1){
+                                    echo "=";
+                                    sleep(5);
+                                    $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j3');
+                                    $outArray = json_decode($otput, true);
+                                    $foundHostname = $outArray['result']['count'];
+
+                                }
+
+        dd('working');
         $allVM = VM::with('application')->where('active',1)->get();
     
         return view('allVm',
