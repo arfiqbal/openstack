@@ -35,9 +35,25 @@ resource "openstack_compute_instance_v2" "vm" {
     uuid            = openstack_blockstorage_volume_v2.volume_1.id
   }
 
+
   flavor_id       = var.flavor
   key_pair        = "vdf-key1"
   security_groups = ["all-open"]
+  user_data = <<-EOF
+  #cloud-config
+  package_upgrade: true
+  packages:
+    - wget
+    - bash-completion
+    - freeipa-client
+  runcmd:
+    - hst=$(sudo hostnamectl set-hostname ${var.hostname})
+    - bash $hst
+    - nms=$(sudo sh -c "echo nameserver 10.85.50.19 > /etc/resolv.conf")
+    - bash $nms
+    - join=$(ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U)
+    - bash $join
+EOF
 
 
   metadata = {
@@ -54,13 +70,7 @@ resource "openstack_compute_instance_v2" "vm" {
      fixed_ip_v4  = var.nic2
   }
 
-  data "template_file" "init" {
-    template = file("cloudinit.conf")
-    var = {
-      hostnm = var.hostname
-    }
-      
-  }
+  
 
 
 }
