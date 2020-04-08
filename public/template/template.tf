@@ -10,6 +10,10 @@ variable "script_source" {}
 variable "private_key" {}
 variable "hostname" {}
 
+locals {
+  default_shellscript = join("/",list(var.script_source, "startup.sh"))
+  default_ansible  = join("/",list(var.script_source, "ansible/install.yaml"))
+}
 
 
 provider "openstack" {
@@ -63,7 +67,7 @@ resource "openstack_compute_instance_v2" "vm" {
   }
 
   provisioner "file" {
-    source = concat(var.script_source,"/startup.sh")
+    source = local.default_shellscript
     destination = "/tmp/startup.sh"
   }
 
@@ -86,7 +90,7 @@ resource "openstack_compute_instance_v2" "vm" {
 
 resource "null_resource" "ansible-main" {
   provisioner "local-exec" {
-    command = "ansible-playbook -e sshKey=${var.pvt_key} -i ${var.nic1} ${var.script_source}'/ansible/install.yaml' -v "
+    command = "ansible-playbook -e sshKey=${var.private_key} -i ${var.nic1} ${local.default_ansible} -v "
   }
 
   depends_on = [openstack_compute_instance_v2.vm]
