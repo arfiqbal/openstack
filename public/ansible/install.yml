@@ -12,3 +12,6 @@
         name: freeipa-client
         state: present
       when: ansible_distribution == 'Debian' or ansible_distribution == 'Ubuntu'
+
+    - name: install ipa freeipa-client
+      shell: ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U
