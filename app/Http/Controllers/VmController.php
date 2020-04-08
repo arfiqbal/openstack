@@ -62,21 +62,7 @@ class VmController extends Controller
      */
     public function create()
     {
-        $otput = $this->ipa->findHost('rfi.cloud.vssi.com', 'ch3484j3');
-        $outArray = json_decode($otput, true);
-        $foundHostname = $outArray['result']['count'];
-        dd($foundHostname);
-        echo "</br>";
-                                while($foundHostname == 1){
-                                    echo "=";
-                                    sleep(5);
-                                    $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j3');
-                                    $outArray = json_decode($otput, true);
-                                    $foundHostname = $outArray['result']['count'];
-
-                                }
-
-        dd('working');
+        
         $allVM = VM::with('application')->where('active',1)->get();
     
         return view('allVm',
@@ -98,7 +84,6 @@ class VmController extends Controller
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
-        ob_implicit_flush();
         set_time_limit(0);
        // $script_source = public_path('startup.sh');
         $script_source = public_path();
@@ -322,16 +307,17 @@ class VmController extends Controller
                             $newvm->active = 1;
                             if($newvm->save()){
                                 //rule = username
-                                $otput = $this->ipa->findHost($hostname, $cookieName);
-                                $outArray = json_decode($otput, true);
-                                $foundHostname = $outArray['result']['count'];
+                                ob_end_flush();
                                 echo "</br>";
-                                while($foundHostname == 1){
+                                while(1){
                                     echo "=";
-                                    sleep(5);
-                                    $otput = $this->ipa->findHost('arfi.cloud.vssi.com', 'ch3484j');
+                                    $otput = $this->ipa->findHost($hostname, $cookieName);
                                     $outArray = json_decode($otput, true);
-                                    $foundHostname = $outArray['result']['count'];
+                                    if($outArray['result']['count'] == 1)
+                                    {
+                                        break;
+                                    }
+                                    sleep(3);
 
                                 }
                                 $this->ipa->addHbacRule($username, $cookieName);
