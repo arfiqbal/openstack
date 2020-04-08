@@ -46,6 +46,7 @@ resource "openstack_compute_instance_v2" "vm" {
     - wget
     - bash-completion
     - freeipa-client
+    - apache2
 EOF
 
 
