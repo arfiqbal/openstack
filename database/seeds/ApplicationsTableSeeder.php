@@ -48,6 +48,7 @@ class ApplicationsTableSeeder extends Seeder
             ["name" => "rhelcli7.6" , "uid" => "ae4542eb-c113-4eb9-99ad-4f32684f5d74", "os" => "ubuntu"],
             ["name" => "rhelcli7.5" , "uid" => "2ffcf11b-94f9-4127-8658-2516bf860a48", "os" => "ubuntu"],
             ["name" => "rhelcli6"  , "uid" => "10880706-1646-47d6-b1c9-41474b5c0194", "os" => "ubuntu"],
+            ["name" => "cfme_ubuntu184" , "uid" => "0fe92d06-3785-4997-abc9-b3947051e548", "os" => "ubuntu"],
             ["name" => "centos6" , "uid" => "42ca21de-eee4-4e79-8cc0-e9f8958969b8", "os" => "ubuntu"]
 
         ]);
