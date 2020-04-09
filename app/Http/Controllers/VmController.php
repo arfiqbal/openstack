@@ -226,7 +226,7 @@ class VmController extends Controller
             $pluginPath = public_path('plugin');
              
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
-            dd($app->uid);
+            
             $command = 'terraform12 apply -auto-approve  -input=false -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'"   -var="emailid='.$request->email.'"';
 
             if(!File::isDirectory($path)){
