@@ -38,7 +38,7 @@ resource "openstack_compute_instance_v2" "vm" {
 
   flavor_id       = var.flavor
   key_pair        = "vdf-key1"
-  security_groups = ["all-open"]
+  security_groups = ["default"]
   user_data = <<EOF
   #cloud-config
   package_upgrade: true
