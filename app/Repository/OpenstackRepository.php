@@ -6,6 +6,7 @@ use OpenStack\OpenStack;
 use Illuminate\Support\Collection;
 use IPv4\SubnetCalculator;
 use App\VM;
+use App\Appliction;
 use Illuminate\Support\Str;
 
 
@@ -102,11 +103,24 @@ class OpenstackRepository
 
     }
 
-    public function createHostname($username)
+    public function createHoststring($appid)
     {  
         // in<appname><openstack><os><no>
+        $app = Application::find($appid);
+        $appString = substr($app->name,0,3);
+        $openstk = 'o';
+        $os = strtolower(substr($app->os,0,1));
         
-        return $username.'.cloud.vssi.com';
+        $host = "in".$appString.''.$openstk.''.$os;
+
+        return $host;
+    }
+    public function createHostname($hostString)
+    {  
+        // in<appname><openstack><os><no>
+        $vmHostCount = VM::where('hostname_code',$hostString)->count() + 1;
+
+        return $hostString.''.$vmHostCount.'.cloud.vssi.com';
     }
 
     

@@ -217,8 +217,8 @@ class VmController extends Controller
                 $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
                 echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
             }
-            
-            $hostname = $this->openstack->createHostname($username);
+            $hostString = $this->openstack->createHoststring($request->app);
+            $hostname = $this->openstack->createHostname($hostString);
 
             $template = public_path('template/template.tf');
 
@@ -297,6 +297,7 @@ class VmController extends Controller
                             $newvm->lastname = $request->lastName;
                             $newvm->username = $username;
                             $newvm->hostname = $hostname;
+                            $newvm->hostname_code = $hostString;
                             $newvm->email = $request->email;
                             $newvm->pass = $randomPass;
                             $newvm->project = $request->project;
@@ -309,8 +310,9 @@ class VmController extends Controller
                                 //rule = username
                                 ob_end_flush();
                                 echo "</br>";
+                                echo "<b>Relax it may take upto few min so mean while go and grab some tea</b>";
                                 while(1){
-                                    echo "=";
+                                    echo "<b style='color:#FFC20A'>=</b>";
                                     $otput = $this->ipa->findHost($hostname, $cookieName);
                                     $outArray = json_decode($otput, true);
                                     if($outArray['result']['count'] == 1)
@@ -320,10 +322,12 @@ class VmController extends Controller
                                     sleep(3);
 
                                 }
-                                $this->ipa->addHbacRule($username, $cookieName);
-                                $this->ipa->addHbacRuleUser($username,$username, $cookieName);
-                                $this->ipa->addHbacRuleHost($username,$hostname, $cookieName);
-                                $this->ipa->addHbacRuleService($username, $cookieName);
+                                $explodeHostname = explode('.',$hostname);
+                                $rule = $explodeHostname[0].'_'.$usename;
+                                $this->ipa->addHbacRule($rule, $cookieName);
+                                $this->ipa->addHbacRuleUser($rule,$username, $cookieName);
+                                $this->ipa->addHbacRuleHost($rule,$hostname, $cookieName);
+                                $this->ipa->addHbacRuleService($rule, $cookieName);
 
                                 Log::info($request->vmname.'- VM created');
                                 Mail::to($newvm->email)->send(new VmLaunched($newvm));
@@ -332,12 +336,13 @@ class VmController extends Controller
                                 echo "</br><br>";
                                 echo "<span style='color:#20ff00'>";
                                 echo "======================================================= <br>";
-                                echo "======".$request->vmname."- VM Created Successfully ===== <br>";
+                                echo "======  ".$request->vmname."- VM Created Successfully ===== <br>";
                                 echo  "<b style='color:#20ff00'>Username === ".$username."</b><br>";
                                 echo  "<b style='color:#20ff00'>Password === ".$randomPass."</b><br>";
                                 echo  "<b style='color:#20ff00'>Hostname === ".$hostname."</b><br>";
-                                echo  "<b style='color:#20ff00'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
-                                echo  "<b style='color:#20ff00'>NIC 2 === ".$nicIps['routeable']."</b><br>";
+                                echo  "<b style='color:#20ff00'>NIC 1 === ".$nicIps['routeable']."</b><br>";
+                                echo  "<b style='color:#20ff00'>NIC 2 === ".$nicIps['non_routable']."</b><br>";
+                               
                                 echo "=======================================================<br>";
                                 echo "</span>";
                             }

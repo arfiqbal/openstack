@@ -78,6 +78,7 @@ class IpaRepository
 
     public function addHbacRule($rule, $cookieName)
     {   
+
         $data = '{"method":"hbacrule_add","params":[["'.$rule.'"],{"version":"2.231"}]}';
         $certPath =  public_path('include/ipa.ca.crt');
         $cookiePath =  storage_path('app/public/'.$cookieName);
