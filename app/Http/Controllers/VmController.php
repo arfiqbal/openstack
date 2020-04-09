@@ -310,7 +310,9 @@ class VmController extends Controller
                                 //rule = username
                                 ob_end_flush();
                                 echo "</br>";
-                                echo "<b>Relax it may take upto few min so mean while go and grab some tea</b>";
+                                echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
+                                echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
+                                
                                 while(1){
                                     echo "<b style='color:#FFC20A'>=</b>";
                                     $otput = $this->ipa->findHost($hostname, $cookieName);
@@ -323,7 +325,7 @@ class VmController extends Controller
 
                                 }
                                 $explodeHostname = explode('.',$hostname);
-                                $rule = $explodeHostname[0].'_'.$usename;
+                                $rule = $explodeHostname[0].'_'.$username;
                                 $this->ipa->addHbacRule($rule, $cookieName);
                                 $this->ipa->addHbacRuleUser($rule,$username, $cookieName);
                                 $this->ipa->addHbacRuleHost($rule,$hostname, $cookieName);
