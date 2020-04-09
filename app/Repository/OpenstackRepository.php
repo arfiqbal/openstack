@@ -6,7 +6,7 @@ use OpenStack\OpenStack;
 use Illuminate\Support\Collection;
 use IPv4\SubnetCalculator;
 use App\VM;
-use App\Appliction;
+use App\Application;
 use Illuminate\Support\Str;
 
 
