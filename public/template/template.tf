@@ -41,8 +41,7 @@ resource "openstack_compute_instance_v2" "vm" {
   security_groups = ["all-open"]
   user_data = <<EOF
   #cloud-config
-  runcmd:
-   - [ sh, -c, "LD_PRELOAD" ]
+  package_upgrade: true
   packages:
    - freeipa-client
   runcmd:
