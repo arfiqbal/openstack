@@ -125,7 +125,7 @@ class OpenstackRepository
 
     public function lastVm()
     {
-        return VM::with('application')->last();
+        return VM::with('application')->orderBy('id', 'DESC')->first();
     }
 
     
