@@ -22,7 +22,7 @@ resource "openstack_blockstorage_volume_v2" "volume_1" {
 
   name        = var.vmname
   description = var.vmname
-  size        = 60
+  size        = 260
   image_id    = var.app
 }
 
