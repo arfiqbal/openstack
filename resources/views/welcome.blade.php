@@ -148,7 +148,7 @@ Create VM | All VM
                             <div class="col-md-6 float-right">
                               
                               @if($lastVm)
-                              <h2>Last VM Created on {{$lastVm->created_at}}</h2>
+                              <h4>Last VM Created on {{$lastVm->created_at}}</h4>
                               <table class="table">
                                 <thead >
                                   <tr>
