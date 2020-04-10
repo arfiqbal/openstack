@@ -88,7 +88,7 @@ class VmController extends Controller
         $image = $service->getImage($app->uid);
 
         
-        dd($image);
+        dd($image->retrieve());
 
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
