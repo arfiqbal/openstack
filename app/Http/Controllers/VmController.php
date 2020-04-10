@@ -45,7 +45,7 @@ class VmController extends Controller
         $identity = $servers->identityV3(['domainId' => "default"]);
         $compute = $servers->computeV2();
         $flavors = $compute->listFlavors();
-        $lastVm = $this->openstack->lastVM();
+        $lastVm = $this->openstack->lastVm();
        
 
         dd($lastVm->toArray());
