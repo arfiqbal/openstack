@@ -84,7 +84,7 @@ class VmController extends Controller
         $app = Application::find($request->app);
         $projectsServer = $this->openstack->defaultAuthentication();
         $compute = $projectsServer->computeV2();
-        $image = $compute->getImage(['id' => $app->uid]);
+        $image = $compute->getImage(['id' => '6a7b0477-cbca-48b9-9676-cb284d5885a5']);
         dd($image->retrieve());
 
         //dd($request->toArray());
