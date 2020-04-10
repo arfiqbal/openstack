@@ -83,12 +83,12 @@ class VmController extends Controller
     {
         $app = Application::find($request->app);
         $projectsServer = $this->openstack->defaultAuthentication();
-        $service = $projectsServer->imagesV2();
+        $openstack = $projectsServer->computeV2();
+        $compute = $openstack->computeV2();
 
-        $image = $service->getImage($app->uid);
+        $flavor = $compute->getFlavor(['id' => $request->flavor]);
 
-        
-        dd($image);
+        dd($flavor->retrieve());
 
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
