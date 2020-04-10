@@ -146,7 +146,9 @@ Create VM | All VM
                                 
                             </div>
                             <div class="col-md-6 float-right">
-                              @if(count($lastVm))
+                              
+                              @if($lastVm)
+                              <h2>Last VM Created on {{$lastVm->created_at}}</h2>
                               <table class="table">
                                 <thead >
                                   <tr>
