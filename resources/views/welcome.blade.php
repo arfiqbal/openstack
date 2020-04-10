@@ -146,7 +146,45 @@ Create VM | All VM
                                 
                             </div>
                             <div class="col-md-6 float-right">
-                              <!-- Side section -->
+                              @if(count($lastVm))
+                              <table class="table">
+                                <thead >
+                                  <tr>
+                                    <th scope="col">VM Name</th>
+                                    <th scope="col">{{$lastVm->name}}</th>
+                                    
+                                  </tr>
+                                </thead>
+                                <tbody>
+                                  <tr>
+                                    <th >Email</th>
+                                    <td>{{$lastVm->email}}</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th >HostName</th>
+                                    
+                                    <td>{{$lastVm->hostname}}</td>
+                                  </tr>
+                                  <tr>
+                                    <th >Nic 1</th>
+                                    <td>{{$lastVm->nic1}}</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th >Nic 2</th>
+                                    <td>{{$lastVm->nic2}}</td>
+                                    
+                                  </tr>
+                                  <tr>
+                                    <th>Created By</th>
+                                    <td>{{$lastVm->created_by}}</td>
+                                    
+                                  </tr>
+                                </tbody>
+                              </table>
+                              @endif
+                              
                             </div>
                         </div>
                             
