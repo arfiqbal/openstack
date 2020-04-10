@@ -149,7 +149,7 @@ Create VM | All VM
                               
                               @if($lastVm)
                               <h4>Last VM Created on {{$lastVm->created_at}}</h4>
-                              <table class="table">
+                              <table class="table table-bordered">
                                 <thead >
                                   <tr>
                                     <th scope="col">VM Name</th>
@@ -186,7 +186,7 @@ Create VM | All VM
                                   <tr>
                                     <th>Status</th>
                                     <td>@if($lastVm->active == 0)
-                                      <b>Deleted on {{$lastVm->updated_at}}</b>
+                                      <b>Deleted</b> on {{$lastVm->updated_at}}
                                       @else 
                                       <b>Active</b>
                                       @endif
