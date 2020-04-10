@@ -81,11 +81,12 @@ class VmController extends Controller
 
     public function store(Request $request)
     {
+        dd($request->app);
         $projectsServer = $this->openstack->defaultAuthentication();
         $compute = $projectsServer->computeV2();
         $image = $compute->getImage(['id' => $request->app]);
         dd($image->retrieve());
-        
+
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
