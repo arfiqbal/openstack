@@ -48,12 +48,18 @@ resource "openstack_compute_instance_v2" "vm" {
    - [ sh, -c, "hostnamectl set-hostname ${var.hostname}" ]
    - [ sh, -c , "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
    - [ sh, -c, "ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"]
-   - [ sh, -c , "rm -rf /etc/pam.d/common-session"]
+   - [ sh, -c , "rm -rf /etc/pam.d/common-session "]
   write_files:
   - path: /etc/pam.d/common-session
     content: |
-      Here is a line.
-      Another line is here.
+      session	[default=1]			pam_permit.so
+      session	requisite			pam_deny.so
+      session	required			pam_permit.so
+      session optional			pam_umask.so
+      session	required pam_mkhomedir.so umask=0022 skel=/etc/skel
+      session	required	pam_unix.so 
+      session	optional			pam_sss.so 
+      session	optional	pam_systemd.so 
 EOF
 
 
