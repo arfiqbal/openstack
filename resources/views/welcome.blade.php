@@ -183,6 +183,11 @@ Create VM | All VM
                                     <td>{{$lastVm->created_by}}</td>
                                     
                                   </tr>
+                                  <tr>
+                                    <th>Status</th>
+                                    <td>{{$lastVm->created_by}}</td>
+                                    
+                                  </tr>
                                 </tbody>
                               </table>
                               @endif
