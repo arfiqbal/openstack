@@ -59,6 +59,28 @@ resource "openstack_compute_instance_v2" "vm" {
       session	required	pam_unix.so 
       session	optional			pam_sss.so 
       session	optional	pam_systemd.so 
+  - path: /etc/pam.d/common-auth
+    content: |
+      auth	[success=2 default=ignore]	pam_unix.so nullok_secure
+      auth	[success=1 default=ignore]	pam_sss.so use_first_pass
+      auth	requisite			pam_deny.so
+      auth	required			pam_permit.so
+      auth	optional			pam_cap.so
+  - path: /etc/pam.d/common-account
+    content: |
+      account	[success=1 new_authtok_reqd=done default=ignore]	pam_unix.so 
+      account	requisite			pam_deny.so
+      account	required			pam_permit.so
+      account	sufficient			pam_localuser.so 
+      account	[default=bad success=ok user_unknown=ignore]	pam_sss.so 
+  - path: /etc/pam.d/common-password
+    content: |
+      password	requisite			pam_pwquality.so retry=3
+      password	[success=2 default=ignore]	pam_unix.so obscure use_authtok try_first_pass sha512
+      password	sufficient			pam_sss.so use_authtok
+      password	requisite			pam_deny.so
+      password	required			pam_permit.so
+      password	optional	pam_gnome_keyring.so
 EOF
 
 
