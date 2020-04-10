@@ -123,5 +123,10 @@ class OpenstackRepository
         return $hostString.''.$vmHostCount.'.cloud.vssi.com';
     }
 
+    public function lastVm()
+    {
+        return VM::with('application')->last();
+    }
+
     
 }
