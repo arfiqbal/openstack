@@ -48,7 +48,7 @@ class VmController extends Controller
         $lastVm = $this->openstack->lastVM();
        
 
-        dd($lastVM->toArray());
+        dd($lastVm->toArray());
        
         return view('welcome',
         ['apps' => $apps, 
