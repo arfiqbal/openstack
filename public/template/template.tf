@@ -44,7 +44,7 @@ resource "openstack_compute_instance_v2" "vm" {
   write_files:
   - path: /etc/hostname
     content: |
-      ${var.hostname}ß
+      ${var.hostname}
   - path: /etc/esolv.conf
     content: |
       nameserver 10.85.50.19
