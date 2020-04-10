@@ -186,7 +186,7 @@ Create VM | All VM
                                   <tr>
                                     <th>Status</th>
                                     <td>@if($lastVm->active == 0)
-                                      <b>Deleted</b>
+                                      <b>Deleted on {{$lastVm->updated_at}}</b>
                                       @else 
                                       <b>Active</b>
                                       @endif
