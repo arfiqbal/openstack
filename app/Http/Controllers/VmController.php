@@ -81,10 +81,10 @@ class VmController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->app);
+        $app = Application::find($request->app);
         $projectsServer = $this->openstack->defaultAuthentication();
         $compute = $projectsServer->computeV2();
-        $image = $compute->getImage(['id' => $request->app]);
+        $image = $compute->getImage(['id' => $app->uid]);
         dd($image->retrieve());
 
         //dd($request->toArray());
