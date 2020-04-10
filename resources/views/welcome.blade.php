@@ -185,7 +185,13 @@ Create VM | All VM
                                   </tr>
                                   <tr>
                                     <th>Status</th>
-                                    <td>{{$lastVm->created_by}}</td>
+                                    <td>@if($lastVm->active == 0)
+                                      Deleted
+                                      @else 
+                                      Active
+                                      @endif
+
+                                    </td>
                                     
                                   </tr>
                                 </tbody>
