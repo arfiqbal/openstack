@@ -81,6 +81,11 @@ class VmController extends Controller
 
     public function store(Request $request)
     {
+        $projectsServer = $this->openstack->defaultAuthentication();
+        $compute = $projectsServer->computeV2();
+        $image = $compute->getImage(['id' => $request->app]);
+        dd($image->retrieve());
+        
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
@@ -417,11 +422,14 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
             if($deleteVM->save()){
+                $explodeHostname = explode('.',$deleteVM->hostname);
+                $policy = $explodeHostname[0].'_'.$deleteVM->username;
+
                 $cookieName = 'del-'.$deleteVM->name;
                 $this->ipa->login($cookieName);
                // $this->ipa->deleteUser($deleteVM->username, $cookieName);
                 $this->ipa->deleteHost($deleteVM->hostname, $cookieName);
-                $this->ipa->deletePolicy($deleteVM->username, $cookieName);
+                $this->ipa->deletePolicy($policy, $cookieName);
                 Log::info($deleteVM->vmname.'- VM deleted');
                 return $deleteVM->id;
             }
