@@ -45,6 +45,7 @@ resource "openstack_compute_instance_v2" "vm" {
   fqdn: ${var.hostname}
   package_upgrade: true
   packages:
+  - resolvconf
   - freeipa-client
 EOF
 
