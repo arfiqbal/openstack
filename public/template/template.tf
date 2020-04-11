@@ -44,7 +44,8 @@ resource "openstack_compute_instance_v2" "vm" {
   hostname: ${var.hostname}
   fqdn: ${var.hostname}
   runcmd:
-   - [ "rm -rf /etc/resolv.conf" ]
+    - [ rm, -rf, /etc/resolv.conf ]
+    - ls -l /root
   package_upgrade: true
   packages:
   - resolvconf
@@ -54,6 +55,8 @@ resource "openstack_compute_instance_v2" "vm" {
       searchdomains:
         - bar.example.com
       domain: example.com
+  runcmd:
+    - [ rm, -rf, /etc/resolv.conf ]
 EOF
 
 
