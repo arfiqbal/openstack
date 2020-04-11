@@ -43,9 +43,9 @@ Create VM | All VM
                                 <tr>
                                   <th scope="col">VM</th>
                                   <th scope="col">Email</th>
-                                  <th scope="col">Host</th>
+                                  <th scope="col">JIRA</th>
                                   <th scope="col">User</th>
-                                  <th scope="col">Password</th>
+                                  <th scope="col">OTP</th>
                                   <th scope="col">Nic 1</th>
                                   <th scope="col">Nic 2</th>
                                   <th scope="col">Application</th>
@@ -60,9 +60,15 @@ Create VM | All VM
                                         <tr id="{{$myVM->id}}">
                                           <th scope="row">{{$myVM->name}}</th>
                                           <td>{{$myVM->email}}</td>
-                                          <td>{{$myVM->hostname}}</td>
+                                          <td>{{$myVM->jira}}</td>
                                           <td>{{$myVM->username}}</td>
-                                          <td>{{$myVM->pass}}</td>
+                                          <td>
+                                            @if($myVM->user_exist == 0)
+                                              {{$myVM->pass}}
+                                            @else 
+                                              ----
+                                            @endif
+                                          </td>
                                           <td>{{$myVM->nic1}}</td>
                                           <td>{{$myVM->nic2}}</td>
                                           <td>{{$myVM->application->name}}</td>

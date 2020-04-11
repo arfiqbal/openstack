@@ -19,12 +19,14 @@ class CreateVMsTable extends Migration
                 $table->integer('application_id')->unsigned();
                 $table->string('dir');
                 $table->string('name');
+                $table->string('jira');
                 $table->string('firstname');
                 $table->string('lastname');
                 $table->string('username');
                 $table->string('hostname_code');
                 $table->string('hostname');
                 $table->string('pass');
+                $table->boolean('user_exist')->default(0);
                 $table->string('email');
                 $table->string('project');
                 $table->string('nic1');

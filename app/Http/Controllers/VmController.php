@@ -103,6 +103,7 @@ class VmController extends Controller
         $ipPool['nr_provider'] = array();
         $ipPool['r_provider'] = array();
         $nicIps = [];
+        $user_exist = 0;
 
         if($request){
             
@@ -211,12 +212,14 @@ class VmController extends Controller
             if ($checkUser){
                 $username = $checkUser->uid[0];
                 echo  "<b style='color:#08c31c'>".$username." already exist</b><br>";
+                $user_exist = 1;
             }else{
 
                 $username = $this->openstack->createUsername($request);
                
                 $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
                 echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
+
             }
             $hostString = $this->openstack->createHoststring($request->app);
             $hostname = $this->openstack->createHostname($hostString);
@@ -294,6 +297,7 @@ class VmController extends Controller
                             $newvm->application_id = $request->app;
                             $newvm->dir = $dir;
                             $newvm->name = $request->vmname;
+                            $newvm->jira = $request->jira;
                             $newvm->firstname = $request->firstName;
                             $newvm->lastname = $request->lastName;
                             $newvm->username = $username;
@@ -301,6 +305,7 @@ class VmController extends Controller
                             $newvm->hostname_code = $hostString;
                             $newvm->email = $request->email;
                             $newvm->pass = $randomPass;
+                            $newvm->user_exist = $user_exist;
                             $newvm->project = $request->project;
                             $newvm->flavor = $request->flavor;
                             $newvm->nic1 = $nicIps['routeable'];
@@ -341,7 +346,9 @@ class VmController extends Controller
                                 echo "======================================================= <br>";
                                 echo "======  ".$request->vmname."- VM Created Successfully ===== <br>";
                                 echo  "<b style='color:#20ff00'>Username === ".$username."</b><br>";
-                                echo  "<b style='color:#20ff00'>Password === ".$randomPass."</b><br>";
+                                if($newvm->user_exist == 0){
+                                    echo  "<b style='color:#20ff00'>Password === ".$randomPass."</b><br>";
+                                }
                                 echo  "<b style='color:#20ff00'>Hostname === ".$hostname."</b><br>";
                                 echo  "<b style='color:#20ff00'>NIC 1 === ".$nicIps['routeable']."</b><br>";
                                 echo  "<b style='color:#20ff00'>NIC 2 === ".$nicIps['non_routable']."</b><br>";

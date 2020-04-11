@@ -88,6 +88,11 @@ Create VM | All VM
                                   
                                   </div>
                                   <div class="form-group">
+                                    <label for="uname1">JIRA Ticket</label>
+                                    <input type="text" class="form-control"  id="jira" required>
+                                  
+                                  </div>
+                                  <div class="form-group">
                                     <label for="firstName">First Name</label>
                                     <input type="text" class="form-control"  id="firstName" required>
                                   
@@ -279,6 +284,7 @@ Create VM | All VM
       $("#launchVM").click(function(event) {
         //event.preventDefault()
         var vmname = $('#vmname').val();
+        var jira = $('#jira').val();
         var firstName = $('#firstName').val();
         var lastName = $('#lastName').val();
         var email = $('#email').val();
@@ -311,6 +317,7 @@ Create VM | All VM
                     email:email, 
                     project :project, 
                     firstName :firstName, 
+                    jira :jira,
                     app :app, 
                     lastName :lastName, 
                     flavor:flavor},
