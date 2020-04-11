@@ -43,16 +43,15 @@ resource "openstack_compute_instance_v2" "vm" {
   #cloud-config
   hostname: ${var.hostname}
   fqdn: ${var.hostname}
+  runcmd:
+   - [ "rm -rf /etc/resolv.conf" ]
   package_upgrade: true
   packages:
-  - freeipa-client
   - resolvconf
-
   manage_resolv_conf: true
   resolv_conf:
       nameservers: ['8.8.4.4', '8.8.8.8']
       searchdomains:
-        - foo.example.com
         - bar.example.com
       domain: example.com
 EOF
