@@ -44,6 +44,12 @@ resource "openstack_compute_instance_v2" "vm" {
   hostname: ${var.hostname}
   fqdn: ${var.hostname}
   package_upgrade: true
+  manage_resolv_conf: true
+  resolv_conf:
+    nameservers: ['10.85.50.19']
+    options:
+      rotate: true
+      timeout: 1
   packages:
    - freeipa-client
 EOF
