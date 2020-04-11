@@ -45,10 +45,11 @@ resource "openstack_compute_instance_v2" "vm" {
   fqdn: ${var.hostname}
   manage_resolv_conf: true
   resolv_conf:
-    nameservers: ['10.85.50.19']
-    options:
-      rotate: true
-      timeout: 1
+      nameservers: ['8.8.4.4', '8.8.8.8']
+      searchdomains:
+          - foo.example.com
+          - bar.example.com
+      domain: example.com
 EOF
 
 
