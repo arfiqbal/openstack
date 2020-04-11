@@ -47,17 +47,10 @@ resource "openstack_compute_instance_v2" "vm" {
     - [ rm, -rf, /etc/resolv.conf ]
   package_upgrade: true
   packages:
-  - resolvconf
   - freeipa-client
-  manage_resolv_conf: true
-  resolv_conf:
-      nameservers: ['8.8.4.4', '8.8.8.8']
-      searchdomains:
-        - bar.example.com
-      domain: example.com
   runcmd:
     - [ rm, -rf, /etc/resolv.conf ]
-    - [ "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
+    - [ sh, -c , "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
 EOF
 
 
