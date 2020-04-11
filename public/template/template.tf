@@ -41,13 +41,9 @@ resource "openstack_compute_instance_v2" "vm" {
   security_groups = ["all-open"]
   user_data = <<EOF
   #cloud-config
-  write_files:
-  - path: /etc/hostname
-    content: |
-      ${var.hostname}
-  - path: /etc/esolv.conf
-    content: |
-      nameserver 10.85.50.19
+  runcmd:
+   - [ "hostnamectl set-hostname ${var.hostname}" ]
+   - [ "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
   package_upgrade: true
   packages:
    - freeipa-client
