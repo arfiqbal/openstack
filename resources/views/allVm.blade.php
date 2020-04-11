@@ -48,7 +48,7 @@ Create VM | All VM
                                   <th scope="col">OTP</th>
                                   <th scope="col">Nic 1</th>
                                   <th scope="col">Nic 2</th>
-                                  <th scope="col">Application</th>
+                                  <th scope="col">App</th>
                                   <th scope="col">Created by</th>
                                   <th scope="col">Created at</th>
                                   <th scope="col">Action</th>
