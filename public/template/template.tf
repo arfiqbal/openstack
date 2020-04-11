@@ -43,14 +43,9 @@ resource "openstack_compute_instance_v2" "vm" {
   #cloud-config
   hostname: ${var.hostname}
   fqdn: ${var.hostname}
-  runcmd:
-    - [ rm, -rf, /etc/resolv.conf ]
   package_upgrade: true
   packages:
   - freeipa-client
-  runcmd:
-    - [ rm, -rf, /etc/resolv.conf ]
-    - [ sh, -c , "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
 EOF
 
 
