@@ -42,6 +42,7 @@ resource "openstack_compute_instance_v2" "vm" {
   user_data = <<EOF
   #cloud-config
   hostname: ${var.hostname}
+  fqdn: ${var.hostname}
   package_upgrade: true
   packages:
    - freeipa-client
