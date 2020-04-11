@@ -48,6 +48,8 @@ resource "openstack_compute_instance_v2" "vm" {
   packages:
    - freeipa-client
   runcmd:
+   - [ "hostnamectl set-hostname ${var.hostname}" ]
+   - [ "echo nameserver 10.85.50.19 > /etc/resolv.conf"]
    - [ sh, -c, "ipa-client-install --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"]
   write_files:
   - path: /etc/pam.d/common-session
