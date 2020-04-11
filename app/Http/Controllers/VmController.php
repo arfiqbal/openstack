@@ -40,7 +40,7 @@ class VmController extends Controller
      */
     public function index()
     {
-        $apps = Application::orderBy('id','ASC')->get();
+        $apps = Application::sortBy('id','ASC')->get();
         $servers = $this->openstack->defaultAuthentication();
         $identity = $servers->identityV3(['domainId' => "default"]);
         $compute = $servers->computeV2();
