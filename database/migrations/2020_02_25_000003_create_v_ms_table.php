@@ -41,7 +41,6 @@ class CreateVMsTable extends Migration
         Schema::table('vm', function(Blueprint $table)
         {
             $table->foreign('application_id')->references('id')->on('application')->onDelete('cascade');
-           
         });
 
     }
