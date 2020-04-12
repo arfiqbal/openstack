@@ -63,7 +63,6 @@ class VmController extends Controller
      */
     public function create()
     {
-        dd(Auth::user());
         $allVM = VM::with('application')->where('active',1)->get();
     
         return view('allVm',
