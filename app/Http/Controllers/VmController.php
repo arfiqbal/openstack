@@ -414,7 +414,7 @@ class VmController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        return $request->jira;
+        
         $deleteVM = VM::find($id);
         $path = storage_path('app/'.$deleteVM->dir);
         $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -auto-approve');
@@ -425,6 +425,7 @@ class VmController extends Controller
         Log::debug($process->getOutput()); 
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
+            $deleteVM->jira = $deleteVM.'/'.$request->jira;
             if($deleteVM->save()){
                 Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
