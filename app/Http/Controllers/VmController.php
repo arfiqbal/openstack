@@ -412,8 +412,9 @@ class VmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($id, Request $request)
     {
+        dd($request);
         $deleteVM = VM::find($id);
         $path = storage_path('app/'.$deleteVM->dir);
         $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -auto-approve');

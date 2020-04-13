@@ -216,11 +216,11 @@ Create VM | All VM
               console.log(jira);
               console.log(order);
 
-             // deleteOrder(order ,orderRoute);
+              deleteOrder(order ,orderRoute, jira);
 
             });
 
-            var deleteOrder = function(order,orderRoute)
+            var deleteOrder = function(order,orderRoute,jira)
             {
                var ask =  confirm("Are you absolutely sure you want to delete " + order + "? This action cannot be undone." +
             "This will permanently delete " + order + ", and remove all collections and resources associated with it.");
@@ -231,6 +231,7 @@ Create VM | All VM
                     $.ajax({
                         type:'POST',
                         url: orderRoute,
+                        data: {jira :jira},
                           
                         }).done(function(data) {
                           //console.log(data)
@@ -238,6 +239,7 @@ Create VM | All VM
                           //$('#'+data).hide();
                           $('#orderHidden').val("");
                           $('#orderRouteHidden').val("");
+                          $('#jira').val("");
                           alert('VM Deleted');
                           
                           location.reload(true);
