@@ -92,7 +92,8 @@ EOF
   metadata = {
        email = var.emailid
        jira = var.jira
-       create_by = var.user
+       created_by = var.user
+       created_from = "cloud-portal"
   }
 
   network {
