@@ -198,7 +198,7 @@ class VmController extends Controller
             echo  "<b style='color:#08c31c'>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
 
-            //dd('End');
+            dd('End');
            
             $dir = $request->vmname.'-'.uniqid();
             
