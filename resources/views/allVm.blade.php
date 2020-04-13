@@ -126,7 +126,7 @@ Create VM | All VM
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-          <h5 class="modal-title">Modal title</h5>
+          <h5 class="modal-title">Jira Request For VM Deletion</h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -142,7 +142,7 @@ Create VM | All VM
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary" id="deleteCnfm">Save changes</button>
+          <button type="button" class="btn btn-primary" id="deleteCnfm">Delete</button>
         </div>
       </div>
     </div>
@@ -206,7 +206,15 @@ Create VM | All VM
                 $('#orderRouteHidden').val(orderRoute);
                 //console.log(order);
 
-              // deleteOrder(order ,orderRoute);
+               deleteOrder(order ,orderRoute);
+            });
+
+            $('#deleteCnfm').on('click', function(){
+              var order = $('#orderHidden').val();
+              var orderRoute=  $('#orderRouteHidden').val();
+              console.log(order);
+              console.log(orderRoute);
+
             });
 
             var deleteOrder = function(order,orderRoute)
@@ -225,6 +233,8 @@ Create VM | All VM
                           //console.log(data)
                           $('#deleteModal').modal('hide');
                           //$('#'+data).hide();
+                          $('#orderHidden').val("");
+                          $('#orderRouteHidden').val("");
                           alert('VM Deleted');
                           
                           location.reload(true);
