@@ -206,14 +206,17 @@ Create VM | All VM
                 $('#orderRouteHidden').val(orderRoute);
                 //console.log(order);
 
-               deleteOrder(order ,orderRoute);
+               
             });
 
             $('#deleteCnfm').on('click', function(){
               var order = $('#orderHidden').val();
               var orderRoute=  $('#orderRouteHidden').val();
+              var jira = $('#jira').val();
+              console.log(jira);
               console.log(order);
-              console.log(orderRoute);
+
+             // deleteOrder(order ,orderRoute);
 
             });
 
