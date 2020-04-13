@@ -199,7 +199,7 @@ Create VM | All VM
         })
 
         $('#showVm tr td .deletevm').on('click', function(){
-            $('#deleteModal').modal('show');
+            $('#jiraModal').modal('show');
                 var order = $(this).attr('data-order');
                 var orderRoute = $(this).attr('data-order_destroy_route');
                 $('#orderHidden').val(order);
