@@ -234,7 +234,7 @@ Create VM | All VM
                         data: {jira :jira},
                           
                         }).done(function(data) {
-                          //console.log(data)
+                          console.log(data)
                           $('#deleteModal').modal('hide');
                           //$('#'+data).hide();
                           $('#orderHidden').val("");
@@ -242,7 +242,7 @@ Create VM | All VM
                           $('#jira').val("");
                           alert('VM Deleted');
                           
-                          location.reload(true);
+                         // location.reload(true);
                          
                           
                           
