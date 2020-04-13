@@ -9,6 +9,8 @@ variable "netname" {}
 variable "script_source" {}
 variable "private_key" {}
 variable "hostname" {}
+variable "jira" {}
+variable "user" {}
 
 
 provider "openstack" {
@@ -88,7 +90,9 @@ EOF
 
 
   metadata = {
-       key = var.emailid
+       email = var.emailid
+       jira = var.jira
+       create_by = var.user
   }
 
   network {

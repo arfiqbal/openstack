@@ -128,5 +128,22 @@ class OpenstackRepository
         return VM::with('application')->orderBy('id', 'DESC')->first();
     }
 
+    public function findTemplate($appid)
+    {
+        $app = Application::find($appid);
+        if($app->os == 'ubuntu'){
+            return public_path('template/templateUbuntu.tf');
+        }elseif($app->os == 'centos'){
+            return public_path('template/templateCentos.tf');
+        }elseif($app->os == 'window'){
+            return public_path('template/templateWindow.tf');
+        }elseif($app->os == 'rhel'){
+            return public_path('template/templateRhel.tf');
+        }else{
+            return public_path('template/templateUbuntu.tf');
+        }
+
+            
+    }
     
 }
