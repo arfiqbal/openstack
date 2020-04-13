@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use App\Mail\VmLaunched;
+use App\Mail\IpUpdateNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Application;
@@ -424,6 +425,7 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
             if($deleteVM->save()){
+                Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
                 $policy = $explodeHostname[0].'_'.$deleteVM->username;
 

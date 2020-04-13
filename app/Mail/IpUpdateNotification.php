@@ -31,6 +31,6 @@ class IpUpdateNotification extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.ipNotification');
+        return $this->subject('Ip Released : '.$this->vm->jira)->view('emails.ipNotification');
     }
 }
