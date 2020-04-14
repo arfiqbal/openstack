@@ -17,6 +17,7 @@ class CreateVMsTable extends Migration
                 $table->engine = 'InnoDB';
                 $table->increments('id');
                 $table->integer('application_id')->unsigned();
+                $table->string('vm_uid');
                 $table->string('dir');
                 $table->string('name');
                 $table->string('jira');
@@ -33,6 +34,7 @@ class CreateVMsTable extends Migration
                 $table->string('nic2');
                 $table->string('flavor');
                 $table->string('created_by');
+                $table->string('deleted_by')->nullable();
                 $table->boolean('active');
                 $table->timestamps();
             

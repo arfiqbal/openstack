@@ -49,8 +49,6 @@ class VmController extends Controller
         $lastVm = $this->openstack->lastVm();
        
 
-      
-       
         return view('welcome',
         ['apps' => $apps, 
         'identity' => $identity, 'flavors' => $flavors, 'lastVm' => $lastVm]);
@@ -292,9 +290,13 @@ class VmController extends Controller
                             // throw new ProcessFailedException($process);
                         }else{
 
+                            $vm_uidPath = storage_path('app/'.$dir.'/outputid.json');
+                            $vm_uid = file_get_contents($vm_uidPath);
+
                             $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
                             $newvm->application_id = $request->app;
+                            $newvm->vm_uid = $vm_uid;
                             $newvm->dir = $dir;
                             $newvm->name = $request->vmname;
                             $newvm->jira = $request->jira;
@@ -426,6 +428,7 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
             $deleteVM->jira = $deleteVM->jira.'/'.$request->jira;
+            $newvm->deleted_by = Auth::user()->name;
             if($deleteVM->save()){
                 Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
