@@ -43,7 +43,7 @@ class ImageController extends Controller
         $apps = $servers->imagesV2()->listImages();
 
         foreach ($apps as $app) {
-            dd($app);
+            var_dump($app);
         }
         dd('s');
         return view('appImage', ['apps' => $apps]);
