@@ -7,7 +7,8 @@ Create VM | All VM
 @section('content')
 
   <!-- Page Content -->
-    <div class="container">
+    <div class="container-fluid">
+      <h1 class="mt-4">Create Instance</h1>
         <div class="row">
             <div class="col-md-12 ">
                 @if (session('vms'))
@@ -18,7 +19,7 @@ Create VM | All VM
                   </button>
                 </div>
                 @endif
-                <div class="card " >
+                <div class="card mb-4" >
                     <div class="card-header">
 
                         <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
