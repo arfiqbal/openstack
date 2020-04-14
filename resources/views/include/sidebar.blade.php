@@ -15,7 +15,7 @@
                 </div>
                 Add Instance
             </a>
-            <a class="nav-link" href="">
+            <a class="nav-link" href="{{route('addImage')}}">
                 <div class="sb-nav-link-icon">
                     <i class="fab fa-adn"></i>
                 </div>
