@@ -14,7 +14,8 @@ Add Application
     <div class="card mb-4">
       <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
       <div class="card-body">
-        {!! Form::open(['route' => 'route.name']) !!}
+        
+        {!! Form::open(['route' => 'postImage']) !!}
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Application Image</label>

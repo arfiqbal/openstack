@@ -41,9 +41,16 @@ class ImageController extends Controller
     {
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2()->listImages();
-        
+
         
         return view('appImage', ['apps' => $apps]);
+        
+    }
+
+
+
+    public function store(Request $request)
+    {
         
     }
 
