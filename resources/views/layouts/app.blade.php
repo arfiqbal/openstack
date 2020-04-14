@@ -1,89 +1,43 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
-    <!-- Required meta tags -->
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}" crossorigin="anonymous">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        <meta name="description" content="" />
+        <meta name="author" content="" />
+        <title>@yield('title')</title>
+        <link href="{{ asset('css/styles.css')}}" rel="stylesheet" />
+        <link href="{{ asset('css/datatable.css')}}" rel="stylesheet" crossorigin="anonymous" />
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    </head>
+    <body class="sb-nav-fixed">
+        @include('include.header')
 
-    <title>@yield('title')</title>
-    <style>
-      body {
-        background: url('{{asset("images/Presentation3.jpg")}}') no-repeat center center fixed;
-        -webkit-background-size: cover;
-        -moz-background-size: cover;
-        background-size: cover;
-        -o-background-size: cover;
-      }
-    </style>
-  </head>
-   
-   <body>
+        <div id="layoutSidenav">
+            <div id="layoutSidenav_nav">
+                @include('include.sidebar')
+            </div>
+            <div id="layoutSidenav_content">
+                <main>
+                    
+                    <div class="container-fluid">
+                        @yield('content')
+                    </div>
+                </main>
 
-  <!-- Navigation -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top" style="background-color: #ce3030 !important">
-    <div class="container">
-      <a class="navbar-brand" href="{{route('allVM')}}">Vodafone</a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarResponsive">
-        <ul class="navbar-nav ml-auto">
-          
-
-          @if (Auth::guest())
-          <li class="nav-item">
-            <a class="nav-link" href="{{ route('login') }}">Login</a>
-          </li>
-          @else
-
-          <li class="nav-item active">
-            <a class="nav-link" href="{{route('createVM')}}"> Create Vm
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-
-          <li class="nav-item active">
-            <a class="nav-link" href="{{route('allVM')}}"> View All Vm
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-            
-          <li class="nav-item active">
-            <a class="nav-link" >Hi {{ Auth::user()->name }} 
-              <span class="sr-only">(current)</span>
-            </a>
-          </li>
-          
-          <li class="nav-item ">
-            <a class="nav-link" href="{{ route('logout') }}" onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
-              Logout
-            </a>
-            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-            {{ csrf_field() }}
-            </form>
-          </li>
-          @endif
-          
-          
-        </ul>
-        
-      </div>
-    </div>
-  </nav>
-
-    @yield('content')
-    
-    <!-- Optional JavaScript -->
-    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-    <script src="{{ asset('js/jquery.js') }}"  crossorigin="anonymous"></script>
-    <script src="{{ asset('js/popper.js') }}"  crossorigin="anonymous"></script>
-
-    <script src="{{ asset('js/bootstrap.min.js') }}" crossorigin="anonymous"></script>
-    <script src="{{ asset('js/ip.js') }}" crossorigin="anonymous"></script>
-    
-    @yield('js')
-  </body>
+                @include('include.footer')
+                
+            </div>
+        </div>
+        <script src="{{ asset('js/js.js')}}" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/popper.js') }}"  crossorigin="anonymous"></script>
+        <script src="{{ asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/scripts.js')}}"></script>
+        <script src="{{ asset('js/ip.js') }}" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/datatable.js')}}" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/datatable-bootstrap.js')}}" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/datatables-demo.js')}}"></script>
+        @yield('js')
+    </body>
 </html>
