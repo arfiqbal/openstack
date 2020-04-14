@@ -3,7 +3,7 @@ $(document).ready(function() {
   //$('.dataTable').DataTable();
   $('.dataTable thead th').each( function () {
     var title = $(this).text();
-    $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    $(this).html( '<input type="text" '+title+'" />' );
 } );
 
 // DataTable
