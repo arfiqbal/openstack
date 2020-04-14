@@ -281,8 +281,6 @@ class VmController extends Controller
                          
                     }
 
-                    $process->setCommandLine('terraform12 output -json id > output.json');
-                    $process->run();
                 });
 
               
