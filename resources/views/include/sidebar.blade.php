@@ -3,19 +3,19 @@
         <div class="nav">
           
             <div class="sb-sidenav-menu-heading">Openstack</div>
-            <a class="nav-link" href="charts.html">
+            <a class="nav-link" href="{{route('allVM')}}">
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-server"></i>
                 </div>
                 View All Instances
             </a>
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" href="{{route('createVM')}}">
                 <div class="sb-nav-link-icon">
                     <i class="fas fa-laptop-code"></i>
                 </div>
                 Add Instance
             </a>
-            <a class="nav-link" href="tables.html">
+            <a class="nav-link" href="">
                 <div class="sb-nav-link-icon">
                     <i class="fab fa-adn"></i>
                 </div>
@@ -25,6 +25,6 @@
     </div>
     <div class="sb-sidenav-footer">
         <div class="small">Logged in as:</div>
-        Arif
+        {{Auth::user()->name}}
     </div>
 </nav>
