@@ -41,7 +41,7 @@ Create VM | All VM
 
                           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-4">
                                 
                                 <!-- <form method="POST" action="" class="" novalidate>
                                     {{ csrf_field() }} -->
@@ -151,7 +151,7 @@ Create VM | All VM
                                 </form>
                                 
                             </div>
-                            <div class="col-md-6 float-right">
+                            <div class="col-md-4 offset-md-2">
                               
                               @if($lastVm)
                               <h4>Last VM Created on {{$lastVm->created_at}}</h4>
