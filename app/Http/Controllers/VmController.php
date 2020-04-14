@@ -69,7 +69,7 @@ class VmController extends Controller
         //['id' => '6bf51948-a5b8-430a-96a2-b2d12fd8b546']
         $compute = $servers->computeV2();
 
-        $flavor = $compute->getFlavor(['id' => '1a4741dc-5a07-4126-977e-73f6ef25f40']);
+        $flavor = $compute->getFlavor(['id' => '1a4741dc-5a07-4126-977e-73f62ef15f40']);
 
         dd($flavor->retrieve());
     
