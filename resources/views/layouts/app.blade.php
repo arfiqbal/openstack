@@ -35,9 +35,7 @@
         <script src="{{ asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js')}}"></script>
         <script src="{{ asset('js/ip.js') }}" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/datatable.js')}}" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/datatable-bootstrap.js')}}" crossorigin="anonymous"></script>
-        <script src="{{ asset('js/datatables-demo.js')}}"></script>
+       
         @yield('js')
     </body>
 </html>

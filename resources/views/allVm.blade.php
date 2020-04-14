@@ -8,6 +8,7 @@ Create VM | All VM
 
   <!-- Page Content -->
     <div class="container-fluid">
+      <h1 class="mt-4">All Instances</h1>
         <div class="row">
             <div class="col-md-12">
                 @if (session('vms'))
@@ -38,7 +39,7 @@ Create VM | All VM
                         
                             <!-- All VM -->
                           
-                            <table class="table table-hover table-striped" id="showVm">
+                            <table class="table table-hover table-striped dataTable" id="showVm">
                               <thead>
                                 <tr>
                                   <th scope="col">VM</th>
@@ -169,6 +170,9 @@ Create VM | All VM
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 @section('js')
+<script src="{{ asset('js/datatable.js')}}" crossorigin="anonymous"></script>
+<script src="{{ asset('js/datatable-bootstrap.js')}}" crossorigin="anonymous"></script>
+<script src="{{ asset('js/datatables-demo.js')}}"></script>
     <script>
     $.ajaxSetup({
         headers: {
