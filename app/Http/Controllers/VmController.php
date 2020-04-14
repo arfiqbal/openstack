@@ -68,7 +68,7 @@ class VmController extends Controller
         $images = $servers->imagesV2()->listImages();
 
         foreach ($images as $image) {
-            var_dump($image);
+            dd($image);
         }
 
         dd('end');
