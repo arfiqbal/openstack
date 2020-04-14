@@ -42,7 +42,10 @@ class ImageController extends Controller
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2()->listImages();
 
-        dd($apps);
+        foreach ($images as $image) {
+            dd($image->id);
+        }
+        dd('s');
         return view('appImage', ['apps' => $apps]);
         
     }
