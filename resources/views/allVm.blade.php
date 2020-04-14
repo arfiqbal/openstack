@@ -213,9 +213,7 @@ Create VM | All VM
               var order = $('#orderHidden').val();
               var orderRoute=  $('#orderRouteHidden').val();
               var jira = $('#jira').val();
-              console.log(jira);
-              console.log(order);
-
+              $('#jiraModal').modal('hide');
               deleteOrder(order ,orderRoute, jira);
 
             });
