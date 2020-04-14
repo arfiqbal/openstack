@@ -30,7 +30,7 @@
                 
             </div>
         </div>
-        <script src="{{ asset('js/js.js')}}" crossorigin="anonymous"></script>
+        <script src="{{ asset('js/jquery.js')}}" crossorigin="anonymous"></script>
         <script src="{{ asset('js/popper.js') }}"  crossorigin="anonymous"></script>
         <script src="{{ asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js')}}"></script>
