@@ -54,7 +54,13 @@ class ImageController extends Controller
 
     public function store(Request $request)
     {
-        dd($request);
+        $app = new Application;
+        $app->name = $request->app;
+        $app->uid  = $request->image;
+        $app->os = $request->os;
+        if($app->save()){
+            return redirect()->route('addImage');
+        }
     }
 
     
