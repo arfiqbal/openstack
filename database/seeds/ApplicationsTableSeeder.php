@@ -34,22 +34,22 @@ class ApplicationsTableSeeder extends Seeder
             ["name" => "ppe" , "uid" => "d1dd6d3d-92ca-4916-8b6a-03d757d75dc1", "os" => "ubuntu"],
             ["name" => "sc2window" , "uid" => "5807b42d-df8d-45ac-ad52-4a2c9d0ecab7", "os" => "window"],
             ["name" => "sc2ubuntu" , "uid" => "71731999-0219-49f6-8205-5ba9a3299495", "os" => "ubuntu"],
-            ["name" => "apiwizard" , "uid" => "eebebfb3-c82d-4294-9999-ea0778c8afa1", "os" => "ubuntu"],
+            ["name" => "apw" , "uid" => "eebebfb3-c82d-4294-9999-ea0778c8afa1", "os" => "ubuntu"],
             ["name" => "hadoopspark" , "uid" => "e3a474df-e8cb-4cdd-80f6-701f6d3edeb1", "os" => "ubuntu"],
             ["name" => "smapi" , "uid" => "5e701bfd-375a-428d-88f1-4d937c4cfa1e", "os" => "ubuntu"],
             ["name" => "start" , "uid" => "9931d672-6e10-4c38-adb3-4bcef5ee339a", "os" => "ubuntu"],
-            ["name" => "dpp" , "uid" => "6fb42e63-c472-4dc7-8936-9b512f7e27ef", "os" => "ubuntu"],
+            ["name" => "dpp" , "uid" => "6fb42e63-c472-4dc7-8936-9b512f7e27ef", "os" => "window"],
             ["name" => "ubuntugui16" , "uid" => "925bcbac-380d-477e-b604-73797f736baf", "os" => "ubuntu"],
             ["name" => "ubuntugui18" , "uid" => "b2b7fccf-0cb9-4341-81bb-9e29de454fd0", "os" => "ubuntu"],
-            ["name" => "ubuntucli16" , "uid" => "a66a62ae-d94e-40c4-8fba-0f2e2c1f58a5", "os" => "ubuntu"],
-            ["name" => "ubuntucli18" , "uid" => "6407d9ac-9b89-4dc8-b930-197b1245cfca", "os" => "ubuntu"],
+            ["name" => "poc_ubuntucli16" , "uid" => "a66a62ae-d94e-40c4-8fba-0f2e2c1f58a5", "os" => "ubuntu"],
+            ["name" => "poc_ubuntucli18" , "uid" => "6407d9ac-9b89-4dc8-b930-197b1245cfca", "os" => "ubuntu"],
             ["name" => "window10" , "uid" => "e84f8a0f-c26f-478a-b583-54c55ffd1456", "os" => "window"],
-            ["name" => "rhelcli7.7" , "uid" => "07196bf9-36ef-41af-af04-d804c2ae3113", "os" => "rhel"],
-            ["name" => "rhelcli7.6" , "uid" => "ae4542eb-c113-4eb9-99ad-4f32684f5d74", "os" => "rhel"],
+            ["name" => "poc_rhelcli7.7" , "uid" => "07196bf9-36ef-41af-af04-d804c2ae3113", "os" => "rhel"],
+            ["name" => "poc_rhelcli7.6" , "uid" => "ae4542eb-c113-4eb9-99ad-4f32684f5d74", "os" => "rhel"],
             ["name" => "rhelcli7.5" , "uid" => "2ffcf11b-94f9-4127-8658-2516bf860a48", "os" => "rhel"],
-            ["name" => "rhelcli6"  , "uid" => "10880706-1646-47d6-b1c9-41474b5c0194", "os" => "rhel"],
+            ["name" => "poc_rhelcli6"  , "uid" => "10880706-1646-47d6-b1c9-41474b5c0194", "os" => "rhel"],
             ["name" => "cfme_ubuntu184" , "uid" => "0fe92d06-3785-4997-abc9-b3947051e548", "os" => "ubuntu"],
-            ["name" => "centos6" , "uid" => "42ca21de-eee4-4e79-8cc0-e9f8958969b8", "os" => "centos"]
+            ["name" => "poc_centos6" , "uid" => "42ca21de-eee4-4e79-8cc0-e9f8958969b8", "os" => "centos"]
 
         ]);
     }

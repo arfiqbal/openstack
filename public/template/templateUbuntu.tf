@@ -41,6 +41,7 @@ resource "openstack_compute_instance_v2" "vm" {
   flavor_id       = var.flavor
   key_pair        = "vdf-key1"
   security_groups = ["all-open"]
+
   user_data = <<EOF
   #cloud-config
   hostname: ${var.hostname}
@@ -106,9 +107,8 @@ EOF
      fixed_ip_v4  = var.nic2
   }
 
-  
-
-
 }
 
-
+output "id" {
+  value = "${openstack_compute_instance_v2.vm.id}"
+}
