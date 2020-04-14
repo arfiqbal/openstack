@@ -68,10 +68,10 @@ class VmController extends Controller
         $images = $servers->imagesV2()->listImages();
         //['id' => '6bf51948-a5b8-430a-96a2-b2d12fd8b546']
         $compute = $servers->computeV2();
-        $server = $compute->getServer(['id' => '6bf51948-a5b8-430a-96a2-b2d12fd8b546','flavor' => ""], true);
-        dd($server);
+        // $server = $compute->getServer(['id' => '6bf51948-a5b8-430a-96a2-b2d12fd8b546','flavor' => ""], true);
+        // dd($server);
 
-        $flavor = $compute->getFlavor(['id' => '1a4741dc-5a07-4126-977e-73f62ef15f40'], true);
+        $flavor = $compute->getFlavor(['id' => '1a4741dc-5a07-4126-977e-73f62ef15f40','ram' =>'','vcpus' => ''], true);
         
         dd($flavor->retrieve());
         dd('tex');
