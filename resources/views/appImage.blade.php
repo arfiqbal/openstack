@@ -14,12 +14,12 @@ Add Application
     <div class="card mb-4">
       <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
       <div class="card-body">
-        
+
         {!! Form::open(['route' => 'postImage']) !!}
 
           <div class="form-group">
             <label for="exampleFormControlSelect1">Application Image</label>
-            <select class="form-control"  id="app" required>
+            <select class="form-control" name="image"   required>
             <option value="">Select Application Image</option>
             @foreach ($apps as $app)
                 <option value="{{$app->id}}">{{$app->name}}</option>
@@ -31,15 +31,17 @@ Add Application
 
           <div class="form-group">
             <label for="lastName">App Name</label>
-            <input type="text" class="form-control"  id="lastName" required>
+            <input type="text" class="form-control"  name="app" required>
           
           </div>
 
           <div class="form-group">
             <label for="lastName">OS </label>
-            <input type="text" class="form-control"  id="lastName" required>
+            <input type="text" class="form-control"  name="os" required>
           
           </div>
+
+          <button type="submit" class="btn btn-primary">Submit</button>
 
          {!! Form::close() !!}
       </div>
