@@ -10,27 +10,29 @@
         <link href="{{ asset('css/styles.css')}}" rel="stylesheet" />
         <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
         <style>
+            .bg-primary{
+                background-image: linear-gradient(to bottom right, #9d2828, #3c3c38) !important;
+            }
             svg {
-                font-family: 'Russo One', sans-serif;
-                position: absolute; 
-                width: 100%; height: 100%;
+                font-family: 'Russo One', sans-serif;float: left; width: 40% !important;
+               
             }
             svg text {
                 text-transform: uppercase;
-                animation: stroke 5s infinite alternate;
+                animation: stroke 5s  ;
                 stroke-width: 2;
-                stroke: #365fa0;
-                font-size: 140px;
+                stroke: #fff;
+                font-size: 170px;
             }
             @keyframes stroke {
                 0%   {
-                    fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1);
+                    fill: rgba(255, 255, 255); stroke: rgb(255, 255, 255);
                     stroke-dashoffset: 25%; stroke-dasharray: 0 50%; stroke-width: 2;
                 }
-                70%  {fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1); }
-                80%  {fill: rgba(72,138,20,0); stroke: rgba(54,95,160,1); stroke-width: 3; }
+                70%  {fill: rgba(72,138,20,0); stroke: rgb(253, 253, 253); }
+                80%  {fill: rgba(72,138,20,0); stroke: rgb(255, 255, 255); stroke-width: 3; }
                 100% {
-                    fill: rgba(72,138,204,1); stroke: rgba(54,95,160,0); 
+                    fill: rgb(202, 206, 211); stroke: rgb(253, 253, 253); 
                     stroke-dashoffset: -25%; stroke-dasharray: 50% 0; stroke-width: 0;
                 }
             }
@@ -40,14 +42,16 @@
         <div id="layoutAuthentication">
             <div id="layoutAuthentication_content">
                 <main>
+                    <svg viewBox="0 0 1320 300">
+                        <text x="50%" y="50%" dy=".35em" text-anchor="middle">
+                            VSSI CLOUD
+                        </text>
+                    </svg>	
                     <div class="container">
+                        
                         <div class="row justify-content-center">
                             <div class="col-lg-5">
-                                <svg viewBox="0 0 1320 300">
-                                    <text x="50%" y="50%" dy=".35em" text-anchor="middle">
-                                        VSSI CLOUD
-                                    </text>
-                                </svg>	
+                              
                                 <div class="card shadow-lg border-0 rounded-lg mt-5">
                                     <div class="card-header">
                                         <h3 class="text-center font-weight-light my-4">{{ __('Login') }}</h3>
