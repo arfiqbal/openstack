@@ -70,9 +70,11 @@ class VmController extends Controller
         $compute = $servers->computeV2(['id' => '6bf51948-a5b8-430a-96a2-b2d12fd8b546']);
 
         $flavor = $compute->getFlavor(['id' => '1a4741dc-5a07-4126-977e-73f62ef15f40']);
-        dd($flavor);
-        dd($flavor->retrieve());
-    
+        
+        foreach($flavor->retrieve() as $fv){
+            dd($fv);
+        }
+        dd('tex');
         return view('allVm',
         ['allVM' => $allVM]);
     }
