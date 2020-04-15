@@ -19,7 +19,7 @@ Auth::routes();
 // Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('recreate-vm/{id}', 'VmController@vmRecreate')->name('vmRecreate');
-Route::post('recreate-vm', 'VmController@postVmRecreate')->name('postVmRecreate');
+Route::post('recreate-vm', 'VmController@update')->name('postVmRecreate');
 
 Route::get('create-vm', 'VmController@index')->name('createVM');
 Route::post('vm', 'VmController@store')->name('vm');;

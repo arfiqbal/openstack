@@ -42,9 +42,6 @@ Recreate {{$vmDetail->name}}
                           <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
                             <div class="row">
                             <div class="col-md-4">
-                                
-                                <!-- <form method="POST" action="" class="" novalidate>
-                                    {{ csrf_field() }} -->
 
                                 <div class="card" id="vmmessgae">
 
@@ -86,7 +83,8 @@ Recreate {{$vmDetail->name}}
                                     <label for="uname1">JIRA Ticket</label>
                                     <input type="text" class="form-control"  id="jira" required>
                                     
-                                    <input type="hidden"  id="project" value="{{$vmDetail->name}}">
+                                    <input type="hidden"  id="vmid" value="{{$vmDetail->id}}">
+                                   
                                   </div>
                                   <div class="form-group">
                                     <label for="flavor">Flavors</label>
@@ -204,14 +202,8 @@ Recreate {{$vmDetail->name}}
       
       $("#launchVM").click(function(event) {
         //event.preventDefault()
-        var vmname = $('#vmname').val();
+        var vmname = $('#vmid').val();
         var jira = $('#jira').val();
-        var firstName = $('#firstName').val();
-        var lastName = $('#lastName').val();
-        var email = $('#email').val();
-        var project = $('#project option:selected').val();
-        var network = $('#network option:selected').val();
-        var network1 = $('#network1 option:selected').val();
         var app = $('#app option:selected').val();
         var flavor = $('#flavor option:selected').val();
 
