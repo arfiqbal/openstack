@@ -570,7 +570,7 @@ class VmController extends Controller
                             // throw new ProcessFailedException($process);
             }else{
 
-                $vm_uidPath = storage_path('app/'.$dir.'/outputid.json');
+                $vm_uidPath = storage_path('app/'.$vmDetail->dir.'/outputid.json');
                 $vm_uid = file_get_contents($vm_uidPath);
 
                 // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
