@@ -321,24 +321,25 @@ class VmController extends Controller
                                 echo "</br>";
                                 echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
                                 echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
-                                
-                                while(1){
-                                    echo "<b style='color:#FFC20A'>=</b>";
-                                    $otput = $this->ipa->findHost($hostname, $cookieName);
-                                    $outArray = json_decode($otput, true);
-                                    if($outArray['result']['count'] == 1)
-                                    {
-                                        break;
-                                    }
-                                    sleep(3);
+                                if($app->os != 'window')
+                                    while(1){
+                                        echo "<b style='color:#FFC20A'>=</b>";
+                                        $otput = $this->ipa->findHost($hostname, $cookieName);
+                                        $outArray = json_decode($otput, true);
+                                        if($outArray['result']['count'] == 1)
+                                        {
+                                            break;
+                                        }
+                                        sleep(3);
 
+                                    }
+                                    $explodeHostname = explode('.',$hostname);
+                                    $rule = $explodeHostname[0].'_'.$username;
+                                    $this->ipa->addHbacRule($rule, $cookieName);
+                                    $this->ipa->addHbacRuleUser($rule,$username, $cookieName);
+                                    $this->ipa->addHbacRuleHost($rule,$hostname, $cookieName);
+                                    $this->ipa->addHbacRuleService($rule, $cookieName);
                                 }
-                                $explodeHostname = explode('.',$hostname);
-                                $rule = $explodeHostname[0].'_'.$username;
-                                $this->ipa->addHbacRule($rule, $cookieName);
-                                $this->ipa->addHbacRuleUser($rule,$username, $cookieName);
-                                $this->ipa->addHbacRuleHost($rule,$hostname, $cookieName);
-                                $this->ipa->addHbacRuleService($rule, $cookieName);
 
                                 Log::info($request->vmname.'- VM created');
                                 Mail::to($newvm->email)->send(new VmLaunched($newvm));
@@ -586,24 +587,27 @@ class VmController extends Controller
                     echo "</br>";
                     echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
                     echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
-                                
-                    while(1){
-                        echo "<b style='color:#FFC20A'>=</b>";
-                        $otput = $this->ipa->findHost($vmDetail->hostname, $cookieName);
-                        $outArray = json_decode($otput, true);
-                        if($outArray['result']['count'] == 1)
-                        {
-                            break;
-                        }
-                        sleep(3);
+                    
+                    if($app->os != 'window')
+                        while(1){
+                            echo "<b style='color:#FFC20A'>=</b>";
+                            $otput = $this->ipa->findHost($vmDetail->hostname, $cookieName);
+                            $outArray = json_decode($otput, true);
+                            if($outArray['result']['count'] == 1)
+                            {
+                                break;
+                            }
+                            sleep(3);
 
+                        }
+                        $explodeHostname = explode('.',$vmDetail->hostname);
+                        $rule = $explodeHostname[0].'_'.$vmDetail->username;
+                        $this->ipa->addHbacRule($rule, $cookieName);
+                        $this->ipa->addHbacRuleUser($rule,$vmDetail->username, $cookieName);
+                        $this->ipa->addHbacRuleHost($rule,$vmDetail->hostname, $cookieName);
+                        $this->ipa->addHbacRuleService($rule, $cookieName);
                     }
-                    $explodeHostname = explode('.',$vmDetail->hostname);
-                    $rule = $explodeHostname[0].'_'.$vmDetail->username;
-                    $this->ipa->addHbacRule($rule, $cookieName);
-                    $this->ipa->addHbacRuleUser($rule,$vmDetail->username, $cookieName);
-                    $this->ipa->addHbacRuleHost($rule,$vmDetail->hostname, $cookieName);
-                    $this->ipa->addHbacRuleService($rule, $cookieName);
+                   
 
                                 
                     //Mail::to($newvm->email)->send(new VmLaunched($newvm));
