@@ -18,6 +18,7 @@ Auth::routes();
 
 // Route::get('/home', 'HomeController@index')->name('home');
 
+Route::get('recreate-vm/{id}', 'VmController@getRecreate')->name('getRecreate');
 Route::get('create-vm', 'VmController@index')->name('createVM');
 Route::post('vm', 'VmController@store')->name('vm');;
 Route::get('vm', 'VmController@show')->name('showVmLogs');

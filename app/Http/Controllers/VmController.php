@@ -428,7 +428,7 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
             $deleteVM->jira = $deleteVM->jira.'/'.$request->jira;
-            $newvm->deleted_by = Auth::user()->name;
+            // $deleteVM->deleted_by = Auth::user()->name;
             if($deleteVM->save()){
                 Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
