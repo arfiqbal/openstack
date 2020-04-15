@@ -9,6 +9,7 @@ use App\Mail\IpUpdateNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Application;
+
 use App\Rework;
 use App\VM;
 use Log;
@@ -466,6 +467,7 @@ class VmController extends Controller
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
         set_time_limit(0);
+
         $script_source = public_path();
         $private_key = public_path('include/vdf-key1.pem');
         $vmDetail = VM::find($request->vmid);
@@ -492,8 +494,9 @@ class VmController extends Controller
              
             }
         }
-            
+             
             $path = storage_path('app/'.$vmDetail->dir);
+            Storage::delete($path.'/terraform.tfstate');
 
             $template = $this->openstack->findTemplate($request->app);
 
