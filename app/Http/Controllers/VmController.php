@@ -196,8 +196,6 @@ class VmController extends Controller
             echo  "<b style='color:#08c31c'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
             echo  "<b style='color:#08c31c'>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
-
-            dd($nicIps);
            
             $dir = $request->vmname.'-'.uniqid();
             
@@ -293,7 +291,7 @@ class VmController extends Controller
                             $vm_uidPath = storage_path('app/'.$dir.'/outputid.json');
                             $vm_uid = file_get_contents($vm_uidPath);
 
-                            $nicIps = ['routeable'=> $value, 'non_routable' => $new];
+                            // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
                             $newvm->application_id = $request->app;
                             $newvm->vm_uid = $vm_uid;
