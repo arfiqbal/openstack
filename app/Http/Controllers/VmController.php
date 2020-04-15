@@ -321,7 +321,7 @@ class VmController extends Controller
                                 echo "</br>";
                                 echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
                                 echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
-                                if($app->os != 'window')
+                                if($app->os != 'window'){
                                     while(1){
                                         echo "<b style='color:#FFC20A'>=</b>";
                                         $otput = $this->ipa->findHost($hostname, $cookieName);
