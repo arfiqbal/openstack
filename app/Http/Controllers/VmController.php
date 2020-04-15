@@ -428,7 +428,7 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $deleteVM->active = 0;
             $deleteVM->jira = $deleteVM->jira.'/'.$request->jira;
-            // $deleteVM->deleted_by = Auth::user()->name;
+            $deleteVM->deleted_by = Auth::user()->name;
             if($deleteVM->save()){
                 Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
@@ -451,6 +451,15 @@ class VmController extends Controller
 
     public function vmRecreate($id)
     {
+        $apps = Application::orderBy('name','ASC')->get();
+        $servers = $this->openstack->defaultAuthentication();
+        $compute = $servers->computeV2();
+        $flavors = $compute->listFlavors();
+        $vmDetail = VM::find($id);
+       
 
+        return view('recreateVM',
+        ['apps' => $apps, 
+        'identity' => $identity, 'flavors' => $flavors, 'lastVm' => $vmDetail]);
     }
 }
