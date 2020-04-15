@@ -13,7 +13,10 @@ class VM extends Model
 	    return $this->belongsTo('App\Application','application_id');
 	}
 
-	
+	public function rework()
+    {
+        return $this->hasMany('App\Rework','vm_id');
+    }
 
 	
 }

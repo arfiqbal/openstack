@@ -24,6 +24,7 @@ Route::get('vm', 'VmController@show')->name('showVmLogs');
 Route::get('all-vm', 'VmController@create')->name('allVM');
 Route::post('vm/{id}', 'VmController@destroy')->name('deletevm');
 Route::get('/', 'VmController@index')->name('home');
+
 Route::get('add-image', 'ImageController@index')->name('addImage');
 Route::post('add-image', 'ImageController@store')->name('postImage');
 
