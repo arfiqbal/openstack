@@ -83,6 +83,11 @@ Recreate {{$vmDetail->name}}
                                
                                 <form id="hide-vm" class="form">
                                   <div class="form-group">
+                                    <label for="uname1">JIRA Ticket</label>
+                                    <input type="text" class="form-control"  id="jira" required>
+                                  
+                                  </div>
+                                  <div class="form-group">
                                     <label for="flavor">Flavors</label>
                                     <select class="form-control"  id="flavor" required>
                                       <option value="">Select Flavor</option>  
@@ -227,7 +232,7 @@ Recreate {{$vmDetail->name}}
   
               $.ajax({
                   type:'POST',
-                  url: "<?= URL::to("vm");?>",
+                  url: "{{route('postVmRecreate')}}",
                   data: {vmname :vmname, 
                     email:email, 
                     project :project, 
