@@ -78,10 +78,10 @@ Create VM | All VM
                                           <td>
                                             
                                             <a  class="btn btn-danger deletevm" data-order="{{ $myVM->name }}"
-                                            data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}"><i class="fas fa-trash-alt"></i></a>
+                                            data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}"><i class="far fa-trash-alt"></i></i></a>
                                             
-
-                                            <a  class="btn btn-info showlog" data-toggle="modal" data-target="#logs{{$myVM->id}}" data-order="{{$myVM->id}}"><img src="{{ asset('images/eye-fill.svg') }}" alt="" width="24" height="24" title="View log"></a>
+                                              <a href=""><i class="fas fa-retweet"></i></a>
+                                            {{-- <a  class="btn btn-info showlog" data-toggle="modal" data-target="#logs{{$myVM->id}}" data-order="{{$myVM->id}}"><img src="{{ asset('images/eye-fill.svg') }}" alt="" width="24" height="24" title="View log"></a> --}}
                                            </td>
                                         </tr>
                                         
