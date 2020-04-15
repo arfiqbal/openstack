@@ -202,7 +202,7 @@ Recreate {{$vmDetail->name}}
       
       $("#launchVM").click(function(event) {
         //event.preventDefault()
-        var vmname = $('#vmid').val();
+        var vmid = $('#vmid').val();
         var jira = $('#jira').val();
         var app = $('#app option:selected').val();
         var flavor = $('#flavor option:selected').val();
@@ -226,13 +226,9 @@ Recreate {{$vmDetail->name}}
               $.ajax({
                   type:'POST',
                   url: "{{route('postVmRecreate')}}",
-                  data: {vmname :vmname, 
-                    email:email, 
-                    project :project, 
-                    firstName :firstName, 
+                  data: {vmid :vmid, 
                     jira :jira,
-                    app :app, 
-                    lastName :lastName, 
+                    app :app,  
                     flavor:flavor},
                   xhr: function () {
                       var xhr = $.ajaxSettings.xhr() ;
