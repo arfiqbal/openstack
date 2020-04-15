@@ -32,6 +32,7 @@ class CreateVMsTable extends Migration
                 $table->string('project');
                 $table->string('nic1');
                 $table->string('nic2');
+                $table->string('network');
                 $table->string('flavor');
                 $table->string('created_by');
                 $table->string('deleted_by')->nullable();

@@ -85,7 +85,8 @@ Recreate {{$vmDetail->name}}
                                   <div class="form-group">
                                     <label for="uname1">JIRA Ticket</label>
                                     <input type="text" class="form-control"  id="jira" required>
-                                  
+                                    
+                                    <input type="hidden"  id="project" value="{{$vmDetail->name}}">
                                   </div>
                                   <div class="form-group">
                                     <label for="flavor">Flavors</label>

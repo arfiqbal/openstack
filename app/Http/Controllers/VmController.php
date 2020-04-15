@@ -312,6 +312,7 @@ class VmController extends Controller
                             $newvm->flavor = $request->flavor;
                             $newvm->nic1 = $nicIps['routeable'];
                             $newvm->nic2 = $nicIps['non_routable'];
+                            $newvm->network = $nicIps['netName'];
                             $newvm->created_by = Auth::user()->name;
                             $newvm->active = 1;
                             if($newvm->save()){
