@@ -447,4 +447,10 @@ class VmController extends Controller
 
         
     }
+
+
+    public function vmRecreate($id)
+    {
+
+    }
 }
