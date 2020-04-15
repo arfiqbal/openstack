@@ -246,13 +246,13 @@ class VmController extends Controller
     
                     if (Process::ERR === $type) {
 
-                        echo $buffer."<br>";
+                        echo htmlspecialchars_decode($buffer)."<br>";
                         ob_flush();
                         flush();
                          
                     } else {
                         
-                        echo $buffer."<br>";
+                        echo htmlspecialchars_decode($buffer)."<br>";
                         ob_flush();
                         flush();
                          

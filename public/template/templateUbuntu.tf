@@ -114,7 +114,7 @@ output "id" {
 }
 
 resource "local_file" "foo" {
-    content     = penstack_compute_instance_v2.vm.id
+    content     = openstack_compute_instance_v2.vm.id
     filename = "${path.module}/outputid.json"
 }
 
