@@ -9,6 +9,7 @@ use App\Mail\IpUpdateNotification;
 use Illuminate\Support\Facades\Mail;
 use App\Http\Controllers\Controller;
 use App\Application;
+use App\Rework;
 use App\VM;
 use Log;
 use Auth;
@@ -461,6 +462,150 @@ class VmController extends Controller
      */
     public function update(Request $request)
     {
-        dd($request);
-    }
+        //dd($request->toArray());
+        ini_set('max_execution_time', 3600);
+        ob_implicit_flush(true);
+        set_time_limit(0);
+        $script_source = public_path();
+        $private_key = public_path('include/vdf-key1.pem');
+        $vmDetail = VM::find($request->vmid);
+        $cookieName = Str::random(16);
+        $this->ipa->login($cookieName);
+
+        $path = storage_path('app/'.$vmDetail->dir);
+        $process = new Process('terraform12 destroy -var="project='.$vmDetail->project.'" -auto-approve');
+        //$process = new Process('ping -c 50 www.google.com');
+        $process->setTimeout(3600);
+        $process->setWorkingDirectory($path);
+        $process->run();
+        if ($process->isSuccessful()) {
+            $vmDetail->jira = $vmDetail->jira.'/'.$request->jira;
+            if($vmDetail->save()){
+                
+                $explodeHostname = explode('.',$vmDetail->hostname);
+                $policy = $explodeHostname[0].'_'.$vmDetail->username;
+
+                
+               // $this->ipa->deleteUser($deleteVM->username, $cookieName);
+                $this->ipa->deleteHost($vmDetail->hostname, $cookieName);
+                $this->ipa->deletePolicy($policy, $cookieName);
+             
+            }
+        }
+            
+            $path = storage_path('app/'.$vmDetail->dir);
+
+            $template = $this->openstack->findTemplate($request->app);
+
+            $app = Application::find($request->app);
+            $pluginPath = public_path('plugin');
+            
+            $command = 'terraform12 apply -auto-approve  -input=false -var="project='.$vmDetail->project.'" -var="nic1='.$vmDetail->nic1.'" -var="nic2='.$vmDetail->nic2.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+  
+            $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
+            $process = new Process($init);
+            $process->setTimeout(3600);
+            $process->setWorkingDirectory($path);
+            $process->run(function ($type, $buffer) {
+    
+                if (Process::ERR === $type) {
+
+                    echo htmlspecialchars_decode($buffer)."<br>";
+                    ob_flush();
+                    flush();
+                         
+                } else {
+                        
+                    echo htmlspecialchars_decode($buffer)."<br>";
+                    ob_flush();
+                    flush();
+                         
+                }
+               
+            });
+                
+            if ($process->isSuccessful()) {
+
+                $process->setCommandLine($command);
+                $process->run(function ($type, $buffer) {
+    
+                    if (Process::ERR === $type) {
+                               
+                        echo $buffer."<br>";
+                        ob_flush();
+                        flush();
+                         
+                    } else {
+                        
+                        echo $buffer."<br>";
+                        ob_flush();
+                        flush();
+                         
+                    }
+
+                });
+          
+
+            if (!$process->isSuccessful()) {
+                            
+                Log::critical($process->getOutput());
+                            // throw new ProcessFailedException($process);
+            }else{
+
+                $vm_uidPath = storage_path('app/'.$dir.'/outputid.json');
+                $vm_uid = file_get_contents($vm_uidPath);
+
+                // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
+                $newRework = New Rework;
+                $newRework->application_id = $request->app;
+                $newRework->vm_uid = $vm_uid;
+                $newRework->flavor = $vm_uid;
+                $newRework->jira = $vm_uid;
+                            
+                if($newRework->save()){
+                    //rule = username
+                    ob_end_flush();
+                    echo "</br>";
+                    echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
+                    echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
+                                
+                    while(1){
+                        echo "<b style='color:#FFC20A'>=</b>";
+                        $otput = $this->ipa->findHost($vmDetail->hostname, $cookieName);
+                        $outArray = json_decode($otput, true);
+                        if($outArray['result']['count'] == 1)
+                        {
+                            break;
+                        }
+                        sleep(3);
+
+                    }
+                    $explodeHostname = explode('.',$vmDetail->hostname);
+                    $rule = $explodeHostname[0].'_'.$vmDetail->username;
+                    $this->ipa->addHbacRule($rule, $cookieName);
+                    $this->ipa->addHbacRuleUser($rule,$vmDetail->username, $cookieName);
+                    $this->ipa->addHbacRuleHost($rule,$vmDetail->hostname, $cookieName);
+                    $this->ipa->addHbacRuleService($rule, $cookieName);
+
+                                
+                    //Mail::to($newvm->email)->send(new VmLaunched($newvm));
+                    // Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
+
+                    echo "</br><br>";
+                    echo "<span style='color:#20ff00'>";
+                    echo "======================================================= <br>";
+                    echo "======  ".$vmDetail->name."- VM Created Successfully ===== <br>";
+                    
+                               
+                    echo "=======================================================<br>";
+                    echo "</span>";
+                }
+            }
+            }
+        }    
+      
+
+    
+       
+
 }
