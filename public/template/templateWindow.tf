@@ -39,14 +39,8 @@ resource "openstack_compute_instance_v2" "vm" {
 
 
   flavor_id       = var.flavor
-  key_pair        = "vdf-key1"
   security_groups = ["all-open"]
-  user_data = <<EOF
-  #cloud-config
-  hostname: ${var.hostname}
-  fqdn: ${var.hostname}
-EOF
-
+  
 
   metadata = {
        email = var.emailid
