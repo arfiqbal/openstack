@@ -477,7 +477,7 @@ class VmController extends Controller
         $path = storage_path('app/'.$vmDetail->dir);
         $process = new Process('terraform12 destroy -var="project='.$vmDetail->project.'" -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
-        echo "Deleting VM.....";
+        echo "Deleting VM..... <br>";
         ob_flush();
         flush();
         $process->setTimeout(3600);
@@ -486,8 +486,8 @@ class VmController extends Controller
         if ($process->isSuccessful()) {
             $vmDetail->jira = $vmDetail->jira.'/'.$request->jira;
             if($vmDetail->save()){
-                echo "Deleting VM.....Completed";
-                echo "Removing IPA policy.....";
+                echo "Deleting VM.....Completed <br>";
+                echo "Removing IPA policy..... <br>";
                 ob_flush();
                 flush();
                 
@@ -499,7 +499,7 @@ class VmController extends Controller
                 $this->ipa->deleteHost($vmDetail->hostname, $cookieName);
                 $this->ipa->deletePolicy($policy, $cookieName);
                 
-                echo "Removing IPA policy.....completed";
+                echo "Removing IPA policy.....completed <br>";
                 ob_flush();
                 flush();
              
