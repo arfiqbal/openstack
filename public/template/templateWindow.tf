@@ -44,7 +44,7 @@ resource "openstack_compute_instance_v2" "vm" {
   #cloud-config
   script:      |
     <powershell>
-    echo "Hello from Terraform"
+    netsh ip set address “Ethernet ” static 10.85.50.58 255.255.254.0 10.85.50.17
     </powershell>
 EOF
 
