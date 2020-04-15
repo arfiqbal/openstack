@@ -59,6 +59,18 @@ resource "openstack_compute_instance_v2" "vm" {
      fixed_ip_v4  = var.nic2
   }
 
+  connection {
+    user        = "Administrator"
+    type        = "winrm"
+    password    = "Vodafone@12345"
+    host        = var.nic1
+    insecure    = true
+  }
+
+  provisioner "remote-exec" {
+    inline = ["powershell.exe -ExecutionPolicy Unrestricted -Command {netsh ip set address “Ethernet ” static 10.85.50.58 255.255.254.0 10.85.50.17}",]
+  }
+
 
 }
 
