@@ -460,6 +460,6 @@ class VmController extends Controller
 
         return view('recreateVM',
         ['apps' => $apps, 
-        'identity' => $identity, 'flavors' => $flavors, 'lastVm' => $vmDetail]);
+        'flavors' => $flavors, 'lastVm' => $vmDetail]);
     }
 }
