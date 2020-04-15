@@ -508,6 +508,7 @@ class VmController extends Controller
              
             $path = storage_path('app/'.$vmDetail->dir);
             Storage::delete($path.'/terraform.tfstate');
+            dd('edn');
 
             $template = $this->openstack->findTemplate($request->app);
 
