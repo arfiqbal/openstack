@@ -500,7 +500,7 @@ class VmController extends Controller
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
             
-            $command = 'terraform12 apply -auto-approve  -input=false -var="project='.$vmDetail->project.'" -var="nic1='.$vmDetail->nic1.'" -var="nic2='.$vmDetail->nic2.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="project='.$vmDetail->project.'" -var="nic1='.$vmDetail->nic1.'" -var="nic2='.$vmDetail->nic2.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
   
             $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
             $process = new Process($init);
