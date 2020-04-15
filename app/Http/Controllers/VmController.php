@@ -229,7 +229,7 @@ class VmController extends Controller
              
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
             
-            $command = 'terraform12 apply -auto-approve  -input=false -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -lock=false -auto-approve  -input=false -var="project='.$request->project.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
 
             if(!File::isDirectory($path)){
 
@@ -477,12 +477,19 @@ class VmController extends Controller
         $path = storage_path('app/'.$vmDetail->dir);
         $process = new Process('terraform12 destroy -var="project='.$vmDetail->project.'" -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
+        echo "Deleting VM.....";
+        ob_flush();
+        flush();
         $process->setTimeout(3600);
         $process->setWorkingDirectory($path);
         $process->run();
         if ($process->isSuccessful()) {
             $vmDetail->jira = $vmDetail->jira.'/'.$request->jira;
             if($vmDetail->save()){
+                echo "Deleting VM.....Completed";
+                echo "Removing IPA policy.....";
+                ob_flush();
+                flush();
                 
                 $explodeHostname = explode('.',$vmDetail->hostname);
                 $policy = $explodeHostname[0].'_'.$vmDetail->username;
@@ -491,6 +498,10 @@ class VmController extends Controller
                // $this->ipa->deleteUser($deleteVM->username, $cookieName);
                 $this->ipa->deleteHost($vmDetail->hostname, $cookieName);
                 $this->ipa->deletePolicy($policy, $cookieName);
+                
+                echo "Removing IPA policy.....completed";
+                ob_flush();
+                flush();
              
             }
         }
