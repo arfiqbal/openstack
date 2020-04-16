@@ -72,7 +72,7 @@ class VmController extends Controller
         //dd($allVM->toArray());
         $flavor = $compute->getFlavor(['id' => $allVM->flavor]);
         $flavor->retrieve();
-
+        echo $flavor->ram;
         dd($flavor);
         
 
