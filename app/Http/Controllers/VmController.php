@@ -69,7 +69,7 @@ class VmController extends Controller
         $allVM = VM::with('application')->first();
         $servers = $this->openstack->defaultAuthentication();
         $compute = $servers->computeV2();
-        dd($allVM->toArray());
+        //dd($allVM->toArray());
         $flavor = $compute->getFlavor(['id' => $allVM->flavor]);
         $flavor->retrieve();
 
