@@ -42,9 +42,9 @@ resource "openstack_compute_instance_v2" "vm" {
   security_groups = ["all-open"]
   user_data = <<EOF
   #cloud-config
-  script:      |
+  script: |
     <powershell>
-    netsh ip set address “Ethernet ” static 10.85.50.58 255.255.254.0 10.85.50.17
+    echo "Hello World" | Set-Content -Path c:\hello.txt
     </powershell>
 EOF
 
@@ -59,12 +59,11 @@ EOF
 
   network {
     name = "nr_provider"
-    fixed_ip_v4   = var.nic1
   }
 
   network {
     name = var.netname
-     fixed_ip_v4  = var.nic2
+   
   }
 
   
