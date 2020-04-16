@@ -64,7 +64,17 @@ class VmController extends Controller
      */
     public function create()
     {
-        $allVM = VM::with('application')->where('active',1)->get();
+        // $allVM = VM::with('application')->where('active',1)->get();
+
+        $allVM = VM::with('application')->where('active',1)->first();
+        $servers = $this->openstack->defaultAuthentication();
+        $compute = $servers->computeV2();
+
+        $flavor = $compute->getFlavor(['id' => $allVM->flavor]);
+        $flavor->retrieve();
+
+        dd($flavor);
+        
 
         return view('allVm',
         ['allVM' => $allVM]);
