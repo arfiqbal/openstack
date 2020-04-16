@@ -153,7 +153,8 @@ class OpenstackRepository
         $compute = $servers->computeV2();
         $flavor = $compute->getFlavor(['id' => $flavor]);
         $flavor->retrieve();
-        return "RAM = '.$flavor->ram.'  vCPU ='.$flavor->vcpus";
+        $ram = $flavor->ram/1024;
+        return "RAM = '.$ram.GB'  vCPU ='.$flavor->vcpus";
         
     }
 }

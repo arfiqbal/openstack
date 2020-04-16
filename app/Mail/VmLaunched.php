@@ -14,17 +14,19 @@ class VmLaunched extends Mailable
     use Queueable, SerializesModels;
 
     public $vm;
-    public $openstackRepository;
+    public $flavor;
+    
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct(VM $vm, OpenstackRepository $openstackRepository)
+    public function __construct(VM $vm, $flavor)
     {
         $this->vm = $vm;
-        $this->openstackRepository = $openstackRepository;
+        $this->flavor = $flavor;
+        
     }
 
     /**
@@ -34,9 +36,6 @@ class VmLaunched extends Mailable
      */
     public function build()
     {
-        return $this->subject('VM CREATED : '.$this->vm->jira)->view('emails.vm')
-        ->with([
-            'flavor' => $this->openstackRepository->getFlavorDetail($this->vm->flavor)
-        ]);
+        return $this->subject('VM CREATED : '.$this->vm->jira)->view('emails.vm');
     }
 }

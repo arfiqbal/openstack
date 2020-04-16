@@ -341,9 +341,9 @@ class VmController extends Controller
                                     $this->ipa->addHbacRuleHost($rule,$hostname, $cookieName);
                                     $this->ipa->addHbacRuleService($rule, $cookieName);
                                 }
-
+                                $getFlavor = $this->openstackRepository->getFlavorDetail($newvm->flavor);
                                 Log::info($request->vmname.'- VM created');
-                                Mail::to($newvm->email)->send(new VmLaunched($newvm));
+                                Mail::to($newvm->email)->send(new VmLaunched($newvm, $getFlavor));
                                // Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
 
                                 echo "</br><br>";
