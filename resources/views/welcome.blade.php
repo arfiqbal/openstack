@@ -286,7 +286,7 @@ Create VM | All VM
         var flavor = $('#flavor option:selected').val();
         $.ajax({
           type:'POST',
-          url: {{route(getFlavor)}},
+          url: "<?= URL::to("get-flavor");?>",
           data: {flavor :flavor},
             
           }).done(function(data) {
