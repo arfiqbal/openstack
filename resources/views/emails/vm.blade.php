@@ -65,7 +65,7 @@ PAAS Notification </td>
                 VM Name 
             </th>
             <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
-                {{$vm->name}} {{$flavor}}
+                {{$vm->name}} 
             </td>
         </tr>
         <tr>
@@ -102,6 +102,14 @@ PAAS Notification </td>
               {{$vm->nic2}}
             </td>
         </tr>
+        <tr>
+          <th scope="col" valign="top" style="background-color:#280303; color:#fff; font-family:Helvetica; font-size:10px; font-weight:normal; line-height:150%; text-align:left">
+              Resources
+          </th>
+          <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
+            {{$flavor}}
+          </td>
+      </tr>
     </tbody>
 </table>
 
