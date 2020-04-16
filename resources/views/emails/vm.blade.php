@@ -107,7 +107,7 @@ PAAS Notification </td>
               Resources
           </th>
           <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
-            {{$flavor}} and 260GB Storage
+            {{$flavor}} and 260 GB Storage
           </td>
       </tr>
     </tbody>

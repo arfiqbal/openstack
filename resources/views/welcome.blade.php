@@ -281,6 +281,18 @@ Create VM | All VM
     $('#vmmessgae').hide();
     
     $(document).ready(function(){
+
+      $('#flavor').change(function(){
+        var flavor = $('#flavor option:selected').val();
+        $.ajax({
+          type:'POST',
+          url: {{getFlavor}},
+          data: {flavor :flavor},
+            
+          }).done(function(data) {
+            console.log(data);
+          })
+      });
       
       $("#launchVM").click(function(event) {
         //event.preventDefault()
@@ -377,45 +389,6 @@ Create VM | All VM
                 );
 
         })
-
-        $('#showVm tr td .deletevm').on('click', function(){
-                var order = $(this).attr('data-order');
-                var orderRoute = $(this).attr('data-order_destroy_route');
-
-                //console.log(order);
-
-               deleteOrder(order ,orderRoute);
-            });
-
-            var deleteOrder = function(order,orderRoute)
-            {
-               var ask =  confirm("Are you absolutely sure you want to delete " + order + "? This action cannot be undone." +
-            "This will permanently delete " + order + ", and remove all collections and resources associated with it.");
-
-               if(ask == true)
-               {
-                    $('#deleteModal').modal('show');
-                    $.ajax({
-                        type:'POST',
-                        url: orderRoute,
-                          
-                        }).done(function(data) {
-                          //console.log(data)
-                          $('#deleteModal').modal('hide');
-                          //$('#'+data).hide();
-                          alert('VM Deleted');
-                          setTimeout(function() {
-                            location.reload(true);
-                          }, 10000);
-                          
-                          
-                    }).fail(function() {
-                        
-                    })
-                   
-               }
-            }
-    
 
       
     });

@@ -20,6 +20,7 @@ Auth::routes();
 
 Route::get('recreate-vm/{id}', 'VmController@vmRecreate')->name('vmRecreate');
 Route::post('recreate-vm', 'VmController@update')->name('postVmRecreate');
+Route::post('get-flavor', 'VmController@getFlavor')->name('getFlavor');
 
 Route::get('create-vm', 'VmController@index')->name('createVM');
 Route::post('vm', 'VmController@store')->name('vm');;
