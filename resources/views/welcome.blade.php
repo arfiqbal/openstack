@@ -131,6 +131,7 @@ Create VM | All VM
                                       @endforeach
                                     </select>
                                     <div class="invalid-feedback">Please select flavor </div>
+                                    <div id="getflv"></div>
                                   </div>
                                 
                                   <div class="form-group">
@@ -291,6 +292,7 @@ Create VM | All VM
             
           }).done(function(data) {
             console.log(data);
+            $('#getflv').text(data);
           })
       });
       

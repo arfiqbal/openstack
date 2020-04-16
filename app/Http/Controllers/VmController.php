@@ -631,7 +631,7 @@ class VmController extends Controller
     
     public function getFlavor(Request $request)
     {
-        return $request->flavor;
+        return $getFlavor = $this->openstack->getFlavorDetail($request->flavor);
     }
 
 }
