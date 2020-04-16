@@ -291,7 +291,6 @@ Create VM | All VM
           data: {flavor :flavor},
             
           }).done(function(data) {
-            console.log(data);
             $('#getflv').text(data);
           })
       });
