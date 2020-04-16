@@ -131,7 +131,7 @@ Create VM | All VM
                                       @endforeach
                                     </select>
                                     <div class="invalid-feedback">Please select flavor </div>
-                                    <div class="invalid-feedback" id="getflv"></div>
+                                    <div id="getflv"></div>
                                   </div>
                                 
                                   <div class="form-group">
