@@ -66,7 +66,7 @@ class VmController extends Controller
     {
         // $allVM = VM::with('application')->where('active',1)->get();
 
-        $allVM = VM::with('application')->where('active',1)->first();
+        $allVM = VM::with('application')->first();
         $servers = $this->openstack->defaultAuthentication();
         $compute = $servers->computeV2();
         dd($allVM->toArray());
