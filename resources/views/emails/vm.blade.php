@@ -69,13 +69,14 @@ PAAS Notification </td>
             </td>
         </tr>
         <tr>
-            <th scope="col" valign="top" style="background-color:#280303; color:#fff; font-family:Helvetica; font-size:10px; font-weight:normal; line-height:150%; text-align:left">
-                HostName
-            </th>
-            <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
-              {{$vm->hostname}}
-            </td>
-        </tr>
+          <th scope="col" valign="top" style="background-color:#280303; color:#fff; font-family:Helvetica; font-size:10px; font-weight:normal; line-height:150%; text-align:left">
+              UserName
+          </th>
+          <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
+            {{$vm->username}}
+          </td>
+      </tr>
+        
         @if($vm->user_exist == 0)
         <tr>
             <th scope="col" valign="top" style="background-color:#280303; color:#fff; font-family:Helvetica; font-size:10px; font-weight:normal; line-height:150%; text-align:left">
