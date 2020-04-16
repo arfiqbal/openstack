@@ -92,7 +92,7 @@ PAAS Notification </td>
                 Non-Routable IP
             </th>
             <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
-              {{$vm->nic1}}
+              {{$vm->nic2}}
             </td>
         </tr>
         <tr>
@@ -100,7 +100,7 @@ PAAS Notification </td>
                 Routable IP
             </th>
             <td valign="top" style="border-top:1px solid #DDDDDD; border-bottom:0; color:#646464; font-family:Helvetica; font-size:12px; line-height:150%; text-align:left">
-              {{$vm->nic2}}
+              {{$vm->nic1}}
             </td>
         </tr>
         <tr>
