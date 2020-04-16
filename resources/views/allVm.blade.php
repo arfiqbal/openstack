@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Create VM | All VM
+All Instances | VSSI Cloud
 @endsection
 
 @section('content')

@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Recreate {{$vmDetail->name}} 
+Recreate {{$vmDetail->name}} | VSSI Cloud
 @endsection
 
 @section('content')

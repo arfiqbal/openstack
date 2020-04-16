@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-Add Application
+Add Application | VSSI Cloud
 @endsection
 
 @section('content')
