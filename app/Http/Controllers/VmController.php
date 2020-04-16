@@ -631,7 +631,7 @@ class VmController extends Controller
     
     public function getFlavor(Request $request)
     {
-        return "test";
+        return $request->flavor;
     }
 
 }
