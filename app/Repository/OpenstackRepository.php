@@ -146,4 +146,14 @@ class OpenstackRepository
             
     }
     
+
+    public function getFlavorDetail($flavor)
+    {
+        $servers = $this->defaultAuthentication();
+        $compute = $servers->computeV2();
+        $flavor = $compute->getFlavor(['id' => $flavor]);
+        $flavor->retrieve();
+        return "RAM = '.$flavor->ram.'  vCPU ='.$flavor->vcpus";
+        
+    }
 }
