@@ -51,7 +51,7 @@ Create VM | All VM
                                   <th scope="col">Nic 2</th>
                                   <th scope="col">App</th>
                                   <th scope="col">Created by</th>
-                                  <th scope="col">Created at</th>
+                                  {{-- <th scope="col">Created at</th> --}}
                                   <th scope="col">Action</th>
                                 </tr>
                               </thead>
@@ -74,7 +74,7 @@ Create VM | All VM
                                           <td>{{$myVM->nic2}}</td>
                                           <td>{{$myVM->application->name}}</td>
                                           <td>{{$myVM->created_by}}</td>
-                                          <td>{{$myVM->created_at}}</td>
+                                          {{-- <td>{{$myVM->created_at}}</td> --}}
                                           <td>
                                             
                                             <a  class="btn btn-danger deletevm" data-order="{{ $myVM->name }}"
