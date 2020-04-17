@@ -168,8 +168,7 @@ class OpenstackRepository
         $server = $compute->getServer([
             'id' => $vm->vm_uid,
         ]);
-        $server->retrieve();
-        dd($server);
+        
         $server->resize($flavor);
         
 
