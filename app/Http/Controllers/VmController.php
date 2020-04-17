@@ -392,8 +392,10 @@ class VmController extends Controller
             $server = $compute->getServer(['id' => $vmid]);
             $server->retrieve();
 
-            dd($server);
-        }
+            return view('show-server',
+            ['serverDetail' => $serverDetail, 
+            'server' => $server, 'flavors' => $flavors]);
+            }
         return redirect('all-vm')->with('status', 'Error');
         
     }
