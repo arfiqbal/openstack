@@ -379,19 +379,21 @@ class VmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Request $request)
+    public function show($id,$vmid)
     {
-        
-        $serverDetail = VM::find($request->id);
-        // $path = storage_path('app/'.$showVmLogs->dir.'/output.log');
-        // return File::get($path);
-        $servers = $this->openstack->defaultAuthentication();
-        $compute = $servers->computeV2();
-        $flavors = $compute->listFlavors();
-        $server = $compute->getServer(['id' => $request->vmid]);
-        $server->retrieve();
+        if($vmid != ""){
+            $serverDetail = VM::find($id);
+            // $path = storage_path('app/'.$showVmLogs->dir.'/output.log');
+            // return File::get($path);
+            $servers = $this->openstack->defaultAuthentication();
+            $compute = $servers->computeV2();
+            $flavors = $compute->listFlavors();
+            $server = $compute->getServer(['id' => $vmid]);
+            $server->retrieve();
 
-        dd($request->toArray());
+            dd($serverDetail);
+        }
+        return redirect('all-vm')->with('status', 'Error');
         
     }
 
