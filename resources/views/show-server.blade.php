@@ -78,6 +78,35 @@
    </div>
   </div>
 
+  <div class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Modal title</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="form-group">
+            <label for="flavor">Flavors</label>
+            <select class="form-control"  id="flavor" required>
+              <option value="">Select Flavor</option>  
+              @foreach($flavors as $flavor)
+              <option value="{{$flavor->id}}">{{$flavor->name}}</option>
+              @endforeach
+            </select>
+            <div class="invalid-feedback">Please select flavor </div>
+            <div id="getflv"></div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 
 @endsection
     
