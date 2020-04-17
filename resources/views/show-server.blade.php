@@ -14,6 +14,7 @@
         <i class="fas fa-table mr-1"></i>Add App Images
         <a class="btn btn-success pull-right"  href=""><i class="fas fa-text-height"></i></a>
       </div>
+      <div class="col-md-8">
       <div class="card-body">
         <table class="table table-borderless">
           
@@ -40,7 +41,7 @@
             </tr>
             <tr>
               <th scope="row">Server OS</th>
-              <td>{$serverDetail->application->os}}</td>
+              <td>{{$serverDetail->application->os}}</td>
             </tr>
             <tr>
               <th scope="row">Server UID</th>
@@ -74,6 +75,7 @@
         </table>
 
         
+      </div>
       </div>
    </div>
   </div>
