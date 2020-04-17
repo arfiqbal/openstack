@@ -162,13 +162,14 @@ class OpenstackRepository
     public function changeServerFlavor($vmuid,$flavor)
     {
         $vm = VM::with('application')->find($vmuid);
+        dd($vm->toArray());
         $servers = $this->defaultAuthentication();
         $compute = $servers->computeV2();
         $server = $compute->getServer([
             'id' => $vm->vm_uid,
         ]);
         $server->resize($flavor);
-        return $server->confirmResize();
+        
 
         
     }

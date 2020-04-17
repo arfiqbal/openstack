@@ -13,7 +13,7 @@
     <div class="card ">
       <div class="card-header">
         <i class="fas fa-table mr-1"></i>Add App Images
-        <a class="btn btn-success float-righ"  id="showFlvr"><i class="fas fa-text-height"></i></a>
+        <a class="btn btn-success float-righ"  id="showFlvr" style="float:right"><i class="fas fa-text-height"></i></a>
       </div>
       
       <div class="card-body">
