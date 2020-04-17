@@ -9,12 +9,13 @@
   <h1 class="mt-4">{{$serverDetail->jira}} Server Detail</h1>
   
   <div class="row">
+    <div class="col-md-8">
     <div class="card ">
       <div class="card-header">
         <i class="fas fa-table mr-1"></i>Add App Images
         <a class="btn btn-success pull-right"  href=""><i class="fas fa-text-height"></i></a>
       </div>
-      <div class="col-md-8">
+      
       <div class="card-body">
         <table class="table table-borderless">
           
