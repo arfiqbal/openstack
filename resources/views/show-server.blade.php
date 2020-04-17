@@ -9,7 +9,7 @@
   <h1 class="mt-4">{{$serverDetail->jira}} Server Detail</h1>
   
   <div class="row">
-    <div class="card mb-4">
+    <div class="card ">
       <div class="card-header">
         <i class="fas fa-table mr-1"></i>Add App Images
         <a class="btn btn-success pull-right"  href=""><i class="fas fa-text-height"></i></a>
@@ -20,55 +20,55 @@
           <tbody>
             <tr>
               <th scope="row">Server Name</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->name}}</td>
             </tr>
             <tr>
               <th scope="row">Jira Ticket</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->jira}}</td>
             </tr>
             <tr>
               <th scope="row">Hostname</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->hostname}}</td>
             </tr>
             <tr>
               <th scope="row">UserName</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->username}}</td>
             </tr>
             <tr>
               <th scope="row">Email</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->email}}</td>
             </tr>
             <tr>
               <th scope="row">Server OS</th>
-              <td>Mark</td>
+              <td>{$serverDetail->application->os}}</td>
             </tr>
             <tr>
               <th scope="row">Server UID</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->vm_uid}}</td>
             </tr>
             <tr>
               <th scope="row">Nic1</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->nic1}}</td>
             </tr>
             <tr>
               <th scope="row">Nic2</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->nic2}}</td>
             </tr>
             <tr>
               <th scope="row">Flavor</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->jira}}</td>
             </tr>
             <tr>
               <th scope="row">Flavor</th>
-              <td>Mark</td>
+              <td>{{$getFlavor}}</td>
             </tr>
             <tr>
               <th scope="row">Created By</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->created_by}}</td>
             </tr>
             <tr>
               <th scope="row">Created At</th>
-              <td>Mark</td>
+              <td>{{$serverDetail->created_at}}</td>
             </tr>
           </tbody>
         </table>

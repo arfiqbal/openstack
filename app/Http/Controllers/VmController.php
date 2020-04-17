@@ -383,7 +383,8 @@ class VmController extends Controller
     {
         
         if($vmid != ""){
-            $serverDetail = VM::find($id);
+            $serverDetail = VM::with('application')->find($id);
+            $getFlavor = $this->openstack->getFlavorDetail($serverDetail->flavor);
             // $path = storage_path('app/'.$showVmLogs->dir.'/output.log');
             // return File::get($path);
             $servers = $this->openstack->defaultAuthentication();
@@ -394,7 +395,7 @@ class VmController extends Controller
 
             return view('show-server',
             ['serverDetail' => $serverDetail, 
-            'server' => $server, 'flavors' => $flavors]);
+            'server' => $server, 'flavors' => $flavors, 'getFlavor' => $getFlavor]);
             }
         return redirect('all-vm')->with('status', 'Error');
         
@@ -461,7 +462,7 @@ class VmController extends Controller
         $compute = $servers->computeV2();
         $flavors = $compute->listFlavors();
         $vmDetail = VM::find($id);
-       
+        
 
         return view('recreateVM',
         ['apps' => $apps, 
