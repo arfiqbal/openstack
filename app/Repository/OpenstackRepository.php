@@ -170,6 +170,7 @@ class OpenstackRepository
         ]);
         
         $server->resize($flavor);
+        $server->confirmResize();
         
 
         
