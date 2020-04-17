@@ -355,8 +355,9 @@ class VmController extends Controller
                                     echo  "<b style='color:#20ff00'>Password === ".$randomPass."</b><br>";
                                 }
                                 echo  "<b style='color:#20ff00'>Hostname === ".$hostname."</b><br>";
-                                echo  "<b style='color:#20ff00'>NIC 1 === ".$nicIps['routeable']."</b><br>";
-                                echo  "<b style='color:#20ff00'>NIC 2 === ".$nicIps['non_routable']."</b><br>";
+                                echo  "<b style='color:#20ff00'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
+                                echo  "<b style='color:#20ff00'>NIC 2 === ".$nicIps['routeable']."</b><br>";
+                              
                                
                                 echo "=======================================================<br>";
                                 echo "</span>";
@@ -654,3 +655,4 @@ class VmController extends Controller
     }
 
 }
+
