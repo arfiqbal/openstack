@@ -382,9 +382,16 @@ class VmController extends Controller
     public function show(Request $request)
     {
         
-        $showVmLogs = VM::find($request->id);
-        $path = storage_path('app/'.$showVmLogs->dir.'/output.log');
-        return File::get($path);
+        $serverDetail = VM::find($request->id);
+        // $path = storage_path('app/'.$showVmLogs->dir.'/output.log');
+        // return File::get($path);
+        $servers = $this->openstack->defaultAuthentication();
+        $compute = $servers->computeV2();
+        $flavors = $compute->listFlavors();
+        $server = $compute->getServer(['id' => $request->vmid]);
+        $server->retrieve();
+
+        dd($request->toArray());
         
     }
 

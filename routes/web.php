@@ -24,7 +24,7 @@ Route::post('get-flavor', 'VmController@getFlavor')->name('getFlavor');
 
 Route::get('create-vm', 'VmController@index')->name('createVM');
 Route::post('vm', 'VmController@store')->name('vm');;
-Route::get('vm', 'VmController@show')->name('showVmLogs');
+Route::get('vm/{id}/{vmid}/detail', 'VmController@show')->name('showVM');
 Route::get('all-vm', 'VmController@create')->name('allVM');
 Route::post('vm/{id}', 'VmController@destroy')->name('deletevm');
 Route::get('/', 'VmController@index')->name('home');
