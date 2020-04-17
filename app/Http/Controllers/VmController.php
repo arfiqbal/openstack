@@ -649,7 +649,7 @@ class VmController extends Controller
 
     public function changeFlavor(Request $request)
     {
-        return $getFlavor = $this->openstack->changeServerFlavor($request->flavor);
+        return $getFlavor = $this->openstack->changeServerFlavor($request->vmuid,$request->flavor);
     }
 
 }

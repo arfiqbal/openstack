@@ -161,16 +161,15 @@ class OpenstackRepository
 
     public function changeServerFlavor($vmuid,$flavor)
     {
+        $vm = VM::with('application')->find($vmuid);
         $servers = $this->defaultAuthentication();
         $compute = $servers->computeV2();
         $server = $compute->getServer([
-            'id' => $vmuid,
+            'id' => $vm->vm_uid,
         ]);
-        $flavor = $compute->getFlavor(['id' => $flavor]);
-        $flavor->retrieve();
-        $ram = $flavor->ram/1024;
-        //return "RAM = '.$ram.GB'  vCPU ='.$flavor->vcpus";
-        return "RAM = ".$ram." GB, vCPU = ".$flavor->vcpus;
+        $server->resize($flavor);
+        return $server->confirmResize();
+
         
     }
 }

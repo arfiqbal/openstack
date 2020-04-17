@@ -105,7 +105,7 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save changes</button>
+          <button type="button" class="btn btn-primary" id="updateFlvr">Save changes</button>
         </div>
       </div>
     </div>
@@ -129,9 +129,9 @@
       $('#flvrModal').modal('show');
     });
 
-    $('#flavor').change(function(){
+    $('#updateFlvr').on('click',function(){
       var flavor = $('#flavor option:selected').val();
-      var vmuid = "{{$serverDetail->vm_uid}}";
+      var vmuid = "{{$serverDetail->id}}";
       $.ajax({
         type:'POST',
         url: "<?= URL::to("change-flavor");?>",
