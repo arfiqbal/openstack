@@ -129,7 +129,8 @@
       $('#flvrModal').modal('show');
     });
 
-  })
+  });
+</script>
   
 @endsection
   
