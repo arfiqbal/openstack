@@ -13,7 +13,7 @@
     <div class="card ">
       <div class="card-header">
         <i class="fas fa-table mr-1"></i>Add App Images
-        <a class="btn btn-success pull-right"  href=""><i class="fas fa-text-height"></i></a>
+        <a class="btn btn-success float-righ"  id="showFlvr"><i class="fas fa-text-height"></i></a>
       </div>
       
       <div class="card-body">
@@ -81,7 +81,7 @@
    </div>
   </div>
 
-  <div class="modal" tabindex="-1" role="dialog">
+  <div class="modal" tabindex="-1" role="dialog" id="flvrModal">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -114,6 +114,22 @@
 @endsection
     
 @section('js')
+
+<script>
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+  
+  
+  $(document).ready(function(){
+
+    $("#showFlvr").click(function(event) {
+      $('#flvrModal').modal('show');
+    });
+
+  })
   
 @endsection
   
