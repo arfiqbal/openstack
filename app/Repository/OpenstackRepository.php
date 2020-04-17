@@ -158,4 +158,19 @@ class OpenstackRepository
         return "RAM = ".$ram." GB, vCPU = ".$flavor->vcpus;
         
     }
+
+    public function changeServerFlavor($vmuid,$flavor)
+    {
+        $servers = $this->defaultAuthentication();
+        $compute = $servers->computeV2();
+        $server = $compute->getServer([
+            'id' => $vmuid,
+        ]);
+        $flavor = $compute->getFlavor(['id' => $flavor]);
+        $flavor->retrieve();
+        $ram = $flavor->ram/1024;
+        //return "RAM = '.$ram.GB'  vCPU ='.$flavor->vcpus";
+        return "RAM = ".$ram." GB, vCPU = ".$flavor->vcpus;
+        
+    }
 }
