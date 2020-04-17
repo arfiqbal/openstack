@@ -381,6 +381,7 @@ class VmController extends Controller
      */
     public function show($id,$vmid)
     {
+        dd($id);
         if($vmid != ""){
             $serverDetail = VM::find($id);
             // $path = storage_path('app/'.$showVmLogs->dir.'/output.log');
