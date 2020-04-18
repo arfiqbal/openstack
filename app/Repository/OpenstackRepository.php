@@ -170,6 +170,15 @@ class OpenstackRepository
         ]);
         
         $server->resize($flavor);
+        $i = 0;
+        while(1){
+           if($i == 20){
+           break;
+           }
+           sleep(1);
+            $i++;
+
+        }
         $server->confirmResize();
         
 
