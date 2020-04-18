@@ -179,7 +179,11 @@ class OpenstackRepository
             $i++;
 
         }
-        $server->confirmResize();
+        if($server->confirmResize()){
+            $vm->flavor = $flavor;
+            $vm->save();
+        }
+
         
 
         
