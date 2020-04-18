@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Mail;
 use App\VM;
+use App\Mail\WeeklyReport;
 
 class GenerateReport extends Command
 {
