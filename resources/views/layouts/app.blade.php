@@ -35,6 +35,11 @@
         <script src="{{ asset('js/bootstrap.min.js')}}" crossorigin="anonymous"></script>
         <script src="{{ asset('js/scripts.js')}}"></script>
         <script src="{{ asset('js/ip.js') }}" crossorigin="anonymous"></script>
+        <script>
+            $(function () {
+                $('[data-toggle="tooltip"]').tooltip()
+              })
+        </script>
        
         @yield('js')
     </body>

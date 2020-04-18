@@ -68,10 +68,16 @@ All Instances | VSSI Cloud
                                           <td>
                                             
                                             <a  class="btn btn-danger deletevm" data-order="{{ $myVM->name }}"
-                                            data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}"><i class="far fa-trash-alt"></i></i></a>
+                                            data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
+                                            <i class="far fa-trash-alt"></i></i>
+                                          </a>
                                             
-                                            <a class="btn btn-warning " href="{{route('vmRecreate', ['id' => $myVM->id])}}"><i class="fas fa-retweet"></i></a>
-                                            <a class="btn btn-info " href="{{route('showVM', ['id' => $myVM->id, 'vmid' => $myVM->vm_uid ])}}"><i class="far fa-eye"></i></a>
+                                            <a class="btn btn-warning " href="{{route('vmRecreate', ['id' => $myVM->id])}}" data-toggle="tooltip" data-placement="top" title="Re-create VM">
+                                              <i class="fas fa-retweet"></i>
+                                            </a>
+                                            <a class="btn btn-info " href="{{route('showVM', ['id' => $myVM->id, 'vmid' => $myVM->vm_uid ])}}" data-toggle="tooltip" data-placement="top" title="View Server Detail">
+                                              <i class="far fa-eye"></i>
+                                            </a>
                                             {{-- <a  class="btn btn-info showlog" data-toggle="modal" data-target="#logs{{$myVM->id}}" data-order="{{$myVM->id}}"><img src="{{ asset('images/eye-fill.svg') }}" alt="" width="24" height="24" title="View log"></a> --}}
                                            </td>
                                         </tr>

@@ -13,7 +13,9 @@
     <div class="card ">
       <div class="card-header">
         <i class="fas fa-table mr-1"></i>Add App Images
-        <a class="btn btn-success float-righ"  id="showFlvr" style="float:right"><i class="fas fa-text-height"></i></a>
+        <a class="btn btn-success float-righ" data-toggle="tooltip" data-placement="top" title="Resize {{$serverDetail->name}} server" id="showFlvr" style="float:right">
+          <i class="fas fa-text-height"></i>
+        </a>
       </div>
       
       <div class="card-body">
@@ -90,7 +92,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body" id="flvrModalboday">
+        <div class="modal-body" id="flvrModalbody">
           <div class="form-group">
             <label for="flavor">Flavors</label>
             <select class="form-control"  id="flavor" required>
@@ -103,7 +105,7 @@
             <div id="getflv"></div>
           </div>
         </div>
-        <div class="modal-footer">
+        <div class="modal-footer" id="flvrModalfooter">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
           <button type="button" class="btn btn-primary" id="updateFlvr">Save changes</button>
         </div>
@@ -132,7 +134,8 @@
     $('#updateFlvr').on('click',function(){
       var flavor = $('#flavor option:selected').val();
       var vmuid = "{{$serverDetail->id}}";
-      $("#flvrModalboday").html("<h3>Resizing Server....</h3>");
+      $("#flvrModalbody").html("<h3>Resizing Server....</h3>");
+      $("#flvrModalfooter").html("<h4></h4>");
       $.ajax({
         type:'POST',
         url: "<?= URL::to("change-flavor");?>",
