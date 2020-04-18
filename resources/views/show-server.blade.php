@@ -132,7 +132,7 @@
     $('#updateFlvr').on('click',function(){
       var flavor = $('#flavor option:selected').val();
       var vmuid = "{{$serverDetail->id}}";
-      $("#flvrModalboday").html("<h3>Resizing Server....</h3>"");
+      $("#flvrModalboday").html("<h3>Resizing Server....</h3>");
       $.ajax({
         type:'POST',
         url: "<?= URL::to("change-flavor");?>",
