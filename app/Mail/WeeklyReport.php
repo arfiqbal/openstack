@@ -19,7 +19,7 @@ class WeeklyReport extends Mailable
      *
      * @return void
      */
-    public function __construct(VM $vm)
+    public function __construct( $vm)
     {
         $this->vm = $vm;
     }
