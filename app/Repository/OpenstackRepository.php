@@ -180,6 +180,7 @@ class OpenstackRepository
 
         }
         if($server->confirmResize()){
+            $vm = VM::find($vmuid);
             $vm->flavor = $flavor;
             $vm->save();
         }

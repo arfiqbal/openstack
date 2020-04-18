@@ -59,7 +59,7 @@
               <td>{{$serverDetail->nic2}}</td>
             </tr>
             <tr>
-              <th scope="row">Flavor</th>
+              <th scope="row">Jira Ticket</th>
               <td>{{$serverDetail->jira}}</td>
             </tr>
             <tr>
