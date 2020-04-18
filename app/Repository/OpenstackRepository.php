@@ -172,7 +172,7 @@ class OpenstackRepository
         $server->resize($flavor);
         $i = 0;
         while(1){
-           if($i == 35){
+           if($i == 40){
            break;
            }
            sleep(1);

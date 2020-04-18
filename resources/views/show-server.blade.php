@@ -90,7 +90,7 @@
             <span aria-hidden="true">&times;</span>
           </button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="flvrModalboday">
           <div class="form-group">
             <label for="flavor">Flavors</label>
             <select class="form-control"  id="flavor" required>
@@ -128,17 +128,18 @@
     $("#showFlvr").click(function(event) {
       $('#flvrModal').modal('show');
     });
-
+    
     $('#updateFlvr').on('click',function(){
       var flavor = $('#flavor option:selected').val();
       var vmuid = "{{$serverDetail->id}}";
+      $("#flvrModalboday").html("<h3>Resizing Server....</h3>"");
       $.ajax({
         type:'POST',
         url: "<?= URL::to("change-flavor");?>",
         data: {flavor :flavor,vmuid:vmuid},
           
         }).done(function(data) {
-          console.log(data);
+          $('#flvrModal').modal('hide');
         })
     });
 
