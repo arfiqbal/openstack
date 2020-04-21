@@ -29,7 +29,7 @@ Weekly Report - {{date('d-m-Y')}}
         <td>{{$server->created_by}}</td>
         <td>{{$server->created_at}}</td>
       </tr>
-    @endif
+    @endforeach
   @endif
   <tfoot class="thead-dark">
     <tr>
