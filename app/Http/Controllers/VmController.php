@@ -87,7 +87,7 @@ class VmController extends Controller
         $servers = $this->openstack->defaultAuthentication();
         $service = $servers->imagesV2();
         $image = $service->getImage($app->uid);
-        // $image->retrieve();
+        $image->retrieve();
         dd($image);
         dd('test');
 
