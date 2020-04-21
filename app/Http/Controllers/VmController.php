@@ -88,7 +88,7 @@ class VmController extends Controller
         $service = $servers->imagesV2();
         $image = $service->getImage($app->uid);
         $image->retrieve();
-        $size = $image->size /1024;
+        $size = $image->size/1024;
         dd($size);
         dd('test');
 
