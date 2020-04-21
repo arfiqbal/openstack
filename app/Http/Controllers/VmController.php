@@ -163,7 +163,7 @@ class VmController extends Controller
                 }
                 
             }
-            //dd($ipPool);
+            dd($ipPool);
             echo "<br>";
             echo "Comparing possible ips......<br>";
             ob_flush();
