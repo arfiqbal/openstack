@@ -66,7 +66,7 @@ class VmController extends Controller
     {
         $allVM = VM::with('application')->where('active',1)->get();
         
-
+       
         return view('allVm',
         ['allVM' => $allVM]);
     }
@@ -83,6 +83,14 @@ class VmController extends Controller
 
     public function store(Request $request)
     {
+        $app = Application::find($request->app);
+        $servers = $this->openstack->defaultAuthentication();
+        $compute = $servers->computeV2();
+        $image = $compute->getImage(['id' => $app->uid]);
+        $image->retrieve();
+        dd($image);
+        dd('test');
+
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
