@@ -159,6 +159,24 @@ class OpenstackRepository
         
     }
 
+    public function getSize($projectID,$imageID)
+    {
+        if($projectID == '198f0660ae894f87a5ad2522e6dec551')
+        {
+            $size = 260;
+        }else{
+        $servers = $this->defaultAuthentication();
+        $service = $servers->imagesV2();
+        $image = $service->getImage($imageID);
+        $image->retrieve();
+        $size2 = $image->size/1024;
+        $size1 = $size2/1024;
+        $newsize = $size1/1024;
+        $size =   $newsize + 5;
+        }
+        return  $size;
+    }
+
     public function changeServerFlavor($vmuid,$flavor)
     {
         $vm = VM::with('application')->find($vmuid);

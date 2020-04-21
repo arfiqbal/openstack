@@ -84,17 +84,9 @@ class VmController extends Controller
     public function store(Request $request)
     {
         $app = Application::find($request->app);
-        $servers = $this->openstack->defaultAuthentication();
-        $service = $servers->imagesV2();
-        $image = $service->getImage($app->uid);
-        $image->retrieve();
-        $size2 = $image->size/1024;
-        $size1 = $size2/1024;
-        $size = $size1/1024;
-        echo $image->size;
+           
+        $size =  $this->openstack->getSize($request->project,$app->uid);
         dd($size);
-        dd('test');
-
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
@@ -239,6 +231,7 @@ class VmController extends Controller
 
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
+            $size =  $this->openstack->getSize($request->project,$app->uid);
              
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
             
