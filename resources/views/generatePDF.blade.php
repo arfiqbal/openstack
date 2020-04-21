@@ -19,7 +19,7 @@ Weekly Report - {{date('d-m-Y')}}
     </tr>
   </thead>
   <tbody>
-  @if(count($newvm))
+  @if($newvm)
     @foreach($newvm as $server)
       <tr>
         <td>{{$server->jira}}</td>
@@ -31,13 +31,13 @@ Weekly Report - {{date('d-m-Y')}}
       </tr>
     @endforeach
   @endif
-  <tfoot class="thead-dark">
+  {{-- <tfoot class="thead-dark">
     <tr>
       <th colspan="4">Total</th>
       
       <th>{{count($newvm)}}</th>
     </tr>
-  </tfoot>
+  </tfoot> --}}
   </tbody>
 </table>
 @endsection
