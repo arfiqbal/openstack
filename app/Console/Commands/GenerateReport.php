@@ -5,6 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use Mail;
 use App\VM;
+use PDF;
 use App\Mail\WeeklyReport;
 
 class GenerateReport extends Command
@@ -45,8 +46,14 @@ class GenerateReport extends Command
         $end_week = strtotime("next saturday",$start_week);
         $start_week = date("Y-m-d h:m:s",$start_week);
         $end_week = date("Y-m-d  h:m:s",$end_week);
-        $newvm = VM::whereBetween('created_at', [$start_week,$end_week])->get();;
+        $newvm = VM::whereBetween('created_at', [$start_week,$end_week])->get();
+        $pdf = PDF::loadView('generatePDF', $newvm);   
+        $path = storage_path('app/pdf'); 
+        $filename = date('d-m-y');
+        $pdf->save($path.'/'.$filename); 
         
-        Mail::to('mdarif.iqbal@vodafone.com')->send(new WeeklyReport($newvm));
+        Mail::to('mdarif.iqbal@vodafone.com')
+        ->attach($path.'/'.$filename)
+        ->send(new WeeklyReport($newvm));
     }
 }
