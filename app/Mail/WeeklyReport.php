@@ -31,6 +31,10 @@ class WeeklyReport extends Mailable
      */
     public function build()
     {
-        return $this->view('emails.weeklyReport');
+        $path = storage_path('app/pdf'); 
+        $filename = date('d-m-y').'.pdf';
+
+        return $this->view('emails.weeklyReport')
+        ->attach($path.'/'.$filename);
     }
 }

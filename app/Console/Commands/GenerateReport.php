@@ -49,11 +49,10 @@ class GenerateReport extends Command
         $newvm = VM::whereBetween('created_at', [$start_week,$end_week])->get();
         $pdf = PDF::loadView('generatePDF', $newvm);   
         $path = storage_path('app/pdf'); 
-        $filename = date('d-m-y');
+        $filename = date('d-m-y').'.pdf';
         $pdf->save($path.'/'.$filename); 
         
         Mail::to('mdarif.iqbal@vodafone.com')
-        ->attach($path.'/'.$filename)
         ->send(new WeeklyReport($newvm));
     }
 }
