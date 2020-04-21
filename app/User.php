@@ -16,9 +16,9 @@ class User extends Authenticatable implements LdapAuthenticatable
     //  *
     //  * @var array
     //  */
-    // protected $fillable = [
-    //     'name', 'username', 'password',
-    // ];
+    protected $fillable = [
+        'name', 'username', 'password','guid','domain'
+    ];
 
     // /**
     //  * The attributes that should be hidden for arrays.
