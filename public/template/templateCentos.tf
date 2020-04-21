@@ -11,6 +11,7 @@ variable "private_key" {}
 variable "hostname" {}
 variable "jira" {}
 variable "user" {}
+variable "size" {}
 
 
 provider "openstack" {
@@ -24,7 +25,7 @@ resource "openstack_blockstorage_volume_v2" "volume_1" {
 
   name        = var.vmname
   description = var.vmname
-  size        = 260
+  size        = var.size
   image_id    = var.app
 }
 
