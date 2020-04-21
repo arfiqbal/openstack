@@ -19,18 +19,7 @@ Weekly Report - {{date('d-m-Y')}}
     </tr>
   </thead>
   <tbody>
-  @if($newvm)
-    @foreach($newvm as $server)
-      <tr>
-        <td>{{$server->jira}}</td>
-        <td>{{$server->name}}</td>
-        <td>{{$server->firstname}} {{$server->lastname}}</td>
-        <td>{{$server->nic1}}/{{$server->nic2}}</td>
-        <td>{{$server->created_by}}</td>
-        <td>{{$server->created_at}}</td>
-      </tr>
-    @endforeach
-  @endif
+ 
   {{-- <tfoot class="thead-dark">
     <tr>
       <th colspan="4">Total</th>
