@@ -48,7 +48,7 @@ class GenerateReport extends Command
         $end_week = date("Y-m-d  h:m:s",$end_week);
         $newvm = VM::get();
         if(count($newvm)){
-            $pdf = PDF::loadView('generatePDF', $newvm);   
+            $pdf = PDF::loadView('generatePDF', ['newvm' => $newvm]);   
             $path = storage_path('app/pdf'); 
             $filename = date('d-m-y').'.pdf';
             $pdf->save($path.'/'.$filename); 
