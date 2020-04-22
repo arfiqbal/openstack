@@ -37,7 +37,17 @@ Add Application | VSSI Cloud
 
           <div class="form-group">
             <label for="lastName">OS </label>
-            <input type="text" class="form-control"  name="os" required>
+            
+            <select class="form-control"  name="os" required>
+              <option value="">Select Image OS</option>
+             
+                  <option value="centos">CentOS</option>
+                  <option value="rhel">RHEL</option>
+                  <option value="ubuntu">Ubuntu</option>
+                  <option value="window">Window</option>
+             
+                
+              </select>
           
           </div>
 
