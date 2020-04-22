@@ -161,7 +161,7 @@ class OpenstackRepository
 
     public function getSize($projectID,$imageID)
     {
-        if($projectID == '198f0660ae894f87a5ad2522e6dec551')
+        if($projectID == '198f0660ae894f87a5ad2522e6dec551' || $projectID == '2bdf7fd40d044e8c9ad23d7501d2f055')
         {
             $size = 260;
         }else{
