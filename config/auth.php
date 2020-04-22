@@ -85,6 +85,7 @@ return [
                 'sync_attributes' => [
                     'name' => 'cn',
                     'username' => 'uid',
+                    'email' => 'mail',
                 ],
             ],
         ],
