@@ -107,7 +107,7 @@ class OpenstackRepository
     {  
         // in<appname><openstack><os><no>
         $app = Application::find($appid);
-        $appString = substr($app->name,0,7);
+        $appString = substr($app->name,0,3);
         $openstk = 'o';
         $os = strtolower(substr($app->os,0,1));
         

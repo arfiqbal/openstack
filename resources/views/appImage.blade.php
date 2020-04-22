@@ -60,6 +60,12 @@ Add Application | VSSI Cloud
           
           </div>
 
+          <div class="form-group">
+            <label for="lastName">OS Version</label>
+            <input type="text" class="form-control"  name="version" required>
+          
+          </div>
+
           <button type="submit" class="btn btn-primary">Submit</button>
 
          {!! Form::close() !!}
