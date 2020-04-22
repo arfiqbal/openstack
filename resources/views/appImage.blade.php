@@ -10,8 +10,7 @@ Add Application | VSSI Cloud
   <ol class="breadcrumb mb-4">
       <li class="breadcrumb-item active">App</li>
   </ol>
-  <div class="row">
-    @if (session('status'))
+  @if (session('status'))
     <div class="alert alert-warning alert-dismissible fade show" role="alert">
       {{ session('status') }} has been added successfully
       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -19,6 +18,8 @@ Add Application | VSSI Cloud
       </button>
     </div>
     @endif
+  <div class="row">
+    
     <div class="card mb-4">
       <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
       <div class="card-body">
