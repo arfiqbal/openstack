@@ -55,32 +55,32 @@ class LoginController extends Controller
         ];
     }
 
-    public function getLogin()
-    {
-        // $users = User::get();
-        // dd($users);
-        // $user = User::findByOrFail('uid', 'arif');
-        // dd($user);
-        // $connection = Container::getDefaultConnection();
-        // if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
-        //     dd('good');
-        // }else{
-        //     $message = $connection->getLdapConnection()->getDiagnosticMessage();
-        //     dd($message);
-        // }
+    // public function getLogin()
+    // {
+    //     // $users = User::get();
+    //     // dd($users);
+    //     // $user = User::findByOrFail('uid', 'arif');
+    //     // dd($user);
+    //     // $connection = Container::getDefaultConnection();
+    //     // if ($connection->auth()->attempt('uid=arif,cn=users,cn=accounts,dc=cloud,dc=vssi,dc=com', 'redhat')) {
+    //     //     dd('good');
+    //     // }else{
+    //     //     $message = $connection->getLdapConnection()->getDiagnosticMessage();
+    //     //     dd($message);
+    //     // }
         
-        return view('auth.login');
-    }
+    //     return view('auth.login');
+    // }
 
-    public function authenticate(Request $request)
-    {
-       // $credentials = $request->only('username', 'password');
+    // public function authenticate(Request $request)
+    // {
+    //    // $credentials = $request->only('username', 'password');
 
-        if (Auth::attempt($this->credentials($request))) {
-            dd('login');
-            //return redirect()->intended('dashboard');
-        }
+    //     if (Auth::attempt($this->credentials($request))) {
+    //         dd('login');
+    //         //return redirect()->intended('dashboard');
+    //     }
 
-        dd('no login');
-    }
+    //     dd('no login');
+    // }
 }
