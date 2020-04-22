@@ -15,8 +15,9 @@
 Auth::routes();
 
 // Route::get('/ip', 'HomeController@index')->name('home');
-
-// Route::get('/home', 'HomeController@index')->name('home');
+ Route::get('home', function(){
+    return redirect()->route('allVM');
+ });
 
 Route::get('recreate-vm/{id}', 'VmController@vmRecreate')->name('vmRecreate');
 Route::post('recreate-vm', 'VmController@update')->name('postVmRecreate');
