@@ -59,7 +59,7 @@ class ImageController extends Controller
         $app->uid  = $request->image;
         $app->os = $request->os;
         if($app->save()){
-            return redirect()->route('addImage');
+            return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os);;
         }
     }
 
