@@ -27,7 +27,7 @@ Add Application | VSSI Cloud
         {!! Form::open(['route' => 'postImage']) !!}
 
           <div class="form-group">
-            <label for="exampleFormControlSelect1">Application Image</label>
+            <label for="exampleFormControlSelect1" style="display: block">Application Image</label>
             <select class="form-control" name="image"   required>
             <option value="">Select Application Image</option>
             @foreach ($apps as $app)
@@ -45,7 +45,7 @@ Add Application | VSSI Cloud
           </div>
 
           <div class="form-group">
-            <label for="lastName">OS </label>
+            <label for="lastName" style="display: block">OS </label>
             
             <select class="form-control"  name="os" required>
               <option value="">Select Image OS</option>
