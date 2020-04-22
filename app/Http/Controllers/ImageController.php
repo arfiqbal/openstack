@@ -63,5 +63,16 @@ class ImageController extends Controller
         }
     }
 
+    public function pdf()
+    {
+        $previous_week = strtotime("-1 week +1 day");
+        $start_week = strtotime("last sunday midnight",$previous_week);
+        $end_week = strtotime("next saturday",$start_week);
+        $start_week = date("Y-m-d h:m:s",$start_week);
+        $end_week = date("Y-m-d  h:m:s",$end_week);
+        //$newvm = VM::whereBetween('created_at', [$start_week,$end_week])->get();
+        $newvm = VM::get();
+        return view('generatePDF', ['newvm' => $newvm]);
+    }
     
 }
