@@ -296,11 +296,15 @@ class VmController extends Controller
                             $vm_uidPath = storage_path('app/'.$dir.'/outputid.json');
                             $vm_uid = file_get_contents($vm_uidPath);
 
+                            $vol_uidPath = storage_path('app/'.$dir.'/outputvol.json');
+                            $vol_uid = file_get_contents($vol_uidPath);
+
                             // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                             $newvm = New VM;
                             $newvm->application_id = $request->app;
                             $newvm->vm_uid = $vm_uid;
                             $newvm->dir = $dir;
+                            $newvm->vol = $vol_uid;
                             $newvm->name = $request->vmname;
                             $newvm->jira = $request->jira;
                             $newvm->firstname = $request->firstName;
