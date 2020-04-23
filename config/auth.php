@@ -71,10 +71,10 @@ return [
     */
 
     'providers' => [
-        'users' => [
-            'driver' => 'eloquent',
-            'model' => App\User::class,
-        ],
+        // 'users' => [
+        //     'driver' => 'eloquent',
+        //     'model' => App\User::class,
+        // ],
 
         'ldap' => [
             'driver' => 'ldap',
@@ -85,6 +85,7 @@ return [
                 'sync_attributes' => [
                     'name' => 'cn',
                     'username' => 'uid',
+                    'email' => 'mail',
                 ],
             ],
         ],
