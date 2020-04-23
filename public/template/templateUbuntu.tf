@@ -47,7 +47,6 @@ resource "openstack_compute_instance_v2" "vm" {
   #cloud-config
   hostname: ${var.hostname}
   fqdn: ${var.hostname}
-  package_upgrade: true
   packages:
    - resolvconf
    - freeipa-client
