@@ -452,6 +452,7 @@ class VmController extends Controller
                // $this->ipa->deleteUser($deleteVM->username, $cookieName);
                 $this->ipa->deleteHost($deleteVM->hostname, $cookieName);
                 $this->ipa->deletePolicy($policy, $cookieName);
+                $this->ipa->delDNS($explodeHostname[0], $cookieName);
                 Log::info($deleteVM->vmname.'- VM deleted');
                 return $deleteVM->id;
             }

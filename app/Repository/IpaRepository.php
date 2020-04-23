@@ -142,5 +142,14 @@ class IpaRepository
         $cookiePath =  storage_path('app/public/'.$cookieName);
        return $this->curlCommon($cookiePath,$certPath,$data);
     }
+
+    public function delDNS($hostname, $cookieName)
+    {   
+        
+        $data = '{"method":"batch","params":[[{"method":"dnsrecord_del","params":[["cloud.vssi.com.","'.$hostname.'"],{"del_all":true}]}],{"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+       return $this->curlCommon($cookiePath,$certPath,$data);
+    }
     
 }
