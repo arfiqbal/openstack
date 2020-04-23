@@ -96,6 +96,3 @@ resource "local_file" "voo" {
 }
 
 
-
-
->>>>>>> 43314bf2e77c711d454ef8883f6d5997ab0df004
