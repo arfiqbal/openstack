@@ -139,7 +139,7 @@ Create VM | VSSI Cloud
                                     <select class="form-control"  id="app" required>
                                     <option value="">Select Application Image</option>
                                     @foreach ($apps as $app)
-                                        <option value="{{$app->id}}">{{$app->name}}-{{$app->os}}</option>
+                                        <option value="{{$app->id}}">{{$app->name}}-{{$app->os}}{{$app->version}}</option>
                                     @endforeach
                                       
                                     </select>
