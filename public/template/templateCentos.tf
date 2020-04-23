@@ -1,5 +1,3 @@
-<<<<<<< HEAD
-=======
 variable "app" {}
 variable "nic1" {}
 variable "nic2" {}
