@@ -54,7 +54,10 @@ class ImageController extends Controller
 
     public function store(Request $request)
     {
-        dd($request->image);
+       
+        $imageSplit = explode('?',$request->image);
+
+        dd($imageSplit);
         $app = new Application;
         $app->name = $request->app;
         $app->uid  = $request->image;
