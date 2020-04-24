@@ -31,7 +31,7 @@ Add Application | VSSI Cloud
             <select class="form-control" name="image"   required>
             <option value="">Select Application Image</option>
             @foreach ($apps as $app)
-                <option value="{{$app->id}}_{{$app->name}}">{{$app->name}}</option>
+                <option value="{{$app->id}}?{{$app->name}}">{{$app->name}}</option>
             @endforeach
               
             </select>
