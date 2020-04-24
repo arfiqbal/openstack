@@ -22,7 +22,7 @@ class ApplicationsTableSeeder extends Seeder
         ["uid" => "2b0aba18-edc4-493c-b9b8-3f2072767bd8","image" => "img_cpns_baseimagecli_rhel_7.5", "version" => "7.5", "os" => "rhel" ,"name" => "poc"],
         ["uid" => "ae4542eb-c113-4eb9-99ad-4f32684f5d74","image" => "img_cpns_baseimagecli_rhel_7.6", "version" => "7.6", "os" => "rhel" ,"name" => "poc"],
         ["uid" => "07196bf9-36ef-41af-af04-d804c2ae3113","image" => "img_cpns_baseimagecli_rhel_7.7", "version" => "7.7", "os" => "rhel" ,"name" => "poc"],
-        ["uid" => "a66a62ae-d94e-40c4-8fba-0f2e2c1f58a5","image" => "img_cpns_baseimagecli_ubuntu_16.04", "version" => "6.04", "os" => "ubuntu" ,"name" => "poc"],
+        ["uid" => "a66a62ae-d94e-40c4-8fba-0f2e2c1f58a5","image" => "img_cpns_baseimagecli_ubuntu_16.04", "version" => "16.04", "os" => "ubuntu" ,"name" => "poc"],
         ["uid" => "847178af-0835-48d1-afa0-8dc9e498f7ef","image" => "img_cpns_baseimagecli_ubuntu_18.04_v1", "version" => "18.04_v1", "os" => "ubuntu" ,"name" => "poc"],
         ["uid" => "6407d9ac-9b89-4dc8-b930-197b1245cfca","image" => "img_cpns_baseimagecli_ubuntu_18.10_v1", "version" => "18.10_v1", "os" => "ubuntu" ,"name" => "poc"],
         ["uid" => "925bcbac-380d-477e-b604-73797f736baf","image" => "img_cpns_baseimagegui_ubuntu_16.04_v2", "version" => "16.04_v2", "os" => "ubuntu" ,"name" => "poc"],
