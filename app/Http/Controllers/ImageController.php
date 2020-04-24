@@ -56,9 +56,9 @@ class ImageController extends Controller
     {
         $imageSplit = explode('?',$request->image);
 
-        $chkImage = Application::where('uid','$imageSplit[0]')->get();
+        $chkImage = Application::where('uid',$imageSplit[0])->get();
         dd($chkImage->toArray());
-        
+
         if(count($chkImage)){
             return redirect()->route('addImage')->with('status', ' Image Already Exists');
         }else{
