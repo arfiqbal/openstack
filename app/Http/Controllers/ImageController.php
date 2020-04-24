@@ -54,20 +54,26 @@ class ImageController extends Controller
 
     public function store(Request $request)
     {
-       
         $imageSplit = explode('?',$request->image);
+
+        $chkImage = Application::where('uid','$imageSplit[0]')->get();
+        if(count($chkImage)){
+            return redirect()->route('addImage')->with('status', ' Image Already Exists');
+        }else{
+            $app = new Application;
+            $app->name = $request->app;
+            $app->uid  = $imageSplit['0'];
+            $app->image  = $imageSplit['1'];
+            $app->os = $request->os;
+            $app->version = $request->version;
+            if($app->save()){
+                return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os.' has been added successfully');
+            }
+        }
 
         // 0 = id , 1 = image name
 
-        $app = new Application;
-        $app->name = $request->app;
-        $app->uid  = $imageSplit['0'];
-        $app->image  = $imageSplit['1'];
-        $app->os = $request->os;
-        $app->version = $request->version;
-        if($app->save()){
-            return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os);;
-        }
+        
     }
 
     // public function pdf()
