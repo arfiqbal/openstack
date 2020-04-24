@@ -57,10 +57,11 @@ class ImageController extends Controller
        
         $imageSplit = explode('?',$request->image);
 
-        dd($imageSplit);
+        // 0 = id , 1 = image name
         $app = new Application;
         $app->name = $request->app;
-        $app->uid  = $request->image;
+        $app->uid  = $request->imageSplit[0];
+        $app->image  = $request->imageSplit[1];
         $app->os = $request->os;
         $app->version = $request->version;
         if($app->save()){
