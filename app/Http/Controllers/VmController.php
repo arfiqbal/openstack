@@ -228,8 +228,8 @@ class VmController extends Controller
 
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
-            $size =  $this->openstack->getSize($request->project,$app->uid);
-             
+            $sizeRound =  $this->openstack->getSize($request->project,$app->uid);
+             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
             
             $command = 'terraform12 apply -lock=false -auto-approve  -input=false -var="project='.$request->project.'" -var="size='.$size.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
@@ -540,7 +540,8 @@ class VmController extends Controller
 
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
-            $size =  $this->openstack->getSize($vmDetail->project,$app->uid);
+            $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
+            $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             
             $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
   
