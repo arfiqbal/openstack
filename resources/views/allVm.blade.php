@@ -113,7 +113,7 @@ All Instances | VSSI Cloud
             </button>
           </div>
           <div class="modal-body">
-            <p>We are deleting vm and it may take few min so please donot refresh the page</p>
+            <p>We are deleting vm and it may take few min so please do not refresh the page</p>
           </div>
          
         </div>

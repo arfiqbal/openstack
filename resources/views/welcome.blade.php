@@ -83,11 +83,11 @@ Create VM | VSSI Cloud
                                
                                 <form id="hide-vm" class="form">
 
-                                  <div class="form-group">
+                                  {{-- <div class="form-group">
                                     <label for="uname1">VM Name</label>
                                     <input type="text" class="form-control"  id="vmname" required>
                                   
-                                  </div>
+                                  </div> --}}
                                   <div class="form-group">
                                     <label for="uname1">JIRA Ticket</label>
                                     <input type="text" class="form-control"  id="jira" required>
@@ -297,7 +297,7 @@ Create VM | VSSI Cloud
       
       $("#launchVM").click(function(event) {
         //event.preventDefault()
-        var vmname = $('#vmname').val();
+        //var vmname = $('#vmname').val();
         var jira = $('#jira').val();
         var firstName = $('#firstName').val();
         var lastName = $('#lastName').val();
@@ -327,7 +327,7 @@ Create VM | VSSI Cloud
               $.ajax({
                   type:'POST',
                   url: "<?= URL::to("vm");?>",
-                  data: {vmname :vmname, 
+                  data: {, 
                     email:email, 
                     project :project, 
                     firstName :firstName, 

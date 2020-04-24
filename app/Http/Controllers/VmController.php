@@ -65,10 +65,8 @@ class VmController extends Controller
     public function create()
     {
         $allVM = VM::with('application')->where('active',1)->get();
-        
-       
-        return view('allVm',
-        ['allVM' => $allVM]);
+         
+        return view('allVm',['allVM' => $allVM]);
     }
 
     /**
@@ -201,7 +199,9 @@ class VmController extends Controller
             echo  "<b style='color:#08c31c'>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
            
-            $dir = $request->vmname.'-'.uniqid();
+            $hostString = $this->openstack->createHoststring($request->app);
+            $hostname = $this->openstack->createHostname($hostString);
+            $dir = $hostname.'-'.uniqid();
             
             $path = storage_path('app/'.$dir);
             $randomPass = Str::random(6);
@@ -221,18 +221,17 @@ class VmController extends Controller
                 echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
 
             }
-            $hostString = $this->openstack->createHoststring($request->app);
-            $hostname = $this->openstack->createHostname($hostString);
+           
 
             $template = $this->openstack->findTemplate($request->app);
 
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
             $sizeRound =  $this->openstack->getSize($request->project,$app->uid);
-             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
+            $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
             
-            $command = 'terraform12 apply -lock=false -auto-approve  -input=false -var="project='.$request->project.'" -var="size='.$size.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$request->vmname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -lock=false -auto-approve  -input=false -var="project='.$request->project.'" -var="size='.$size.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$hostname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
 
             if(!File::isDirectory($path)){
 
@@ -305,7 +304,7 @@ class VmController extends Controller
                             $newvm->vm_uid = $vm_uid;
                             $newvm->dir = $dir;
                             $newvm->vol = $vol_uid;
-                            $newvm->name = $request->vmname;
+                            $newvm->name = $hostname;
                             $newvm->jira = $request->jira;
                             $newvm->firstname = $request->firstName;
                             $newvm->lastname = $request->lastName;
@@ -326,7 +325,7 @@ class VmController extends Controller
                                 //rule = username
                                 ob_end_flush();
                                 echo "</br>";
-                                echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
+                                echo "<b>Your VM is reading but now we are setting hostname and nameserver and installing the IPA client <b><br>";
                                 echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
                                 if($app->os != 'window'){
                                     while(1){
@@ -348,14 +347,14 @@ class VmController extends Controller
                                     $this->ipa->addHbacRuleService($rule, $cookieName);
                                 }
                                 $getFlavor = $this->openstack->getFlavorDetail($newvm->flavor);
-                                Log::info($request->vmname.'- VM created');
+                                Log::info($hostname.'- VM created');
                                 Mail::to($newvm->email)->cc('imtiyaz.hasan@vodafone.com')->send(new VmLaunched($newvm, $getFlavor));
                                // Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
 
                                 echo "</br><br>";
                                 echo "<span style='color:#20ff00'>";
                                 echo "======================================================= <br>";
-                                echo "======  ".$request->vmname."- VM Created Successfully ===== <br>";
+                                echo "======  ".$hostname."- VM Created Successfully ===== <br>";
                                 echo  "<b style='color:#20ff00'>Username === ".$username."</b><br>";
                                 if($newvm->user_exist == 0){
                                     echo  "<b style='color:#20ff00'>Password === ".$randomPass."</b><br>";
