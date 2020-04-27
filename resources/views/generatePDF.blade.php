@@ -5,9 +5,14 @@ Weekly Report - {{date('d-m-Y')}}
 @endsection
 
 @section('content')
+<style>
+  table, th, td {
+    border: 1px solid black;
+  }
+  </style>
 <h1>Weekly Report - {{date('d-m-Y')}}</h1>
 
-<table class="table">
+<table class="table" style="border: 1px solid black;">
   <thead class="thead-dark">
     <tr>
       <th>Ticket</th>
