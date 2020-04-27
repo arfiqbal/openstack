@@ -496,6 +496,13 @@ class VmController extends Controller
         $cookieName = Str::random(16);
         $this->ipa->login($cookieName);
 
+        $openstackServer = $this->openstack->openstackProjectID($vmDetail->project);
+        $compute = $openstackServer->computeV2();
+        $server = $compute->getServer(['id' => $vmDetail->vm_uid]);
+        $server->stop();
+
+        dd('check VM Stop');
+
         $path = storage_path('app/'.$vmDetail->dir);
         $process = new Process('terraform12 destroy -var="project='.$vmDetail->project.'" -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
