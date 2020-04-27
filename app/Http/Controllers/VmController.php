@@ -496,62 +496,38 @@ class VmController extends Controller
         $cookieName = Str::random(16);
         $this->ipa->login($cookieName);
 
-        $openstackServer = $this->openstack->openstackProjectID($vmDetail->project);
-        $compute = $openstackServer->computeV2();
-        $server = $compute->getServer(['id' => $vmDetail->vm_uid]);
-        
-        //$server->stop();
-        $server->delete();
+        $this->openstack->stopDeleteServer($vmDetail);
+        echo "Deleting VM.....Completed <br>";
+        $explodeHostname = explode('.',$vmDetail->hostname);
+        $policy = $explodeHostname[0].'_'.$vmDetail->username;
 
-        dd('check VM Stop');
-
-        $path = storage_path('app/'.$vmDetail->dir);
-        $process = new Process('terraform12 destroy -var="project='.$vmDetail->project.'" -auto-approve');
-        //$process = new Process('ping -c 50 www.google.com');
-        echo "Deleting VM..... <br>";
+                
+        // $this->ipa->deleteUser($deleteVM->username, $cookieName);
+        $this->ipa->deleteHost($vmDetail->hostname, $cookieName);
+        $this->ipa->deletePolicy($policy, $cookieName);
+        $this->ipa->delDNS($explodeHostname[0], $cookieName);
+                
+        echo "Removing IPA policy.....completed <br>";
         ob_flush();
         flush();
-        $process->setTimeout(3600);
-        $process->setWorkingDirectory($path);
-        $process->run();
-        if ($process->isSuccessful()) {
-            $vmDetail->jira = $vmDetail->jira.'/'.$request->jira;
-            if($vmDetail->save()){
-                echo "Deleting VM.....Completed <br>";
-                echo "Removing IPA policy..... <br>";
-                ob_flush();
-                flush();
-                
-                $explodeHostname = explode('.',$vmDetail->hostname);
-                $policy = $explodeHostname[0].'_'.$vmDetail->username;
 
-                
-               // $this->ipa->deleteUser($deleteVM->username, $cookieName);
-                $this->ipa->deleteHost($vmDetail->hostname, $cookieName);
-                $this->ipa->deletePolicy($policy, $cookieName);
-                
-                echo "Removing IPA policy.....completed <br>";
-                ob_flush();
-                flush();
-             
-            }
-        }
+       
              
             $path = storage_path('app/'.$vmDetail->dir);
-            echo $path;
+            
             $files = array($path.'/terraform.tfstate.backup', $path.'/terraform.tfstate');
             File::delete($files);
            // Storage::delete($path.'/terraform.tfstate');
             
 
-            $template = $this->openstack->findTemplate($request->app);
+            $template = $this->openstack->findReTemplate($request->app);
 
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             
-            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="vol='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
   
             $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
             $process = new Process($init);

@@ -145,6 +145,23 @@ class OpenstackRepository
 
             
     }
+    public function findReTemplate($appid)
+    {
+        $app = Application::find($appid);
+        if($app->os == 'ubuntu'){
+            return public_path('template/reTemplateUbuntu.tf');
+        }elseif($app->os == 'centos'){
+            return public_path('template/reTemplateCentos.tf');
+        }elseif($app->os == 'window'){
+            return public_path('template/reTemplateWindow.tf');
+        }elseif($app->os == 'rhel'){
+            return public_path('template/reTemplateRhel.tf');
+        }else{
+            return public_path('template/reTemplateUbuntu.tf');
+        }
+
+            
+    }
     
 
     public function getFlavorDetail($flavor)
@@ -175,6 +192,25 @@ class OpenstackRepository
         $size =   $newsize + 5;
         }
         return  $size;
+    }
+
+    public function stopDeleteServer(VM $vm)
+    {
+        $openstackServer = $this->openstackProjectID($vm->project);
+        $compute = $openstackServer->computeV2();
+        $server = $compute->getServer(['id' => $vm->vm_uid]);
+        
+        $server->stop();
+        $i = 0;
+        while(1){
+           if($i == 15){
+           break;
+           }
+           sleep(1);
+            $i++;
+
+        }
+        $server->delete();
     }
 
     public function changeServerFlavor($vmuid,$flavor)
