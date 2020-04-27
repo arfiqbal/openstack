@@ -65,6 +65,13 @@ class VmController extends Controller
     public function create()
     {
         $allVM = VM::with('application')->where('active',1)->get();
+
+        $servers = $this->openstack->defaultAuthentication();
+        $service = $openstack->blockStorageV2();
+
+        $volume = $service->getVolume('31cda336-b695-4f92-ba9e-ce9821eebf76');
+        $volume->retrieve();
+        dd($volume);
          
         return view('allVm',['allVM' => $allVM]);
     }
