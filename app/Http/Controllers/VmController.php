@@ -496,7 +496,6 @@ class VmController extends Controller
         $script_source = public_path();
         $private_key = public_path('include/vdf-key1.pem');
         $vmDetail = VM::find($request->vmid);
-        dd($vmDetail->vol);
         $cookieName = Str::random(16);
         $this->ipa->login($cookieName);
 
@@ -535,7 +534,7 @@ class VmController extends Controller
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             
-            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="oldvolume='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="oldvolume='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'"  -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'"  -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
   
             $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
             $process = new Process($init);
