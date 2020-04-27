@@ -70,7 +70,7 @@ class VmController extends Controller
         $service = $servers->blockStorageV2();
 
         $volume = $service->getVolume('31cda336-b695-4f92-ba9e-ce9821eebf77');
-        $volume->retrieve();
+        //$volume->retrieve();
         dd($volume);
          
         return view('allVm',['allVM' => $allVM]);
