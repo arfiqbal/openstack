@@ -499,9 +499,9 @@ class VmController extends Controller
         $openstackServer = $this->openstack->openstackProjectID($vmDetail->project);
         $compute = $openstackServer->computeV2();
         $server = $compute->getServer(['id' => $vmDetail->vm_uid]);
-        $att = $server->detachVolume($vmDetail->vol);
-        dd($att);
-        $server->stop();
+        
+        //$server->stop();
+        $server->delete();
 
         dd('check VM Stop');
 
