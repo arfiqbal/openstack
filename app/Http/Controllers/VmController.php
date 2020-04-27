@@ -525,14 +525,13 @@ class VmController extends Controller
             File::deleteDirectory($path);
            // Storage::delete($path.'/terraform.tfstate');
            $template = $this->openstack->findReTemplate($request->app);
-           File::makeDirectory($path, 0777, true, true);
-           File::copy($template, $path.'/main.tf');
-            
-
-            $template = $this->openstack->findReTemplate($request->app);
-            echo "Fetched template ". $template.'<br>';
+           echo "Fetched template ". $template.'<br>';
             ob_flush();
             flush();
+           File::makeDirectory($path, 0777, true, true);
+           File::copy($template, $path.'/main.tf');
+
+            
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
