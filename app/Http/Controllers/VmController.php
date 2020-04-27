@@ -604,7 +604,7 @@ class VmController extends Controller
                 // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                 $newRework = New Rework;
                 $newRework->application_id = $request->app;
-                $newRework->vm_id = $vm_uid;
+                $newRework->vm_id = $vmDetail->id;
                 $newRework->flavor = $request->flavor;
                 $newRework->jira = $request->jira;
                             
