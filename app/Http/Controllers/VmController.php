@@ -604,15 +604,18 @@ class VmController extends Controller
                 // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                 $newRework = New Rework;
                 $newRework->application_id = $request->app;
-                $newRework->vm_uid = $vm_uid;
-                $newRework->flavor = $vm_uid;
-                $newRework->jira = $vm_uid;
+                $newRework->vm_id = $vm_uid;
+                $newRework->flavor = $request->flavor;
+                $newRework->jira = $request->jira;
                             
                 if($newRework->save()){
+
+                    $vmDetail->vm_uid = $vm_uid;
+                    $vmDetail->save();
                     //rule = username
                     ob_end_flush();
                     echo "</br>";
-                    echo "<b>Your VM is reading but now we are updating the OS, setting hostname and nameserver and installing the IPA client <b><br>";
+                    echo "<b>Your VM is reading but now we are setting hostname and nameserver and installing the IPA client <b><br>";
                     echo "<b>So it may take upto few min, Go and grab some tea</b><br>";
                     
                     if($app->os != 'window'){
