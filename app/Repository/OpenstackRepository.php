@@ -201,25 +201,9 @@ class OpenstackRepository
         $server = $compute->getServer(['id' => $vm->vm_uid]);
         
         $server->stop();
-        $i = 0;
-        while(1){
-           if($i == 15){
-           break;
-           }
-           sleep(1);
-            $i++;
-
-        }
+        $this->delay(15);
         $server->delete();
-        $j = 0;
-        while(1){
-           if($j == 10){
-           break;
-           }
-           sleep(1);
-            $j++;
-
-        }
+        $this->delay(10);
     }
 
     public function changeServerFlavor($vmuid,$flavor)
@@ -251,5 +235,18 @@ class OpenstackRepository
         
 
         
+    }
+
+    private function delay($time = 10)
+    {
+        $i = 0;
+        while(1){
+           if($i == $time){
+           break;
+           }
+           sleep(1);
+            $i++;
+
+        }
     }
 }
