@@ -520,9 +520,13 @@ class VmController extends Controller
              
             $path = storage_path('app/'.$vmDetail->dir);
             
-            $files = array($path.'/terraform.tfstate.backup', $path.'/terraform.tfstate');
-            File::delete($files);
+            // $files = array($path.'/terraform.tfstate.backup', $path.'/terraform.tfstate');
+            // File::delete($files);
+            File::deleteDirectory($path);
            // Storage::delete($path.'/terraform.tfstate');
+           $template = $this->openstack->findReTemplate($request->app);
+           File::makeDirectory($path, 0777, true, true);
+           File::copy($template, $path.'/main.tf');
             
 
             $template = $this->openstack->findReTemplate($request->app);
@@ -534,7 +538,7 @@ class VmController extends Controller
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             
-            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="oldvolume='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'"  -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'"  -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="oldvolume='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
   
             $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
             $process = new Process($init);

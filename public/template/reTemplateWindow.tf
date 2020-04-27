@@ -1,4 +1,4 @@
-variable "oldvolume" {}
+variable "app" {}
 variable "nic1" {}
 variable "nic2" {}
 variable "vmname" {}
@@ -11,7 +11,8 @@ variable "private_key" {}
 variable "hostname" {}
 variable "jira" {}
 variable "user" {}
-
+variable "size" {}
+variable "oldvolume" {}
 
 
 
