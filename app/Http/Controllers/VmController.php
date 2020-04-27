@@ -69,7 +69,7 @@ class VmController extends Controller
         $servers = $this->openstack->defaultAuthentication();
         $service = $servers->blockStorageV2();
 
-        $volume = $service->getVolume('31cda336-b695-4f92-ba9e-ce9821eebf76');
+        $volume = $service->getVolume('31cda336-b695-4f92-ba9e-ce9821eebf77');
         $volume->retrieve();
         dd($volume);
          
