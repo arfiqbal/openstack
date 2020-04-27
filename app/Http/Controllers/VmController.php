@@ -511,6 +511,15 @@ class VmController extends Controller
         $this->ipa->deleteHost($vmDetail->hostname, $cookieName);
         $this->ipa->deletePolicy($policy, $cookieName);
         $this->ipa->delDNS($explodeHostname[0], $cookieName);
+        $i = 0;
+        while(1){
+           if($i == 20){
+           break;
+           }
+           sleep(1);
+            $i++;
+
+        }
                 
         echo "Removing IPA policy.....completed <br>";
         ob_flush();
