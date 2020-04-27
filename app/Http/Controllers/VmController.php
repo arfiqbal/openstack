@@ -496,6 +496,7 @@ class VmController extends Controller
         $script_source = public_path();
         $private_key = public_path('include/vdf-key1.pem');
         $vmDetail = VM::find($request->vmid);
+        dd($vmDetail->vol);
         $cookieName = Str::random(16);
         $this->ipa->login($cookieName);
 
@@ -526,7 +527,9 @@ class VmController extends Controller
             
 
             $template = $this->openstack->findReTemplate($request->app);
-
+            echo "Fetched template ". $template.'<br>';
+            ob_flush();
+            flush();
             $app = Application::find($request->app);
             $pluginPath = public_path('plugin');
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
