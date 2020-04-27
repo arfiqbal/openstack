@@ -485,6 +485,9 @@ class VmController extends Controller
      */
     public function update(Request $request)
     {
+        echo "Recreating VM <br>";
+        ob_flush();
+        flush();
         //dd($request->toArray());
         ini_set('max_execution_time', 3600);
         ob_implicit_flush(true);
@@ -498,6 +501,8 @@ class VmController extends Controller
 
         $this->openstack->stopDeleteServer($vmDetail);
         echo "Deleting VM.....Completed <br>";
+        ob_flush();
+        flush();
         $explodeHostname = explode('.',$vmDetail->hostname);
         $policy = $explodeHostname[0].'_'.$vmDetail->username;
 
@@ -527,7 +532,7 @@ class VmController extends Controller
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             
-            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="vol='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -auto-approve -lock=false  -input=false -var="oldvolume='.$vmDetail->vol.'" -var="project='.$vmDetail->project.'" -var="size='.$size.'" -var="nic1='.$vmDetail->nic2.'" -var="nic2='.$vmDetail->nic1.'" -var="netname='.$vmDetail->network.'" -var="vmname='.$vmDetail->name.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$vmDetail->hostname.'" -var="emailid='.$vmDetail->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
   
             $init = 'terraform12 init  -input=false -plugin-dir='.$pluginPath.'';
             $process = new Process($init);

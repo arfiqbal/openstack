@@ -12,7 +12,7 @@ variable "hostname" {}
 variable "jira" {}
 variable "user" {}
 variable "size" {}
-variable "vol" {}
+variable "oldvolume" {}
 
 
 
@@ -31,7 +31,7 @@ resource "openstack_compute_instance_v2" "vm" {
     boot_index      = 0
     source_type     = "volume"
     destination_type  = "volume"
-    uuid            = var.vol
+    uuid            = var.oldvolume
   }
 
 
@@ -64,18 +64,10 @@ output "id" {
   value = "${openstack_compute_instance_v2.vm.id}"
 }
 
-output "vol" {
-  value = "${openstack_blockstorage_volume_v2.volume_1.id}"
-}
 
 resource "local_file" "foo" {
     content     = openstack_compute_instance_v2.vm.id
     filename = "${path.module}/outputid.json"
-}
-
-resource "local_file" "voo" {
-    content     = openstack_blockstorage_volume_v2.volume_1.id
-    filename = "${path.module}/outputvol.json"
 }
 
 

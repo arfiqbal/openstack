@@ -12,7 +12,7 @@ variable "hostname" {}
 variable "jira" {}
 variable "user" {}
 variable "size" {}
-variable "vol" {}
+variable "oldvolume" {}
 
 
 
@@ -31,7 +31,7 @@ resource "openstack_compute_instance_v2" "vm" {
     boot_index      = 0
     source_type     = "volume"
     destination_type  = "volume"
-    uuid            = var.vol
+    uuid            = var.oldvolume
   }
 
 
