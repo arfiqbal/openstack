@@ -60,7 +60,9 @@ class ImageController extends Controller
         //dd($chkImage->toArray());
 
         if(count($chkImage)){
+
             return redirect()->route('addImage')->with('status', ' Image Already Exists');
+
         }else{
             $app = new Application;
             $app->name = $request->app;
@@ -69,6 +71,7 @@ class ImageController extends Controller
             $app->os = $request->os;
             $app->version = $request->version;
             if($app->save()){
+                
                 return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os.' has been added successfully');
             }
         }
