@@ -66,7 +66,7 @@ class VmController extends Controller
     {
         $allVM = VM::with('application','rework')->where('active',1)->get();
         $fd = VM::with('application','rework')->find(18);
-        dd($fd->toArray());
+        dd(count($fd->rework));
 
         // $servers = $this->openstack->defaultAuthentication();
         // $service = $servers->blockStorageV2();
