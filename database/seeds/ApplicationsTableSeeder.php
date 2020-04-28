@@ -16,7 +16,7 @@ class ApplicationsTableSeeder extends Seeder
            
         ["uid" => "eebebfb3-c82d-4294-9999-ea0778c8afa1", "initial_count" => 34 , "image" => "img_cpns_apiwizard_ubuntu_16.04", "version" => "16.04", "os" => "ubuntu" ,"name" => "apw"],
         ["uid" => "2dd0a2c5-f016-478f-91cb-f21cbf516435", "initial_count" => 0 , "image" => "img_cpns_apix_ubuntu_16.04_v1", "version" => "16.04_v1", "os" => "ubuntu" ,"name" => "ap"],
-        ["uid" => "8923ab6d-c17b-488e-b22f-225242247b5d", "initial_count" => 0 , "image" => "img_cpns_baseimage_window_10_v2", "version" => "10_v2", "os" => "window" ,"name" => "poc"],
+        ["uid" => "8923ab6d-c17b-488e-b22f-225242247b5d", "initial_count" => 23 , "image" => "img_cpns_baseimage_window_10_v2", "version" => "10_v2", "os" => "window" ,"name" => "poc"],
         ["uid" => "42ca21de-eee4-4e79-8cc0-e9f8958969b8", "initial_count" => 0 , "image" => "img_cpns_baseimagecli_centos_6.9", "version" => "6.9", "os" => "centos" ,"name" => "poc"],
         ["uid" => "10880706-1646-47d6-b1c9-41474b5c0194", "initial_count" => 0 , "image" => "img_cpns_baseimagecli_rhel_6.10", "version" => "6.10", "os" => "rhel" ,"name" => "poc"],
         ["uid" => "2b0aba18-edc4-493c-b9b8-3f2072767bd8", "initial_count" => 0 , "image" => "img_cpns_baseimagecli_rhel_7.5", "version" => "7.5", "os" => "rhel" ,"name" => "poc"],
