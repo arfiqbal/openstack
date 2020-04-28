@@ -65,17 +65,6 @@ class VmController extends Controller
     public function create()
     {
         $allVM = VM::with('application','rework')->where('active',1)->get();
-        $fd = VM::with('application','rework')->find(18);
-        if(count($fd->rework)){
-            dd('found');
-        }
-        dd('not found');
-        // $servers = $this->openstack->defaultAuthentication();
-        // $service = $servers->blockStorageV2();
-
-        // $volume = $service->getVolume('31cda336-b695-4f92-ba9e-ce9821eebf77');
-        // $volume->retrieve();
-        // dd($volume);
          
         return view('allVm',['allVM' => $allVM]);
     }
@@ -440,7 +429,8 @@ class VmController extends Controller
     public function destroy($id, Request $request)
     {
         
-        $deleteVM = VM::find($id);
+        $deleteVM =  VM::with('rework')->find($id);
+        
         $path = storage_path('app/'.$deleteVM->dir);
         $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
@@ -453,6 +443,11 @@ class VmController extends Controller
             $deleteVM->jira = $deleteVM->jira.'/'.$request->jira;
             $deleteVM->deleted_by = Auth::user()->name;
             if($deleteVM->save()){
+
+                if(count($deleteVM->rework)){
+                    $this->openstack->deleteVolume($deleteVM);
+                }
+
                 Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
                 $policy = $explodeHostname[0].'_'.$deleteVM->username;

@@ -206,6 +206,15 @@ class OpenstackRepository
         $this->delay(10);
     }
 
+    public function deleteVolume($vm){
+         $servers = $this->openstack->openstackProjectID($vm->project);
+        $service = $servers->blockStorageV2();
+
+        $volume = $service->getVolume($vm->vol);
+        $volume->delete();
+        
+    }
+
     public function changeServerFlavor($vmuid,$flavor)
     {
         $vm = VM::with('application')->find($vmuid);
