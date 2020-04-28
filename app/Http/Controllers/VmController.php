@@ -541,7 +541,7 @@ class VmController extends Controller
             // File::delete($files);
             File::deleteDirectory($path);
            // Storage::delete($path.'/terraform.tfstate');
-           $template = $this->openstack->findReTemplate($request->app);
+           $template = $this->openstack->findReTemplate($vmDetail->application_id);
            echo "Fetched template ". $template.'<br>';
             ob_flush();
             flush();
@@ -549,7 +549,7 @@ class VmController extends Controller
            File::copy($template, $path.'/main.tf');
 
             
-            $app = Application::find($request->app);
+            $app = Application::find($vmDetail->application_id);
             $pluginPath = public_path('plugin');
             $sizeRound =  $this->openstack->getSize($vmDetail->project,$app->uid);
             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
@@ -611,7 +611,7 @@ class VmController extends Controller
 
                 // $nicIps = ['routeable'=> $value, 'non_routable' => $new];
                 $newRework = New Rework;
-                $newRework->application_id = $request->app;
+                $newRework->application_id = $vmDetail->application_id;
                 $newRework->vm_id = $vmDetail->id;
                 $newRework->flavor = $request->flavor;
                 $newRework->jira = $request->jira;

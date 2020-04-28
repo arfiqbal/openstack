@@ -97,7 +97,7 @@ Recreate {{$vmDetail->name}} | VSSI Cloud
                                     <div class="invalid-feedback">Please select flavor </div>
                                   </div>
                                 
-                                  <div class="form-group">
+                                  {{--  <div class="form-group">
                                     <label for="exampleFormControlSelect1">Application</label>
                                     <select class="form-control"  id="app" required>
                                     <option value="">Select Application Image</option>
@@ -107,7 +107,7 @@ Recreate {{$vmDetail->name}} | VSSI Cloud
                                       
                                     </select>
                                     <div class="invalid-feedback">Please select application </div>
-                                  </div>
+                                  </div>  --}}
 
                                 
 
@@ -204,7 +204,7 @@ Recreate {{$vmDetail->name}} | VSSI Cloud
         //event.preventDefault()
         var vmid = $('#vmid').val();
         var jira = $('#jira').val();
-        var app = $('#app option:selected').val();
+        //var app = $('#app option:selected').val();
         var flavor = $('#flavor option:selected').val();
 
         // Fetch form to apply custom Bootstrap validation
@@ -227,8 +227,7 @@ Recreate {{$vmDetail->name}} | VSSI Cloud
                   type:'POST',
                   url: "{{route('postVmRecreate')}}",
                   data: {vmid :vmid, 
-                    jira :jira,
-                    app :app,  
+                    jira :jira,  
                     flavor:flavor},
                   xhr: function () {
                       var xhr = $.ajaxSettings.xhr() ;
