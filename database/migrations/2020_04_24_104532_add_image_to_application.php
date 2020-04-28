@@ -15,6 +15,7 @@ class AddImageToApplication extends Migration
     {
         Schema::table('application', function (Blueprint $table) {
             $table->string('image')->nullable();
+            $table->integer('initial_count')->default(0);
         });
     }
 

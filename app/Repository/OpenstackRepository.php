@@ -115,12 +115,22 @@ class OpenstackRepository
 
         return $host;
     }
-    public function createHostname($hostString)
+    public function createHostname($hostString, $appid)
     {  
         // in<appname><openstack><os><no>
-        $vmHostCount = VM::where('hostname_code',$hostString)->count() + 1;
+        //initial_count
+        $app = Application::find($appid);
+        
+        $vmHostCount = VM::where('hostname_code',$hostString)->where('active',1)->count() + 1;
+        $hostCount = $app->initial_count + $vmHostCount;
+        $actualHostCount = 0;
+        if($hostCount <= 9){
+            $actualHostCount =  '0'.$hostCount;
+        }else{
+            $actualHostCount =  $hostCount;
+        }
 
-        return $hostString.''.$vmHostCount.'.cloud.vssi.com';
+        return $hostString.''.$actualHostCount.'.cloud.vssi.com';
     }
 
     public function lastVm()

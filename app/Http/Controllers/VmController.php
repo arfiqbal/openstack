@@ -200,7 +200,7 @@ class VmController extends Controller
             echo "============================================================= <br>";
            
             $hostString = $this->openstack->createHoststring($request->app);
-            $hostname = $this->openstack->createHostname($hostString);
+            $hostname = $this->openstack->createHostname($hostString, $request->app);
             $dir = $hostname.'-'.uniqid();
             
             $path = storage_path('app/'.$dir);
