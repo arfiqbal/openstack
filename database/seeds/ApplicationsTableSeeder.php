@@ -39,7 +39,7 @@ class ApplicationsTableSeeder extends Seeder
         ["uid" => "993a27b3-8068-4935-9810-3288866e2ee1", "initial_count" => 0 , "image" => "img_cpns_gig3.0_ubuntu_18.04_v1", "version" => "18.04_v1", "os" => "ubuntu" ,"name" => "gg"],
         ["uid" => "e3a474df-e8cb-4cdd-80f6-701f6d3edeb1", "initial_count" => 0 , "image" => "img_cpns_hadoop_spark_ubuntu_18.04_v0", "version" => "18.04", "os" => "ubuntu" ,"name" => "hs"],
         ["uid" => "c1f91aa2-cd4e-4ca8-aa32-d7f2886e0269", "initial_count" => 0 , "image" => "img_cpns_papa_ubuntu_16.04_v2", "version" => "16.04_v2", "os" => "ubuntu" ,"name" => "pa"],
-        ["uid" => "d1dd6d3d-92ca-4916-8b6a-03d757d75dc1", "initial_count" => 0 , "image" => "img_cpns_ppe_ubuntu_16.04_v0", "version" => "16.04", "os" => "ubuntu" ,"name" => "pp"],
+        ["uid" => "d1dd6d3d-92ca-4916-8b6a-03d757d75dc1", "initial_count" => 18 , "image" => "img_cpns_ppe_ubuntu_16.04_v0", "version" => "16.04", "os" => "ubuntu" ,"name" => "pp"],
         ["uid" => "71731999-0219-49f6-8205-5ba9a3299495", "initial_count" => 0 , "image" => "img_cpns_sc2_ubuntu_16.04", "version" => "16.04", "os" => "ubuntu" ,"name" => "sc"],
         ["uid" => "5807b42d-df8d-45ac-ad52-4a2c9d0ecab7", "initial_count" => 0 , "image" => "img_cpns_sc2_windows_10_v0", "version" => "10", "os" => "window" ,"name" => "sc"],
         ["uid" => "5e701bfd-375a-428d-88f1-4d937c4cfa1e", "initial_count" => 0 , "image" => "img_cpns_smapi_ubuntu_16.04_v1", "version" => "16.04_v1", "os" => "ubuntu" ,"name" => "sm"],
