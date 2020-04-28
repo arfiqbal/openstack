@@ -64,7 +64,8 @@ class VmController extends Controller
      */
     public function create()
     {
-        $allVM = VM::with('application')->where('active',1)->get();
+        $allVM = VM::with('application','rework')->where('active',1)->get();
+        dd($allVM);
 
         // $servers = $this->openstack->defaultAuthentication();
         // $service = $servers->blockStorageV2();
