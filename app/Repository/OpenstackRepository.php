@@ -207,7 +207,7 @@ class OpenstackRepository
     }
 
     public function deleteVolume($vm){
-         $servers = $this->openstack->openstackProjectID($vm->project);
+        $servers = $this->openstackProjectID($vm->project);
         $service = $servers->blockStorageV2();
 
         $volume = $service->getVolume($vm->vol);
