@@ -177,12 +177,12 @@ Create VM | VSSI Cloud
                                   </tr>
                                   <tr>
                                     <th >Nic 1</th>
-                                    <td>{{$lastVm->nic1}}</td>
+                                    <td>{{$lastVm->nic2}}</td>
                                     
                                   </tr>
                                   <tr>
                                     <th >Nic 2</th>
-                                    <td>{{$lastVm->nic2}}</td>
+                                    <td>{{$lastVm->nic1}}</td>
                                     
                                   </tr>
                                   <tr>

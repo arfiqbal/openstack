@@ -145,12 +145,12 @@ Recreate {{$vmDetail->name}} | VSSI Cloud
                                   </tr>
                                   <tr>
                                     <th >Nic 1</th>
-                                    <td>{{$vmDetail->nic1}}</td>
+                                    <td>{{$vmDetail->nic2}}</td>
                                     
                                   </tr>
                                   <tr>
                                     <th >Nic 2</th>
-                                    <td>{{$vmDetail->nic2}}</td>
+                                    <td>{{$vmDetail->nic1}}</td>
                                     
                                   </tr>
                                   
