@@ -54,9 +54,7 @@
   <p>
     <b>Dear {{$vm->firstname}}</b>,<br>
     Thank you for signing up with us. Your new account and server has been setup now <br>
-    The details of the server as below :- <br><br>
-
-    VSSI CLOUD TEAM
+    The details of the server as below :- <br>
 </p>
 </span>
 </div>
@@ -111,6 +109,9 @@
      <p style="font-size:12px; color:#8a8a8a">
       <i>Please go through the attached document for how to access the server<br>
       For any kind of support please raise Jira Ticket</i>
+      <br><br>
+
+    VSSI CLOUD TEAM
       </p> 
   </td>
 </tr>
