@@ -51,6 +51,10 @@
               <td>{{$serverDetail->vm_uid}}</td>
             </tr>
             <tr>
+              <th scope="row">Server Vol</th>
+              <td>{{$serverDetail->vol}}</td>
+            </tr>
+            <tr>
               <th scope="row">Nic1</th>
               <td>{{$serverDetail->nic1}}</td>
             </tr>
