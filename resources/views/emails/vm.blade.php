@@ -21,11 +21,12 @@
 <table border="0" cellpadding="10" cellspacing="0" width="100%">
 <tbody>
 <tr>
-<td valign="top" style="padding:9px 0 0 0; font-family:Arial; font-size:14px; color:#FFF">
-PAAS Notification </td>
+<td valign="top" style="padding:9px 0 0 0; font-family:Arial; font-size:14px; color:#FFF; text-align:center;">
+  <h2>PAAS Notification </h2>
+</td>
 </tr>
 <tr>
-<td valign="top" style="padding:7px 0 0 0; font-family:Arial; font-size:11px; color:#FFF">
+<td valign="top" style="padding:7px 0 0 0; font-family:Arial; font-size:11px; color:#FFF; text-align:center;">
   {{$vm->name}} </td>
 </tr>
 </tbody>
@@ -50,7 +51,13 @@ PAAS Notification </td>
 <h4 style="display:block; font-weight:bold; line-height:100%; margin-top:0; margin-right:0; margin-bottom:10px; margin-left:0">
   {{$vm->jira}}</h4>
 <span style="font-size:12px; color:#8a8a8a">
-  VM successfully created
+  <p>
+    <b>Dear {{$vm->firstname}}</b>,<br>
+    Thank you for signing up with us. Your new account and server has been setup now <br>
+    The details of the server as below :- <br><br>
+
+    VSSI CLOUD TEAM
+</p>
 </span>
 </div>
 </td>
@@ -99,7 +106,14 @@ PAAS Notification </td>
 </td>
 </tr>
 
-
+<tr>
+  <td>
+     <p style="font-size:12px; color:#8a8a8a">
+      <i>Please go through the attached document for how to access the server<br>
+      For any kind of support please raise Jira Ticket</i>
+      </p> 
+  </td>
+</tr>
 </tbody>
 </table>
 </td>

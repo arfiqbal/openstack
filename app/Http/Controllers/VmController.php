@@ -348,7 +348,7 @@ class VmController extends Controller
                                 }
                                 $getFlavor = $this->openstack->getFlavorDetail($newvm->flavor);
                                 Log::info($hostname.'- VM created');
-                                Mail::to($newvm->email)->cc('imtiyaz.hasan@vodafone.com')->send(new VmLaunched($newvm, $getFlavor));
+                                Mail::to($newvm->email)->cc('dcops-cloud-vssi@vodafone.com')->send(new VmLaunched($newvm, $getFlavor));
                                // Mail::to('mahesh.pawar@vodafone.com')->cc('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($newvm));
 
                                 echo "</br><br>";

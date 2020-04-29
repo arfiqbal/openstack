@@ -21,11 +21,12 @@
 <table border="0" cellpadding="10" cellspacing="0" width="100%">
 <tbody>
 <tr>
-<td valign="top" style="padding:9px 0 0 0; font-family:Arial; font-size:14px; color:#FFF">
-PAAS Notification </td>
+  <td valign="top" style="padding:9px 0 0 0; font-family:Arial; font-size:14px; color:#FFF; text-align:center;">
+    <h2>PAAS Notification </h2>
+  </td>
 </tr>
 <tr>
-<td valign="top" style="padding:7px 0 0 0; font-family:Arial; font-size:11px; color:#FFF">
+<td valign="top" style="padding:7px 0 0 0; font-family:Arial; font-size:11px; color:#FFF; text-align:center;">
 Update IP Sheet </td>
 </tr>
 </tbody>
