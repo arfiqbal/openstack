@@ -45,6 +45,9 @@ resource "openstack_compute_instance_v2" "vm" {
   packages:
    - resolvconf
    - freeipa-client
+   - nagios-nrpe-server
+   - libsys-statistics-linux-perl
+   - nagios-plugins
   runcmd:
     - [ sh, -c , "echo nameserver 10.85.50.19 > /etc/resolvconf/resolv.conf.d/head"]
     - [ sh, -c, "resolvconf -u" ]
