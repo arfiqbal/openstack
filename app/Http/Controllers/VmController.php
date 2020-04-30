@@ -69,7 +69,7 @@ class VmController extends Controller
          $servers = $this->openstack->defaultAuthentication();
          $compute = $servers->computeV2();
 
-         $server = $compute->getServer(['id' => '17073a7d-0ed5-487c-8215-899575742cc4']);
+         $server = $compute->getServer(['id' => 'a015d306-a21c-44e2-b589-711bb73ec903']);
          $server->retrieve();
          dd($server);
         // $identity = $servers->identityV3();
