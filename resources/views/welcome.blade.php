@@ -152,9 +152,9 @@ Create VM | VSSI Cloud
                                 </form>
                                 
                             </div>
-                            {{--  <div class="col-md-4 offset-md-2">
+                            <div class="col-md-4 offset-md-2">
                               
-                              @if($lastVm)
+                              {{--  @if($lastVm)
                               <h4>Last VM Created on {{$lastVm->created_at}}</h4>
                               <table class="table table-bordered">
                                 <thead >
@@ -203,9 +203,9 @@ Create VM | VSSI Cloud
                                   </tr>
                                 </tbody>
                               </table>
-                              @endif
+                              @endif  --}}
                               
-                            </div>  --}}
+                            </div>
                         </div>
                             
 
