@@ -70,6 +70,7 @@ class VmController extends Controller
          $compute = $servers->computeV2();
 
          $server = $compute->getServer(['id' => '17073a7d-0ed5-487c-8215-899575742cc4']);
+         $server->retrieve();
          dd($server);
         // $identity = $servers->identityV3();
 
