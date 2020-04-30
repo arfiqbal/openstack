@@ -65,8 +65,11 @@ class VmController extends Controller
     public function create()
     {
         $allVM = VM::with('application','rework')->where('active',1)->get();
+
          $servers = $this->openstack->defaultAuthentication();
-         $server = $servers->getServer(['id' => '17073a7d-0ed5-487c-8215-899575742cc4']);
+         $compute = $servers->computeV2();
+
+         $server = $compute->getServer(['id' => '17073a7d-0ed5-487c-8215-899575742cc4']);
          dd($server);
         // $identity = $servers->identityV3();
 
