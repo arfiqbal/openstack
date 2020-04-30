@@ -66,7 +66,7 @@ class VmController extends Controller
     {
         $allVM = VM::with('application','rework')->where('active',1)->get();
         $servers = $this->openstack->defaultAuthentication();
-        $identity = $openstack->identityV3();
+        $identity = $servers->identityV3();
 
         $project = $identity->getProject('4d9031e2761c482e873ee7fcdf73ba29');
         $project->retrieve();
