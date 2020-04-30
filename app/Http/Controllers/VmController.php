@@ -66,12 +66,12 @@ class VmController extends Controller
     {
         $allVM = VM::with('application','rework')->where('active',1)->get();
 
-         $servers = $this->openstack->defaultAuthentication();
-         $compute = $servers->computeV2();
+        //  $servers = $this->openstack->defaultAuthentication();
+        //  $compute = $servers->computeV2();
 
-         $server = $compute->getServer(['id' => 'a015d306-a21c-44e2-b589-711bb73ec903']);
-         $server->retrieve();
-         dd($server);
+        //  $server = $compute->getServer(['id' => 'a015d306-a21c-44e2-b589-711bb73ec903']);
+        //  $server->retrieve();
+        //  dd($server);
         // $identity = $servers->identityV3();
 
         // $project = $identity->getProject('4d9031e2761c482e873ee7fcdf73ba29');
