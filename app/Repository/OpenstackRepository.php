@@ -129,8 +129,8 @@ class OpenstackRepository
         }else{
             $actualHostCount =  $hostCount;
         }
-
-        return $hostString.''.$actualHostCount.'.cloud.vssi.com';
+        $newHostname = $hostString.''.$actualHostCount.'.cloud.vssi.com';
+        return strtolower($newHostname);
     }
 
     public function lastVm()
