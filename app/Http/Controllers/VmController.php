@@ -111,9 +111,9 @@ class VmController extends Controller
             ob_flush();
             flush();
 
-            $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23',60);
-            $totalRproviderIP = $this->openstack->listIpAddress('10.38.107.0','24',60);
-            $totalVssiIP = $this->openstack->listIpAddress('10.38.64.0','22',60);
+            $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23',65);
+            $totalRproviderIP = $this->openstack->listIpAddress('10.38.107.0','24',65);
+            $totalVssiIP = $this->openstack->listIpAddress('10.38.64.0','22',65);
 
             $servers = $this->openstack->defaultAuthentication();
             $identity = $servers->identityV3(['domainId' => "default"]);
