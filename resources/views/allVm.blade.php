@@ -187,9 +187,7 @@ All Instances | VSSI Cloud
                    '<?=URL::to("vm");?>',
                    {'id': id },
                   function(result){
-
                     //console.log(result);
-
                     if(result){
                         $('.modal-body').html(result);
                         $('#mylogmodal').modal();
@@ -199,7 +197,7 @@ All Instances | VSSI Cloud
 
         })
 
-        $('#showVm tr td .deletevm').on('click', function(){
+        $('#showVm ').on('click','tr td #deletevm', function(){
             $('#jiraModal').modal('show');
                 var order = $(this).attr('data-order');
                 var orderRoute = $(this).attr('data-order_destroy_route');
