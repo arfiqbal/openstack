@@ -198,7 +198,7 @@ All Instances | VSSI Cloud
         })
 
         $('#showVm ').on('click','tr td #deletevm', function(){
-          console.log('check');
+          
             $('#jiraModal').modal('show');
                 var order = $(this).attr('data-order');
                 var orderRoute = $(this).attr('data-order_destroy_route');
