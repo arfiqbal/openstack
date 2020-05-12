@@ -67,7 +67,7 @@ All Instances | VSSI Cloud
                                           {{-- <td>{{$myVM->created_at}}</td> --}}
                                           <td>
                                             
-                                            <a  class="btn btn-danger deletevm" data-order="{{ $myVM->name }}"
+                                            <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $myVM->name }}"
                                             data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
                                             <i class="far fa-trash-alt"></i></i>
                                           </a>
