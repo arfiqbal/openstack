@@ -34,7 +34,7 @@ Route::get('/', 'VmController@index')->name('home');
 Route::get('add-image', 'ImageController@index')->name('addImage');
 Route::post('add-image', 'ImageController@store')->name('postImage');
 
-// Route::get('pdf', 'ImageController@pdf')->name('pdf');
+//Route::get('pdf', 'ImageController@pdf')->name('pdf');
 
 
 

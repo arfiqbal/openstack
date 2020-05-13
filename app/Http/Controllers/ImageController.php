@@ -42,7 +42,7 @@ class ImageController extends Controller
     {
         
 
-        dd(User::first()->getAttributes());
+        // dd(User::first()->getAttributes());
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2()->listImages();
 
