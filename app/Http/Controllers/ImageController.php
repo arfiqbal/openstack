@@ -42,7 +42,7 @@ class ImageController extends Controller
     {
         
         $users = User::where('mail', '=', 'johnsonn')->get();
-        dd($users->uid);
+        dd($users->toArray());
         
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2()->listImages();
