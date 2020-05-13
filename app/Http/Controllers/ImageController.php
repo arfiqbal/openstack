@@ -41,7 +41,7 @@ class ImageController extends Controller
     public function index()
     {
         
-        $users = User::where('uid', '=', 'johnson')->get();
+        $users = User::where('uid', '=', 'johnsonn')->get();
         dd($users->toArray());
         
         $servers = $this->openstack->defaultAuthentication();
