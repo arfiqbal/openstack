@@ -74,6 +74,16 @@ class IpaRepository
         $this->curlCommon($cookiePath,$certPath,$data);
     }
 
+    public function addMailUser($username,$mail,$cookieName)
+    {   
+       
+        $data = '{"method":"user_mod","params":[["'.$username.'"],{"all":true,"rights":true,"mail":["'.$mail.'",""],"version":"2.231"}]}';
+        $certPath =  public_path('include/ipa.ca.crt');
+        $cookiePath =  storage_path('app/public/'.$cookieName);
+        
+        $this->curlCommon($cookiePath,$certPath,$data);
+    }
+
     
 
     public function addHbacRule($rule, $cookieName)

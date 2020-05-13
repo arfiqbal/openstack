@@ -204,9 +204,8 @@ class VmController extends Controller
             $dir = $hostname.'-'.uniqid();
             
             $path = storage_path('app/'.$dir);
-            $username = $this->openstack->createUsername($request);
             $randomPass = Str::random(6);
-            $checkUser = User::where('uid', '=', $username)->first();
+            $checkUser = User::where('mail', '=', $request->email)->first();
             $cookieName = Str::random(16);
             $this->ipa->login($cookieName);
 
@@ -215,8 +214,11 @@ class VmController extends Controller
                 echo  "<b style='color:#08c31c'>".$username." already exist</b><br>";
                 $user_exist = 1;
             }else{
+
+                $username = $this->openstack->createUsername($request);
                
                 $this->ipa->addUser($username,$request->firstName,$request->lastName,$randomPass, $cookieName);
+                $this->ipa->addMailUser($username,$request->email,$cookieName);
                 echo  "<b style='color:#08c31c'>".$username." USER CREATED</b><br>";
 
             }
