@@ -6,7 +6,7 @@ use LdapRecord\Models\Model;
 
 class User extends Model
 {
-    protected $guidKey = 'uid';
+    protected $guidKey = 'ipauniqueid';
     /**
      * The object classes of the LDAP model.
      *
