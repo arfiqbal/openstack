@@ -6,18 +6,11 @@ use LdapRecord\Models\Model;
 
 class User extends Model
 {
-    protected $guidKey = 'objectguid';
+    //protected $guidKey = 'entryuuid';
     /**
      * The object classes of the LDAP model.
      *
      * @var array
      */
-    public static $objectClasses = [
-        'top',
-        'person',
-        'organizationalperson',
-        'inetorgperson',
-        'inetuser',
-        'posixaccount'
-    ];
+    public static $objectClasses = [];
 }
