@@ -19,6 +19,7 @@ use Symfony\Component\Process\Exception\ProcessFailedException;
 use OpenStack\OpenStack;
 use App\Repository\OpenstackRepository;
 use Illuminate\Support\Str;
+use App\Ldap\User;
 
 
 
@@ -39,6 +40,9 @@ class ImageController extends Controller
      */
     public function index()
     {
+        
+
+        dd(User::first()->getAttributes());
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2()->listImages();
 
