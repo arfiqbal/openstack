@@ -103,14 +103,6 @@ class OpenstackRepository
 
     }
 
-    public function checkUsernameExists($request)
-    {
-        $name =  Str::words($request->firstName, 1, '');
-        $username = $name."".$request->lastName[0];
-    
-        return strtolower($username);     
-
-    }
 
     public function createHoststring($appid)
     {  

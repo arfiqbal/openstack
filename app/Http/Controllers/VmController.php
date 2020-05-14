@@ -205,14 +205,13 @@ class VmController extends Controller
             
             $path = storage_path('app/'.$dir);
             $randomPass = Str::random(6);
-            $usernameExists = $this->openstack->checkUsernameExists($request);
-            $checkUser = User::where('uid', '=', $usernameExists)->get();
+            $checkUser  = User::where('mail', '=', $request->email)->get();
             $cookieName = Str::random(16);
             $this->ipa->login($cookieName);
 
-            if ($checkUser){
-                
-                echo  "<b style='color:#08c31c'>".$usernameExists." already exist</b><br>";
+            if (count($checkUser)){
+
+                echo  "<b style='color:#08c31c'>User already exist</b><br>";
                 $user_exist = 1;
             }else{
 
