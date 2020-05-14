@@ -41,6 +41,13 @@ class ImageController extends Controller
     public function index()
     {
         
+        $users = User::where('mail', '=', 'johnsonn3@cloud.vssi.com')->get();
+        if(count($users))
+        {
+            dd('user found');
+        }else{
+            dd('user not found');
+        }
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2()->listImages();
 
