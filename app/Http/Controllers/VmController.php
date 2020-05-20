@@ -145,6 +145,7 @@ class VmController extends Controller
                 
                                 if($ipKey === 'nr_provider'){
                                     array_push($ipPool['nr_provider'], $ipValue[0]['addr']); //50.85
+
                                     
                                 }
                 
@@ -166,7 +167,7 @@ class VmController extends Controller
             echo "Comparing possible ips......<br>";
             ob_flush();
             flush();
-
+            array_push($ipPool['nr_provider'], '10.85.50.170');
             foreach($totalNrIp as $key => $value)
             {
                 if(!in_array($value, $ipPool['nr_provider'])){
