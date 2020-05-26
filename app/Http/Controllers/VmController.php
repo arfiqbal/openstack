@@ -168,6 +168,9 @@ class VmController extends Controller
             ob_flush();
             flush();
             array_push($ipPool['nr_provider'], '10.85.50.170');
+            array_push($ipPool['nr_provider'], '10.85.50.123');
+            array_push($ipPool['nr_provider'], '10.85.50.203');
+            array_push($ipPool['r_provider'], '10.38.107.203');
             foreach($totalNrIp as $key => $value)
             {
                 if(!in_array($value, $ipPool['nr_provider'])){
