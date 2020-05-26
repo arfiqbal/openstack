@@ -453,7 +453,7 @@ class VmController extends Controller
                     $this->openstack->deleteVolume($deleteVM);
                 }
 
-                Mail::to('mdarif.iqbal@vodafone.com')->send(new IpUpdateNotification($deleteVM));
+                Mail::to('dcops-cloud-vssi@vodafone.com')->send(new IpUpdateNotification($deleteVM));
                 $explodeHostname = explode('.',$deleteVM->hostname);
                 $policy = $explodeHostname[0].'_'.$deleteVM->username;
 
