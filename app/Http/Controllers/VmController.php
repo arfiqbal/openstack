@@ -167,10 +167,13 @@ class VmController extends Controller
             echo "Comparing possible ips......<br>";
             ob_flush();
             flush();
-            array_push($ipPool['nr_provider'], '10.85.50.170');
-            array_push($ipPool['nr_provider'], '10.85.50.123');
-            array_push($ipPool['nr_provider'], '10.85.50.203');
-            array_push($ipPool['r_provider'], '10.38.107.203');
+            array_push($ipPool['nr_provider'], '10.85.50.170', '10.85.50.123', '10.85.51.198','10.85.50.203', '10.85.51.199', '10.85.51.142', '10.85.50.245', '10.85.50.230');
+            array_push($ipPool['r_provider'], '10.38.107.123', '10.38.107.203','10.38.107.170');
+            array_push($ipPool['vssi_routable'], '10.38.64.9', '10.38.64.198','10.38.64.199', '10.38.64.189','10.38.64.15','10.38.64.16');
+
+            //nr: -  50.245, 50.230
+            //r :- 123, 203, 170
+            //vssi :- 198,199,142,189,
             foreach($totalNrIp as $key => $value)
             {
                 if(!in_array($value, $ipPool['nr_provider'])){
