@@ -33,10 +33,13 @@ class VolumeController extends Controller
     {
         $servers = $this->openstack->defaultAuthentication();
         $service = $servers->blockStorageV2();
-        $snaps = $service->listSnapshots();
+        $snaps = $service->listSnapshots(false, [
+            'volumeId'     => 'fdfd40de-1b7c-4291-85e5-9a7fe7f44890',
+        ]);
 
         foreach ($snaps as $snap) {
-           dd($snap);
+          var_dump($snap);
+          
         }
     }
 
