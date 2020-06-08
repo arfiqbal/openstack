@@ -33,17 +33,17 @@ class VolumeController extends Controller
     {
         $servers = $this->openstack->openstackProjectID('198f0660ae894f87a5ad2522e6dec551');
         $service = $servers->blockStorageV2();
-        // $snaps = $service->listSnapshots(false,[
-        //     'volumeId'     => 'dfb43258-283e-4245-8658-c39fc5782cdd'
-        // ]);
+        $snaps = $service->listSnapshots(true,[
+            'volumeId'     => 'dfb43258-283e-4245-8658-c39fc5782cdd'
+        ]);
 
-        $snaps = $service->getVolume('dfb43258-283e-4245-8658-c39fc5782cdd');
-        $snaps->retrieve();
-        dd($snaps);
+        // $snaps = $service->getVolume('dfb43258-283e-4245-8658-c39fc5782cdd');
+        // $snaps->retrieve();
+        // dd($snaps);
         //$snaps = $service->listSnapshots();
 
         foreach ($snaps as $snap) {
-          var_dump($snap);
+          dd($snap);
           
         }
     }
