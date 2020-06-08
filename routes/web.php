@@ -36,6 +36,8 @@ Route::post('add-image', 'ImageController@store')->name('postImage');
 
 //Route::get('pdf', 'ImageController@pdf')->name('pdf');
 
+Route::get('volumes', 'VolumeController@index')->name('volumes');
+
 
 
 
