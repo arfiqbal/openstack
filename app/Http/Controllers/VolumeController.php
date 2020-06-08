@@ -38,8 +38,8 @@ class VolumeController extends Controller
         ]);
 
         // $snaps = $service->getVolume('dfb43258-283e-4245-8658-c39fc5782cdd');
-        // $snaps->retrieve();
-        // dd($snaps);
+         $snaps->retrieve();
+        dd($snaps);
         //$snaps = $service->listSnapshots();
 
         foreach ($snaps as $snap) {
