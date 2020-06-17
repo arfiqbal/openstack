@@ -25,7 +25,7 @@ All Instances | VSSI Cloud
                         <ul class="nav nav-pills card-header-pills" id="pills-tab" role="tablist">
                          
                           <li class="nav-item">
-                            <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">All Openstack VMs</a>
+                            <a class="nav-link active" id="pills-profile-tab" data-toggle="pill" href="#pills-profile" role="tab" aria-controls="pills-profile" aria-selected="true">Images</a>
                           </li>
                           
                           
