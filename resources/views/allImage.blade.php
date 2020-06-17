@@ -54,7 +54,7 @@ All Instances | VSSI Cloud
                                         <tr id="{{$image->id}}">
                                           <th scope="row">{{$image->name}}</th>
                                           <td>{{$image->image}}</td>
-                                          <td>{{$image->username}}</td>
+                                          <td>{{$image->os}}</td>
                                           <td>
                                             
                                             <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $image->name }}"
