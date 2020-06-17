@@ -51,14 +51,14 @@ All Instances | VSSI Cloud
                               <tbody>
                                 @if(count($images))
                                     @foreach($images as $image)
-                                        <tr id="{{$images->id}}">
+                                        <tr id="{{$image->id}}">
                                           <th scope="row">{{$image->name}}</th>
                                           <td>{{$image->image}}</td>
                                           <td>{{$image->username}}</td>
                                           <td>
                                             
-                                            <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $myVM->name }}"
-                                            data-order_destroy_route="{{ route('deletevm', ['id' => $myVM->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
+                                            <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $image->name }}"
+                                            data-order_destroy_route="{{ route('deletevm', ['id' => $image->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
                                             <i class="far fa-trash-alt"></i></i>
                                           </a>
                                             
