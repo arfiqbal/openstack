@@ -81,7 +81,6 @@ All Instances | VSSI Cloud
         </div>
     </div>
 
-    
  
 @endsection
     <!-- Optional JavaScript -->
@@ -103,7 +102,10 @@ All Instances | VSSI Cloud
 
       $('#showVm ').on('click','tr td #deletevm', function(){
         
-         
+          $('#jiraModal').modal('show');
+              var order = $(this).attr('data-order');
+              var orderRoute = $(this).attr('data-order_destroy_route');
+            
               deleteOrder(order ,orderRoute);
 
              
