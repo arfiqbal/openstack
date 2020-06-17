@@ -1,14 +1,14 @@
 @extends('layouts.app')
 
 @section('title')
-All Instances | VSSI Cloud
+All Images | VSSI Cloud
 @endsection
 
 @section('content')
 
   <!-- Page Content -->
     <div class="container-fluid">
-      <h1 class="mt-4">All Instances</h1>
+      <h1 class="mt-4">All Images</h1>
         <div class="row">
             <div class="col-md-12">
                 @if (session('vms'))
