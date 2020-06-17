@@ -36,6 +36,9 @@ class VmLaunched extends Mailable
      */
     public function build()
     {
-        return $this->subject('VM CREATED : '.$this->vm->jira)->view('emails.vm');
+        return $this->subject('VM CREATED : '.$this->vm->jira)
+                    ->view('emails.vm')
+                    ->attach(public_path('doc/Access-Procedure-on-Instance-for-Cloud-Infra-V2.pdf'))
+                    ->attach(public_path('Process-to-request-for-jump-server-access.docx'));
     }
 }
