@@ -49,6 +49,14 @@ class ImageController extends Controller
         
     }
 
+    public function allImages()
+    {
+        $images = Application::all();
+        dd($images);
+        return view('allImage', ['images' => $images]);
+        
+    }
+
 
 
     public function store(Request $request)
