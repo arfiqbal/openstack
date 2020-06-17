@@ -88,6 +88,13 @@ class ImageController extends Controller
         
     }
 
+    public function destroy($id, Request $request)
+    {
+        $image = Application::find($id);
+        $image->delete();
+        return true;
+    }
+
     // public function pdf()
     // {
     //     $previous_week = strtotime("-1 week +1 day");

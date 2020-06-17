@@ -58,7 +58,7 @@ All Instances | VSSI Cloud
                                           <td>
                                             
                                             <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $image->id }}"
-                                            data-order_destroy_route="{{ route('deletevm', ['id' => $image->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
+                                            data-order_destroy_route="{{ route('deleteImage', ['id' => $image->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
                                             <i class="far fa-trash-alt"></i></i>
                                           </a>
                                             
@@ -81,28 +81,7 @@ All Instances | VSSI Cloud
         </div>
     </div>
 
-    <!-- delete Modal -->
     
-
-    <div class="modal" tabindex="-1" role="dialog" id="deleteModal">
-      <div class="modal-dialog modal-sm" role="document">
-        <div class="modal-content">
-          <div class="modal-header">
-            <h5 class="modal-title">Deleting Vm</h5>
-            
-              <div class="spinner-border text-danger" role="status">
-                <span class="sr-only">Loading...</span>
-              </div>
-              
-            </button>
-          </div>
-          <div class="modal-body">
-            <p>We are deleting vm and it may take few min so please do not refresh the page</p>
-          </div>
-         
-        </div>
-      </div>
-    </div>
  
 @endsection
     <!-- Optional JavaScript -->
@@ -124,29 +103,15 @@ All Instances | VSSI Cloud
 
       $('#showVm ').on('click','tr td #deletevm', function(){
         
-          $('#jiraModal').modal('show');
-              var order = $(this).attr('data-order');
-              var orderRoute = $(this).attr('data-order_destroy_route');
-              $('#orderHidden').val(order);
-              $('#orderRouteHidden').val(orderRoute);
-              console.log(order);
+         
+              deleteOrder(order ,orderRoute);
 
              
           });
 
-          $('#deleteCnfm').on('click', function(){
-            var order = $('#orderHidden').val();
-            var orderRoute=  $('#orderRouteHidden').val();
-            var jira = $('#jira').val();
-            $('#jiraModal').modal('hide');
-            deleteOrder(order ,orderRoute, jira);
-
-          });
-
-          var deleteOrder = function(order,orderRoute,jira)
+          var deleteOrder = function(order,orderRoute)
           {
-             var ask =  confirm("Are you absolutely sure you want to delete " + order + "? This action cannot be undone." +
-          "This will permanently delete " + order + ", and remove all collections and resources associated with it.");
+             var ask =  confirm("Are you sure ?");
 
              if(ask == true)
              {
@@ -154,16 +119,12 @@ All Instances | VSSI Cloud
                   $.ajax({
                       type:'POST',
                       url: orderRoute,
-                      data: {jira :jira},
+                      data: {order :order},
                         
                       }).done(function(data) {
                         //console.log(data)
-                        $('#deleteModal').modal('hide');
-                        //$('#'+data).hide();
-                        $('#orderHidden').val("");
-                        $('#orderRouteHidden').val("");
-                        $('#jira').val("");
-                        alert('VM Deleted');
+
+                        alert('Image Deleted');
                         
                         location.reload(true);
                        

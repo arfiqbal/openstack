@@ -34,6 +34,7 @@ Route::get('/', 'VmController@index')->name('home');
 Route::get('add-image', 'ImageController@index')->name('addImage');
 Route::get('all-images', 'ImageController@allImages')->name('allImages');
 Route::post('add-image', 'ImageController@store')->name('postImage');
+Route::post('delete-image/{id}', 'ImageController@destroy')->name('deleteImage');
 
 //Route::get('pdf', 'ImageController@pdf')->name('pdf');
 
