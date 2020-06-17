@@ -52,7 +52,7 @@ class ImageController extends Controller
     public function allImages()
     {
         $images = Application::all();
-        dd($images);
+        //dd($images);
         return view('allImage', ['images' => $images]);
         
     }
