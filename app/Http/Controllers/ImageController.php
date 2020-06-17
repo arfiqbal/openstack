@@ -92,7 +92,6 @@ class ImageController extends Controller
     {
         $image = Application::find($id);
         $image->delete();
-        return true;
     }
 
     // public function pdf()
