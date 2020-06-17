@@ -170,7 +170,7 @@ All Instances | VSSI Cloud
 <script src="{{ asset('js/datatable.js')}}" crossorigin="anonymous"></script>
 <script src="{{ asset('js/datatable-bootstrap.js')}}" crossorigin="anonymous"></script>
 <script src="{{ asset('js/datatables-demo.js')}}"></script>
-    <script>
+<script>
     $.ajaxSetup({
         headers: {
             'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

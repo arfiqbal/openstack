@@ -57,7 +57,7 @@ All Instances | VSSI Cloud
                                           <td>{{$image->os}}</td>
                                           <td>
                                             
-                                            <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $image->name }}"
+                                            <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $image->id }}"
                                             data-order_destroy_route="{{ route('deletevm', ['id' => $image->id]) }}" data-toggle="tooltip" data-placement="top" title="Delete VM">
                                             <i class="far fa-trash-alt"></i></i>
                                           </a>
@@ -111,6 +111,75 @@ All Instances | VSSI Cloud
 <script src="{{ asset('js/datatable.js')}}" crossorigin="anonymous"></script>
 <script src="{{ asset('js/datatable-bootstrap.js')}}" crossorigin="anonymous"></script>
 <script src="{{ asset('js/datatables-demo.js')}}"></script>
- 
+<script>
+  $.ajaxSetup({
+      headers: {
+          'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      }
+  });
+  $('#vmmessgae').hide();
+  
+  $(document).ready(function(){
+    
+
+      $('#showVm ').on('click','tr td #deletevm', function(){
+        
+          $('#jiraModal').modal('show');
+              var order = $(this).attr('data-order');
+              var orderRoute = $(this).attr('data-order_destroy_route');
+              $('#orderHidden').val(order);
+              $('#orderRouteHidden').val(orderRoute);
+              console.log(order);
+
+             
+          });
+
+          $('#deleteCnfm').on('click', function(){
+            var order = $('#orderHidden').val();
+            var orderRoute=  $('#orderRouteHidden').val();
+            var jira = $('#jira').val();
+            $('#jiraModal').modal('hide');
+            deleteOrder(order ,orderRoute, jira);
+
+          });
+
+          var deleteOrder = function(order,orderRoute,jira)
+          {
+             var ask =  confirm("Are you absolutely sure you want to delete " + order + "? This action cannot be undone." +
+          "This will permanently delete " + order + ", and remove all collections and resources associated with it.");
+
+             if(ask == true)
+             {
+                  $('#deleteModal').modal('show');
+                  $.ajax({
+                      type:'POST',
+                      url: orderRoute,
+                      data: {jira :jira},
+                        
+                      }).done(function(data) {
+                        //console.log(data)
+                        $('#deleteModal').modal('hide');
+                        //$('#'+data).hide();
+                        $('#orderHidden').val("");
+                        $('#orderRouteHidden').val("");
+                        $('#jira').val("");
+                        alert('VM Deleted');
+                        
+                        location.reload(true);
+                       
+                        
+                        
+                  }).fail(function() {
+                      
+                  })
+                 
+             }
+          }
+  
+
+    
+  });
+  
+</script>
 @endsection
   

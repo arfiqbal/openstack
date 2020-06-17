@@ -30,7 +30,7 @@
             </a>
             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                 <nav class="sb-sidenav-menu-nested nav">
-                    <a class="nav-link" href="layout-static.html">
+                    <a class="nav-link" href="{{route('allImages')}}">
                         <div class="sb-nav-link-icon">
                             <i class="fas fa-table"></i>
                         </div>
