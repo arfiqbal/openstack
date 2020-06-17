@@ -7,7 +7,7 @@ Add Application | VSSI Cloud
 @section('content')
 
   <h1 class="mt-4">Add Application</h1>
-  <ol class="breadcrumb mb-4">
+  <ol class="breadcrumb mb-6">
       <li class="breadcrumb-item active">App</li>
   </ol>
   @if (session('status'))
@@ -20,7 +20,7 @@ Add Application | VSSI Cloud
     @endif
   <div class="row">
     
-    <div class="card mb-4">
+    <div class="card mb-6">
       <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
       <div class="card-body">
 
