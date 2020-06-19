@@ -174,9 +174,9 @@ class VmController extends Controller
             //nr: -  50.245, 50.230
             //r :- 123, 203, 170
             //vssi :- 198,199,142,189,
-            foreach($totalNrIp as $key => $value1)
+            $noIP = false;
+            foreach($totalNrIp as $key => $value)
             {
-                $value = "10.85.51.2";
                 if(!in_array($value, $ipPool['nr_provider'])){
                     
                     $explodeIp = explode('.',$value);
@@ -188,9 +188,6 @@ class VmController extends Controller
                                 $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
                                break;
                             }
-                        }else{
-                            
-                            return redirect('all-vm')->with('status', 'No IP Found');
                         }
 
                     }
@@ -203,9 +200,6 @@ class VmController extends Controller
                     }
 
                     
-                }else{
-
-                    return redirect('all-vm')->with('status', 'No IP Found');
                 }
             }
           
