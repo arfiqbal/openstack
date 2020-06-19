@@ -176,7 +176,7 @@ class VmController extends Controller
             //vssi :- 198,199,142,189,
             foreach($totalNrIp as $key => $value1)
             {
-                $value = "10.85.51.201";
+                $value = "10.85.51.2";
                 if(!in_array($value, $ipPool['nr_provider'])){
                     
                     $explodeIp = explode('.',$value);
@@ -200,6 +200,9 @@ class VmController extends Controller
                     }
 
                     
+                }else{
+
+                    return redirect('all-vm')->with('status', 'No IP Found');
                 }
             }
           
