@@ -174,12 +174,13 @@ class VmController extends Controller
             //nr: -  50.245, 50.230
             //r :- 123, 203, 170
             //vssi :- 198,199,142,189,
-            foreach($totalNrIp as $key => $value)
+            foreach($totalNrIp as $key => $value1)
             {
+                $value = "10.85.51.201";
                 if(!in_array($value, $ipPool['nr_provider'])){
                     
-                    //$explodeIp = explode('.',$value);
-                    $explodeIp = explode('.','10.85.51.201');
+                    $explodeIp = explode('.',$value);
+
                     if($explodeIp['2'] == '51'){
                         $new = $this->openstack->createIp($value,'10.38.64.0');
                         if(in_array($new, $totalVssiIP)){
