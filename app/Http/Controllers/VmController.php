@@ -208,7 +208,7 @@ class VmController extends Controller
             echo  "<b style='color:#08c31c'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
             echo  "<b style='color:#08c31c'>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
-            dd('testing');
+
 
             $hostString = $this->openstack->createHoststring($request->app);
             $hostname = $this->openstack->createHostname($hostString, $request->app);
