@@ -441,7 +441,7 @@ class VmController extends Controller
        
         $path = storage_path('app/'.$deleteVM->dir);
         dd($deleteVM->project);
-        $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -auto-approve');
+        $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -lock=false -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
         $process->setTimeout(3600);
         $process->setWorkingDirectory($path);
