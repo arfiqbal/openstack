@@ -189,7 +189,7 @@ class VmController extends Controller
                                break;
                             }
                         }else{
-                            break;
+                            
                             return redirect('all-vm')->with('status', 'No IP Found');
                         }
 
