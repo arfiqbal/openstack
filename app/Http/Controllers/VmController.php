@@ -113,7 +113,7 @@ class VmController extends Controller
 
             $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23',65);
             $totalRproviderIP = $this->openstack->listIpAddress('10.38.107.0','24',65);
-            $totalVssiIP = $this->openstack->listIpAddress('10.38.64.0','22',30);
+            $totalVssiIP = $this->openstack->listIpAddressSlice('10.38.64.0','22',30,-24);
 
             $servers = $this->openstack->defaultAuthentication();
             $identity = $servers->identityV3(['domainId' => "default"]);
@@ -137,7 +137,7 @@ class VmController extends Controller
 
                         if($server){
                             foreach($server->listAddresses() as $ipKey => $ipValue){
-                            
+                                
                                 if($ipKey === 'vssi_routable'){
                                     array_push($ipPool['vssi_routable'], $ipValue[0]['addr']);
                                     
@@ -182,9 +182,11 @@ class VmController extends Controller
 
                     if($explodeIp['2'] == '51'){
                         $new = $this->openstack->createIp($value,'10.38.64.0');
-                        if(!in_array($new, $ipPool['vssi_routable'])){
-                            $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
-                            break;
+                        if(in_array($new, $totalVssiIP))
+                            if(!in_array($new, $ipPool['vssi_routable'])){
+                                $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
+                                break;
+                            }
                         }
 
                     }
@@ -205,7 +207,8 @@ class VmController extends Controller
             echo  "<b style='color:#08c31c'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
             echo  "<b style='color:#08c31c'>NIC 2 === ".$nicIps['routeable']."</b><br>";
             echo "============================================================= <br>";
-           
+            dd('testing');
+
             $hostString = $this->openstack->createHoststring($request->app);
             $hostname = $this->openstack->createHostname($hostString, $request->app);
             $dir = $hostname.'-'.uniqid();

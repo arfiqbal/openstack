@@ -31,6 +31,20 @@ class OpenstackRepository
 
     }
 
+    public function listIpAddressSlice($ip_range,$subnet,$removePrefix = 0,$removePost = 0)
+    {
+        $list = [];
+        $sub = new SubnetCalculator($ip_range, $subnet);
+            foreach($sub->getAllHostIPAddresses() as $ip){
+                array_push($list,$ip);
+            }
+        $collection = collect($list);
+        $slice = $collection->slice($removePrefix,$removePost);
+        return $slice->all();
+        //$slice = $collection->slice(30,-24);
+
+    }
+
     public function findIpAddress($ip, Array $listOfIpAddress){
         if(is_array($listOfIpAddress))
         {
