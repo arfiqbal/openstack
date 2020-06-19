@@ -182,7 +182,7 @@ class VmController extends Controller
 
                     if($explodeIp['2'] == '51'){
                         $new = $this->openstack->createIp($value,'10.38.64.0');
-                        if(in_array($new, $totalVssiIP))
+                        if(in_array($new, $totalVssiIP)){
                             if(!in_array($new, $ipPool['vssi_routable'])){
                                 $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
                                 break;
