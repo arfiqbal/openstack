@@ -113,7 +113,7 @@ class VmController extends Controller
 
             $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23',65);
             $totalRproviderIP = $this->openstack->listIpAddress('10.38.107.0','24',65);
-            $totalVssiIP = $this->openstack->listIpAddress('10.38.64.0','22',65);
+            $totalVssiIP = $this->openstack->listIpAddress('10.38.64.0','22',30);
 
             $servers = $this->openstack->defaultAuthentication();
             $identity = $servers->identityV3(['domainId' => "default"]);
@@ -436,7 +436,7 @@ class VmController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        
+        dd($id);
         $deleteVM =  VM::with('rework')->find($id);
         
         $path = storage_path('app/'.$deleteVM->dir);
