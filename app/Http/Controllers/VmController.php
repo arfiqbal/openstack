@@ -113,7 +113,7 @@ class VmController extends Controller
 
             $totalNrIp = $this->openstack->listIpAddress('10.85.50.0','23',65);
             $totalRproviderIP = $this->openstack->listIpAddress('10.38.107.0','24',65);
-            $totalVssiIP = $this->openstack->listIpAddressSlice('10.38.64.0','22',0,-24);
+            $totalVssiIP = $this->openstack->listIpAddressSlice('10.38.64.0','22',30,-24);
 
             $servers = $this->openstack->defaultAuthentication();
             $identity = $servers->identityV3(['domainId' => "default"]);
