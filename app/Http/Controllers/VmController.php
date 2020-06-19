@@ -436,9 +436,9 @@ class VmController extends Controller
      */
     public function destroy($id, Request $request)
     {
-        dd($id);
+       
         $deleteVM =  VM::with('rework')->find($id);
-        
+        dd($deleteVM);
         $path = storage_path('app/'.$deleteVM->dir);
         $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
