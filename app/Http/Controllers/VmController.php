@@ -118,7 +118,7 @@ class VmController extends Controller
             
 
             $totalNrIp = $this->openstack->listIpAddressSlice('10.85.50.0','23',65,-24);
-            $totalRproviderIP = $this->openstack->listIpAddressSlice('10.38.107.0','24',65,-10);
+            $totalRproviderIP = $this->openstack->listIpAddressSlice('10.38.107.0','24',65,-9);
             $totalVssiIP = $this->openstack->listIpAddressSlice('10.38.64.0','24',30,-24); //22
 
 
@@ -158,9 +158,11 @@ class VmController extends Controller
 
                         if($explodeIp['2'] == '50'){
                             $new = $this->openstack->createIp($value,'10.38.107.0');
-                            if(!in_array($new, $ipPool['r_provider'])){
-                                $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
-                            break;
+                            if(in_array($new, $totalRproviderIP)){
+                                if(!in_array($new, $ipPool['r_provider'])){
+                                    $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
+                                break;
+                                }
                             }
                         }
                     }
