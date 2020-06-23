@@ -67,9 +67,12 @@ class VmController extends Controller
         $projectsServer = $this->openstack->defaultAuthentication();
         $networking = $projectsServer->networkingV2();
 
-        $port = $networking->listPorts();
-        dd($port);
+        $ports = $networking->listPorts();
+        foreach($ports as $port){
+            dd($port);
+        }
         
+
         $allVM = VM::with('application','rework')->where('active',1)->get();
          
         return view('allVm',['allVM' => $allVM]);
