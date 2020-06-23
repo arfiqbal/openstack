@@ -69,7 +69,7 @@ class VmController extends Controller
 
         $ports = $networking->listPorts();
         foreach($ports as $port){
-            var_dump($port->fixedIps['ip_address']);
+            var_dump($port->fixedIps[0]['ip_address']);
         }
         dd('all port');
 
