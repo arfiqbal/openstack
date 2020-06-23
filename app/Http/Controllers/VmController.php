@@ -169,7 +169,11 @@ class VmController extends Controller
                     ///==========
                 }
             }
-          
+            
+            if(empty($nicIps)){
+                dd('Error Please ping arif to check');
+            }
+
             echo "</br>";
             echo "============================================================= <br>";
             echo  "<b style='color:#08c31c'>NIC 1 === ".$nicIps['non_routable']."</b><br>";
