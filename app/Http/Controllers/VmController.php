@@ -68,7 +68,7 @@ class VmController extends Controller
         $networking = $projectsServer->networkingV2();
 
         $ports = $networking->listPorts([
-            'status' => 'DOWN',
+            'networkId' => 'd5c2c4ab-64f8-4dde-82bb-9c0b65a7f5d8',
         ]);
         foreach($ports as $port){
             //var_dump($port->fixedIps[0]['ip_address']);
