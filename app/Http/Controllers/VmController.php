@@ -64,16 +64,7 @@ class VmController extends Controller
      */
     public function create()
     {
-        $projectsServer = $this->openstack->defaultAuthentication();
-        $networking = $projectsServer->networkingV2();
-
-        $ports = $networking->listPorts();
-        $allports = [];
-        foreach($ports as $port){
-            //var_dump($port->fixedIps[0]['ip_address']);
-            array_push($allports, $port->fixedIps[0]['ip_address']);
-        }
-        dd($allports);
+        
 
         $allVM = VM::with('application','rework')->where('active',1)->get();
          
@@ -102,14 +93,7 @@ class VmController extends Controller
         $private_key = public_path('include/vdf-key1.pem');
         $username = "";
 
-        $ids = ['7200d61d8cc545aeb2e4bc28e29f3a2d',
-                '9a08dfd7eecc494a9ba750e5f86da626',
-                'b9156dd5582e46b68ace7d74e201968d',
-                'bb6617e566f2477ea09f6962207cff32',
-                'd6d0a6ab1c904199935f950f2c58de8d',
-                'fe9633e0641e4fb995aa64dd161b6c55'
-            ];
-
+       
         $ipPool['vssi_routable'] = array();
         $ipPool['nr_provider'] = array();
         $ipPool['r_provider'] = array();
@@ -117,10 +101,21 @@ class VmController extends Controller
         $user_exist = 0;
 
         if($request){
-            
+
             echo "Fetching all the ips from openstack <br>";
             ob_flush();
             flush();
+
+            $projectsServer = $this->openstack->defaultAuthentication();
+            $networking = $projectsServer->networkingV2();
+
+            $ports = $networking->listPorts();
+            $allports = [];
+            foreach($ports as $port){
+                //var_dump($port->fixedIps[0]['ip_address']);
+                array_push($allports, $port->fixedIps[0]['ip_address']);
+            }
+            
 
             $totalNrIp = $this->openstack->listIpAddressSlice('10.85.50.0','23',65,-24);
             $totalRproviderIP = $this->openstack->listIpAddressSlice('10.38.107.0','24',65,-10);
@@ -133,10 +128,7 @@ class VmController extends Controller
             echo "Searching.";
           
             //dd($ipPool);
-            echo "<br>";
-            echo "Comparing possible ips......<br>";
-            ob_flush();
-            flush();
+          
             array_push($ipPool['nr_provider'], '10.85.50.170', '10.85.50.123', '10.85.51.198','10.85.50.203', '10.85.51.199', '10.85.51.142', '10.85.50.245', '10.85.50.230', '10.85.51.189', '10.85.51.9', '10.85.51.15', '10.85.51.16', '10.85.50.250','10.85.51.0', '10.85.51.1','10.85.51.31','10.85.51.32','10.85.51.39','10.85.51.66','10.85.51.51');
             array_push($ipPool['r_provider'], '10.38.107.123','10.38.107.203','10.38.107.170', '10.38.107.250','10.38.107.255');
             array_push($ipPool['vssi_routable'], '10.38.64.9','10.38.64.198','10.38.64.199','10.38.64.189','10.38.64.15','10.38.64.16','10.38.64.0','10.38.64.1','10.38.64.51','10.38.64.66' );
@@ -149,27 +141,30 @@ class VmController extends Controller
             {
                 if(!in_array($value, $ipPool['nr_provider'])){
                     
-                    $explodeIp = explode('.',$value);
+                    if(!in_array($value, $allports)){
+                        $explodeIp = explode('.',$value);
 
-                    if($explodeIp['2'] == '51'){
-                        $new = $this->openstack->createIp($value,'10.38.64.0');
-                        if(in_array($new, $totalVssiIP)){
-                            if(!in_array($new, $ipPool['vssi_routable'])){
-                                $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
-                               break;
+                        if($explodeIp['2'] == '51'){
+                            $new = $this->openstack->createIp($value,'10.38.64.0');
+
+                            if(in_array($new, $totalVssiIP)){
+                                if(!in_array($new, $ipPool['vssi_routable'])){
+                                    $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
+                                break;
+                                }
+                            }
+
+                        }
+
+                        if($explodeIp['2'] == '50'){
+                            $new = $this->openstack->createIp($value,'10.38.107.0');
+                            if(!in_array($new, $ipPool['r_provider'])){
+                                $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
+                            break;
                             }
                         }
-
                     }
-                    if($explodeIp['2'] == '50'){
-                        $new = $this->openstack->createIp($value,'10.38.107.0');
-                        if(!in_array($new, $ipPool['r_provider'])){
-                            $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
-                           break;
-                        }
-                    }
-
-                    
+                    ///==========
                 }
             }
           

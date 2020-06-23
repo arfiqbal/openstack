@@ -45,7 +45,7 @@ resource "openstack_compute_instance_v2" "vm" {
   packages:
    - ipa-client
   runcmd:
-    - [ sh, -c, "ipa-client-install --enable-dns-updates --mkhomedir -p arif@CLOUD.VSSI.COM -w 'redhat12' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"]
+    - [ sh, -c, "ipa-client-install --enable-dns-updates --mkhomedir -p ldapbind@CLOUD.VSSI.COM -w 'redhat' --server=inidmor1.cloud.vssi.com --domain cloud.vssi.com -U"]
   
 EOF
 
