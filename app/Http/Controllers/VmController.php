@@ -69,9 +69,9 @@ class VmController extends Controller
 
         $ports = $networking->listPorts();
         foreach($ports as $port){
-            dd($port);
+            var_dump($port['fixedIps']);
         }
-        
+        dd('all port');
 
         $allVM = VM::with('application','rework')->where('active',1)->get();
          
