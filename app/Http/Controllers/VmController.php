@@ -67,14 +67,13 @@ class VmController extends Controller
         $projectsServer = $this->openstack->defaultAuthentication();
         $networking = $projectsServer->networkingV2();
 
-        $ports = $networking->listPorts([
-            'network_id' => 'd5c2c4ab64f84dde82bb9c0b65a7f5d8'
-        ]);
+        $ports = $networking->listPorts();
+        $allports = [];
         foreach($ports as $port){
             //var_dump($port->fixedIps[0]['ip_address']);
-            var_dump($port);
+            array_push($allports, $port->fixedIps[0]['ip_address']);
         }
-        dd('all port');
+        dd($allports);
 
         $allVM = VM::with('application','rework')->where('active',1)->get();
          
@@ -127,53 +126,12 @@ class VmController extends Controller
             $totalRproviderIP = $this->openstack->listIpAddressSlice('10.38.107.0','24',65,-10);
             $totalVssiIP = $this->openstack->listIpAddressSlice('10.38.64.0','24',30,-24); //22
 
-            $servers = $this->openstack->defaultAuthentication();
-            $identity = $servers->identityV3(['domainId' => "default"]);
 
             echo "This may take some time... Please donot refresh the page <br>";
             ob_flush();
             flush();
             echo "Searching.";
-            foreach ($identity->listProjects(['domainId' => "default"]) as $project) {
-                echo "...";
-                ob_flush();
-                flush();
-
-                if(!in_array($project->id, $ids)){
-
-                    $projectsServer = $this->openstack->openstackProjectID($project->id);
-                    $compute = $projectsServer->computeV2();
-                    $serverslist = $compute->listServers();
-                    
-                    foreach($serverslist as $server){
-
-                        if($server){
-                            foreach($server->listAddresses() as $ipKey => $ipValue){
-                                
-                                if($ipKey === 'vssi_routable'){
-                                    array_push($ipPool['vssi_routable'], $ipValue[0]['addr']);
-                                    
-                                }
-                
-                                if($ipKey === 'nr_provider'){
-                                    array_push($ipPool['nr_provider'], $ipValue[0]['addr']); //50.85
-
-                                    
-                                }
-                
-                                if($ipKey === 'r_provider'){
-                                    array_push($ipPool['r_provider'], $ipValue[0]['addr']); //107
-                                    
-                                }
-                            }                              
-                            
-                        }
-                
-                    }
-                    
-                }
-                
-            }
+          
             //dd($ipPool);
             echo "<br>";
             echo "Comparing possible ips......<br>";
