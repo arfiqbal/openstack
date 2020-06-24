@@ -34,8 +34,8 @@ class VolumeController extends Controller
         //$servers = $this->openstack->openstackProjectID('198f0660ae894f87a5ad2522e6dec551');
         $servers = $this->openstack->defaultAuthentication();
         $service = $servers->blockStorageV2();
-        $snaps = $service->listSnapshots(true);
-
+        $snaps = $service->listSnapshots(true,array('volume_id'=>'eb788ac6-d3b9-42b0-b566-ac53cab5a56c'));
+        //eb788ac6-d3b9-42b0-b566-ac53cab5a56c
         // $snaps = $service->getVolume('dfb43258-283e-4245-8658-c39fc5782cdd');
         
         //$snaps = $service->listSnapshots();
