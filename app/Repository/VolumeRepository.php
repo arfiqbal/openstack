@@ -57,7 +57,7 @@ class VolumeRepository
         $service = $servers->blockStorageV2();
         $snaps = $service->listSnapshots(true);
         foreach ($snaps as $snap) {
-            if($value == $snap->volumeId){
+            if($volume == $snap->volumeId){
                 array_push($list, [$snap->volumeId => $snap->id]);
             }
             
