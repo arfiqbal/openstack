@@ -37,7 +37,7 @@ class VolumeController extends Controller
         $volume = $service->getVolume('eb788ac6-d3b9-42b0-b566-ac53cab5a56c');
         dd($volume->id);
         $snaps = $service->listSnapshots(true,[
-            'volumeId'=> $volume
+            'volumeId'=> $volume->id
             ]);
         //eb788ac6-d3b9-42b0-b566-ac53cab5a56c
         // $snaps = $service->getVolume('dfb43258-283e-4245-8658-c39fc5782cdd');
