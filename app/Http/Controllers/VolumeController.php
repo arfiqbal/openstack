@@ -31,6 +31,8 @@ class VolumeController extends Controller
      */
     public function index()
     {
+        $list = $this->openstack->listSnapshot('198f0660ae894f87a5ad2522e6dec551', 'eb788ac6-d3b9-42b0-b566-ac53cab5a56c');
+        dd($list);
         //$servers = $this->openstack->openstackProjectID('198f0660ae894f87a5ad2522e6dec551');
         $servers = $this->openstack->defaultAuthentication();
         $service = $servers->blockStorageV2();

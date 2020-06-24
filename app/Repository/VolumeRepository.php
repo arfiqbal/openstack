@@ -50,5 +50,21 @@ class VolumeRepository
         return $openstack_server;
     }
 
+    public function listSnapshot($project_id, $volume)
+    {   
+        $list = [];
+        $servers = $this->openstackProjectID($project_id);
+        $service = $servers->blockStorageV2();
+        $snaps = $service->listSnapshots(true);
+        foreach ($snaps as $snap) {
+            if($value == $snap->volumeId){
+                array_push($list, [$snap->volumeId => $snap->id]);
+            }
+            
+        }
+
+        return $list;
+    }
+
 
 }
