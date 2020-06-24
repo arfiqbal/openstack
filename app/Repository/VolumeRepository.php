@@ -57,16 +57,19 @@ class VolumeRepository
         $service = $servers->blockStorageV2();
         $snaps = $service->listSnapshots(true);
         foreach ($snaps as $snap) {
-            var_dump($snap);
-            echo "<br>";
-            echo "vol = ".$snap->volumeId.'<br>';
+            
             if($volume == $snap->volumeId){
                 array_push($list, [$snap->volumeId => $snap->id]);
             }
             
         }
 
-        return $list;
+        if(empty($list))
+        {
+            return false;
+        }
+        $flattened = Arr::flatten($list);
+        return $flattened;
     }
 
 
