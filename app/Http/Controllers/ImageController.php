@@ -100,11 +100,11 @@ class ImageController extends Controller
         } catch (ClientErrorResponseException $e) {
             if ($e->getResponse()->getStatusCode() == 404) {
               // Okay, the resource does not exist
-              return false;
+              dd('good');
             }
         } catch (\Exception $e) {
             // Some other exception was thrown...
-            return false;
+            dd('not good');
         }
 
        dd('ds');
