@@ -96,49 +96,40 @@ class ImageController extends Controller
             $servers = $this->openstack->defaultAuthentication();
             $apps = $servers->imagesV2();
             $image = $apps->getImage($request->image);
-             dd($image->retrieve());
+             $image->retrieve();
+
+             $chkImage = Application::where('uid',$request->image)->get();
+             //dd($chkImage->toArray());
+     
+             if(count($chkImage)){
+     
+                 return redirect()->route('addImage')->with('status', ' Image Already Exists');
+     
+             }else{
+                 $app = new Application;
+                 $app->name = $request->app;
+                 $app->uid  = $image->id;
+                 $app->image  = $image->name;
+                 $app->os = $request->os;
+                 $app->version = $request->version;
+                 if($app->save()){
+                     
+                     return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os.' has been added successfully');
+                 }
+             }
+
         } catch (ClientErrorResponseException $e) {
             if ($e->getResponse()->getStatusCode() == 404) {
               // Okay, the resource does not exist
-              dd('good');
+              return redirect()->route('addImage')->with('status', 'Image not found');
             }
         } catch (\Exception $e) {
             // Some other exception was thrown...
-            dd('not good');
+            return redirect()->route('addImage')->with('status', 'Image not found');
         }
 
-       dd('ds');
-            $servers = $this->openstack->defaultAuthentication();
-            $apps = $servers->imagesV2();
-            $image = $apps->getImage($request->image);
-            if($image->retrieve()){
-                dd('good');
-            }else{
-                dd('not found');
-            }
-             //dd($image);
-        
-
-    dd('dd');
-        $chkImage = Application::where('uid',$request->image)->get();
-        //dd($chkImage->toArray());
-
-        if(count($chkImage)){
-
-            return redirect()->route('addImage')->with('status', ' Image Already Exists');
-
-        }else{
-            $app = new Application;
-            $app->name = $request->app;
-            $app->uid  = $image->id;
-            $app->image  = $image->name;
-            $app->os = $request->os;
-            $app->version = $request->version;
-            if($app->save()){
-                
-                return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os.' has been added successfully');
-            }
-        }
+       
+       
 
         // 0 = id , 1 = image name
 
