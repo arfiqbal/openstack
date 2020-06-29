@@ -95,12 +95,19 @@ class ImageController extends Controller
         $image = $apps->getImage($request->image);
         $image->retrieve();
 
-        if($image){
-            dd('found');
-        }else{
+        try {
+            $servers = $this->openstack->defaultAuthentication();
+            $apps = $servers->imagesV2();
+            $image = $apps->getImage($request->image);
+             $image->retrieve();
+             dd($image);
+        } catch (Exception $e) {
+            report($e);
+    
             dd('not found');
         }
 
+    
         $chkImage = Application::where('uid',$request->image)->get();
         //dd($chkImage->toArray());
 
