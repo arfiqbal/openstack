@@ -20,6 +20,8 @@ use OpenStack\OpenStack;
 use App\Repository\OpenstackRepository;
 use Illuminate\Support\Str;
 use App\Ldap\User;
+use Guzzle\Http\Exception\ClientErrorResponseException;
+
 
 
 
@@ -90,9 +92,22 @@ class ImageController extends Controller
 
     public function storebyId(Request $request)
     {
-        
+        try {
+            $servers = $this->openstack->defaultAuthentication();
+            $apps = $servers->imagesV2();
+            $image = $apps->getImage($request->image);
+            return $image->retrieve();
+        } catch (ClientErrorResponseException $e) {
+            if ($e->getResponse()->getStatusCode() == 404) {
+              // Okay, the resource does not exist
+              return false;
+            }
+        } catch (\Exception $e) {
+            // Some other exception was thrown...
+            return false;
+        }
 
-       
+       dd('ds');
             $servers = $this->openstack->defaultAuthentication();
             $apps = $servers->imagesV2();
             $image = $apps->getImage($request->image);
