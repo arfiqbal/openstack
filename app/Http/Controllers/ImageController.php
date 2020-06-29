@@ -96,7 +96,7 @@ class ImageController extends Controller
             $servers = $this->openstack->defaultAuthentication();
             $apps = $servers->imagesV2();
             $image = $apps->getImage($request->image);
-             $image->retrieve();
+            //  $image->retrieve();
              dd($image);
         } catch (Exception $e) {
             report($e);
