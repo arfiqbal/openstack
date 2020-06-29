@@ -114,7 +114,7 @@ class ImageController extends Controller
             if($image->retrieve()){
                 dd('good');
             }else{
-                ddd('not found');
+                dd('not found');
             }
              //dd($image);
         
