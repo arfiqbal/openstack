@@ -95,7 +95,11 @@ class ImageController extends Controller
         $image = $apps->getImage($request->image);
         $image->retrieve();
 
-        dd($image);
+        if($image){
+            dd('found');
+        }else{
+            dd('not found');
+        }
 
         $chkImage = Application::where('uid',$request->image)->get();
         //dd($chkImage->toArray());
