@@ -65,7 +65,7 @@ Add Application | VSSI Cloud
               <div class="form-group">
                 <label for="lastName">OS Version</label>
                 <input type="text" class="form-control"  name="version" required>
-              
+                <small class="form-text text-muted">for window 10, ubuntu = 18.04, RHEL = 7  only version</small>
               </div>
 
               <button type="submit" class="btn btn-primary">Submit</button>
