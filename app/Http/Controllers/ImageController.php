@@ -93,6 +93,8 @@ class ImageController extends Controller
         $servers = $this->openstack->defaultAuthentication();
         $apps = $servers->imagesV2();
         $image = $apps->getImage($request->image);
+        $image->retrieve();
+
         dd($image);
 
         $chkImage = Application::where('uid',$request->image)->get();
