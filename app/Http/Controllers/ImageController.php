@@ -96,7 +96,7 @@ class ImageController extends Controller
             $servers = $this->openstack->defaultAuthentication();
             $apps = $servers->imagesV2();
             $image = $apps->getImage($request->image);
-            return $image->retrieve();
+             dd($image->retrieve());
         } catch (ClientErrorResponseException $e) {
             if ($e->getResponse()->getStatusCode() == 404) {
               // Okay, the resource does not exist
