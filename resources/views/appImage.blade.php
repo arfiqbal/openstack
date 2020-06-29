@@ -18,8 +18,8 @@ Add Application | VSSI Cloud
       </button>
     </div>
     @endif
-  <div class="row">
-    
+  <div class="container-fluid">
+    <div class="row">
     <div class="card mb-6">
       <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
       <div class="card-body">
@@ -123,6 +123,7 @@ Add Application | VSSI Cloud
     </div>
  </div>
    {{--  ***********************  --}}
+  </div> {{--row--}}
   </div>
 
 
