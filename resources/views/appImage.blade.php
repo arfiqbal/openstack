@@ -18,10 +18,68 @@ Add Application | VSSI Cloud
       </button>
     </div>
     @endif
-  <div class="container-fluid">
     <div class="row">
+      <div class="col-sm-6">
+        <div class="card mb-6">
+          <div class="card-header">
+            <i class="fas fa-table mr-1"></i>Add App Images
+          </div>
+          <div class="card-body">
+
+            {!! Form::open(['route' => 'postImage']) !!}
+
+              <div class="form-group">
+                <label for="exampleFormControlSelect1" style="display: block">Application Image</label>
+                <select class="form-control" name="image"   required>
+                <option value="">Select Application Image</option>
+                @foreach ($apps as $app)
+                    <option value="{{$app->id}}?{{$app->name}}">{{$app->name}}</option>
+                @endforeach
+                  
+                </select>
+                <div class="invalid-feedback">Please select application image</div>
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">App Name</label>
+                <input type="text" class="form-control"  name="app" required>
+              
+              </div>
+
+              <div class="form-group">
+                <label for="lastName" style="display: block">OS </label>
+                
+                <select class="form-control"  name="os" required>
+                    <option value="">Select Image OS</option>
+                
+                    <option value="centos">CentOS</option>
+                    <option value="rhel">RHEL</option>
+                    <option value="ubuntu">Ubuntu</option>
+                    <option value="window">Window</option>
+                
+                    
+                  </select>
+
+              </div>
+
+              <div class="form-group">
+                <label for="lastName">OS Version</label>
+                <input type="text" class="form-control"  name="version" required>
+              
+              </div>
+
+              <button type="submit" class="btn btn-primary">Submit</button>
+
+            {!! Form::close() !!}
+          </div>
+      </div>
+    </div>
+   {{--  ***********************  --}}
+   <div class="col-sm-6">
     <div class="card mb-6">
-      <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
+      <div class="card-header">
+        <i class="fas fa-table mr-1"></i>Add App Images
+      </div>
       <div class="card-body">
 
         {!! Form::open(['route' => 'postImage']) !!}
@@ -49,12 +107,12 @@ Add Application | VSSI Cloud
             
             <select class="form-control"  name="os" required>
                 <option value="">Select Image OS</option>
-             
+            
                 <option value="centos">CentOS</option>
                 <option value="rhel">RHEL</option>
                 <option value="ubuntu">Ubuntu</option>
                 <option value="window">Window</option>
-             
+            
                 
               </select>
 
@@ -68,62 +126,13 @@ Add Application | VSSI Cloud
 
           <button type="submit" class="btn btn-primary">Submit</button>
 
-         {!! Form::close() !!}
+        {!! Form::close() !!}
       </div>
-   </div>
-
+  </div>
+</div>
+   
    {{--  ***********************  --}}
-   <div class="card mb-6">
-    <div class="card-header"><i class="fas fa-table mr-1"></i>Add App Images</div>
-    <div class="card-body">
-
-      {!! Form::open(['route' => 'postImage']) !!}
-
-        <div class="form-group">
-          <label for="exampleFormControlSelect1" style="display: block">Application Image</label>
-          <select class="form-control" name="image"   required>
-          <option value="">Select Application Image</option>
-          
-            
-          </select>
-          <div class="invalid-feedback">Please select application image</div>
-        </div>
-
-        <div class="form-group">
-          <label for="lastName">App Name</label>
-          <input type="text" class="form-control"  name="app" required>
-        
-        </div>
-
-        <div class="form-group">
-          <label for="lastName" style="display: block">OS </label>
-          
-          <select class="form-control"  name="os" required>
-              <option value="">Select Image OS</option>
-           
-              <option value="centos">CentOS</option>
-              <option value="rhel">RHEL</option>
-              <option value="ubuntu">Ubuntu</option>
-              <option value="window">Window</option>
-           
-              
-            </select>
-
-        </div>
-
-        <div class="form-group">
-          <label for="lastName">OS Version</label>
-          <input type="text" class="form-control"  name="version" required>
-        
-        </div>
-
-        <button type="submit" class="btn btn-primary">Submit</button>
-
-       {!! Form::close() !!}
-    </div>
- </div>
-   {{--  ***********************  --}}
-  </div> {{--row--}}
+    </div> {{--row--}}
   </div>
 
 
