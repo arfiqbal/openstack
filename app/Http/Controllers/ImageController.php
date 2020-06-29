@@ -101,8 +101,7 @@ class ImageController extends Controller
             $image = $apps->getImage($request->image);
              $image->retrieve();
              dd($image);
-        } catch (Exception $e) {
-            report($e);
+        } catch (BadResponseError $e) {
     
             dd('not found');
         }
