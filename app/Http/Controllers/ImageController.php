@@ -88,6 +88,38 @@ class ImageController extends Controller
         
     }
 
+    public function storebyId(Request $request)
+    {
+        $servers = $this->openstack->defaultAuthentication();
+        $apps = $servers->imagesV2();
+        $image = $apps->getImage($request->image);
+        dd($image);
+
+        $chkImage = Application::where('uid',$request->image)->get();
+        //dd($chkImage->toArray());
+
+        if(count($chkImage)){
+
+            return redirect()->route('addImage')->with('status', ' Image Already Exists');
+
+        }else{
+            $app = new Application;
+            $app->name = $request->app;
+            $app->uid  = $imageSplit['0'];
+            $app->image  = $imageSplit['1'];
+            $app->os = $request->os;
+            $app->version = $request->version;
+            if($app->save()){
+                
+                return redirect()->route('addImage')->with('status', $app->name.'-'.$app->os.' has been added successfully');
+            }
+        }
+
+        // 0 = id , 1 = image name
+
+        
+    }
+
     public function destroy($id, Request $request)
     {
         $image = Application::find($id);

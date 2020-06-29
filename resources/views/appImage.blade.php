@@ -6,9 +6,9 @@ Add Application | VSSI Cloud
 
 @section('content')
 
-  <h1 class="mt-4">Add Application</h1>
+  <h1 class="mt-4">Add Application Images</h1>
   <ol class="breadcrumb mb-6">
-      <li class="breadcrumb-item active">App</li>
+      <li class="breadcrumb-item active">Add Image</li>
   </ol>
   @if (session('status'))
     <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -82,16 +82,12 @@ Add Application | VSSI Cloud
       </div>
       <div class="card-body">
 
-        {!! Form::open(['route' => 'postImage']) !!}
+        {!! Form::open(['route' => 'postImageId']) !!}
 
           <div class="form-group">
             <label for="exampleFormControlSelect1" style="display: block">Application Image</label>
-            <select class="form-control" name="image"   required>
-            <option value="">Select Application Image</option>
-          
-              
-            </select>
-            <div class="invalid-feedback">Please select application image</div>
+            <input type="text" class="form-control"  name="image" required>
+            <div class="invalid-feedback">Please add Image id</div>
           </div>
 
           <div class="form-group">
