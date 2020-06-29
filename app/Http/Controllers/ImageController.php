@@ -90,23 +90,21 @@ class ImageController extends Controller
 
     public function storebyId(Request $request)
     {
-        // $servers = $this->openstack->defaultAuthentication();
-        // $apps = $servers->imagesV2();
-        // $image = $apps->getImage($request->image);
-        // $image->retrieve();
+        
 
         try {
             $servers = $this->openstack->defaultAuthentication();
             $apps = $servers->imagesV2();
             $image = $apps->getImage($request->image);
              $image->retrieve();
-            //  dd($image);
-        } catch (BadResponseError $e) {
+             dd($image);
+        } catch (Exception $e) {
+            report($e);
     
             dd('not found');
         }
 
-        dd('ss');
+    dd('dd');
         $chkImage = Application::where('uid',$request->image)->get();
         //dd($chkImage->toArray());
 
