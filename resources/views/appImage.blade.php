@@ -88,9 +88,7 @@ Add Application | VSSI Cloud
             <label for="exampleFormControlSelect1" style="display: block">Application Image</label>
             <select class="form-control" name="image"   required>
             <option value="">Select Application Image</option>
-            @foreach ($apps as $app)
-                <option value="{{$app->id}}?{{$app->name}}">{{$app->name}}</option>
-            @endforeach
+          
               
             </select>
             <div class="invalid-feedback">Please select application image</div>
