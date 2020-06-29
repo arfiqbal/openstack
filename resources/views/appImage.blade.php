@@ -43,7 +43,7 @@ Add Application | VSSI Cloud
               <div class="form-group">
                 <label for="lastName">App Name</label>
                 <input type="text" class="form-control"  name="app" required>
-              
+                <small class="form-text text-muted">eg : ce, de, apx max 3 letter</small>
               </div>
 
               <div class="form-group">
@@ -78,22 +78,23 @@ Add Application | VSSI Cloud
    <div class="col-sm-6">
     <div class="card mb-6">
       <div class="card-header">
-        <i class="fas fa-table mr-1"></i>Add App Images
+        <i class="fas fa-table mr-1"></i>Add App Images with ID
       </div>
       <div class="card-body">
 
         {!! Form::open(['route' => 'postImageId']) !!}
 
           <div class="form-group">
-            <label for="exampleFormControlSelect1" style="display: block">Application Image</label>
+            <label for="exampleFormControlSelect1" style="display: block">Application Image ID</label>
             <input type="text" class="form-control"  name="image" required>
+            <small class="form-text text-muted">Copy and paste image id from openstack console</small>
             <div class="invalid-feedback">Please add Image id</div>
           </div>
 
           <div class="form-group">
             <label for="lastName">App Name</label>
             <input type="text" class="form-control"  name="app" required>
-          
+            <small class="form-text text-muted">eg : ce, de, apx max 3 letter</small>
           </div>
 
           <div class="form-group">

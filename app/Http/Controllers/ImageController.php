@@ -128,12 +128,7 @@ class ImageController extends Controller
             return redirect()->route('addImage')->with('status', 'Image not found');
         }
 
-       
-       
-
-        // 0 = id , 1 = image name
-
-        
+    
     }
 
     public function destroy($id, Request $request)
