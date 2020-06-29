@@ -107,8 +107,8 @@ class ImageController extends Controller
         }else{
             $app = new Application;
             $app->name = $request->app;
-            $app->uid  = $imageSplit['0'];
-            $app->image  = $imageSplit['1'];
+            $app->uid  = $image->id;
+            $app->image  = $image->name;
             $app->os = $request->os;
             $app->version = $request->version;
             if($app->save()){
