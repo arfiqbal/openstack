@@ -148,9 +148,11 @@ class VmController extends Controller
                             $new = $this->openstack->createIp($value,'10.38.64.0');
 
                             if(in_array($new, $totalVssiIP)){
-                                if(!in_array($new, $ipPool['vssi_routable'])){
-                                    $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
-                                break;
+                                if(!in_array($new, $allports)){
+                                    if(!in_array($new, $ipPool['vssi_routable'])){
+                                        $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
+                                    break;
+                                    }
                                 }
                             }
 
@@ -159,9 +161,11 @@ class VmController extends Controller
                         if($explodeIp['2'] == '50'){
                             $new = $this->openstack->createIp($value,'10.38.107.0');
                             if(in_array($new, $totalRproviderIP)){
-                                if(!in_array($new, $ipPool['r_provider'])){
-                                    $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
-                                break;
+                                if(!in_array($new, $allports)){
+                                    if(!in_array($new, $ipPool['r_provider'])){
+                                        $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
+                                    break;
+                                    }
                                 }
                             }
                         }
