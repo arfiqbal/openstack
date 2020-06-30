@@ -151,7 +151,7 @@ class VmController extends Controller
                                 if(!in_array($new, $allports)){
                                     if(!in_array($new, $ipPool['vssi_routable'])){
                                         $nicIps = ['routeable'=> $new, 'non_routable' => $value , 'netName' => 'vssi_routable'];
-                                    break;
+                                        break;
                                     }
                                 }
                             }
@@ -164,7 +164,7 @@ class VmController extends Controller
                                 if(!in_array($new, $allports)){
                                     if(!in_array($new, $ipPool['r_provider'])){
                                         $nicIps = ['routeable'=> $new, 'non_routable' => $value, 'netName' => 'r_provider'];
-                                    break;
+                                        break;
                                     }
                                 }
                             }
