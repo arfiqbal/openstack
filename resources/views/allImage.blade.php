@@ -44,7 +44,8 @@ All Images | VSSI Cloud
                                 <tr>
                                   <th scope="col">App Name</th>
                                   <th scope="col">Image</th>
-                                  <th scope="col">OS</th>
+                                  <th scope="col">ID</th>
+                                  {{--  <th scope="col">OS</th>  --}}
                                   <th scope="col">Action</th>
                                 </tr>
                               </thead>
@@ -54,7 +55,8 @@ All Images | VSSI Cloud
                                         <tr id="{{$image->id}}">
                                           <th scope="row">{{$image->name}}</th>
                                           <td>{{$image->image}}</td>
-                                          <td>{{$image->os}}</td>
+                                          <td>{{$image->uid}}</td>
+                                          {{--  <td>{{$image->os}}</td>  --}}
                                           <td>
                                             
                                             <a  class="btn btn-danger deletevm" id="deletevm" data-order="{{ $image->id }}"
