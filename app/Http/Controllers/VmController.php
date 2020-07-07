@@ -197,7 +197,7 @@ class VmController extends Controller
 
             if (count($checkUser)){
                 $user = User::findBy('mail', $request->email);
-                dd($user->uid);
+                $username = $user->uid[0];
                 echo  "<b style='color:#08c31c'>User already exist</b><br>";
                 $user_exist = 1;
             }else{
@@ -210,7 +210,7 @@ class VmController extends Controller
 
             }
            
-            dd('test');
+           
             $template = $this->openstack->findTemplate($request->app);
 
             $app = Application::find($request->app);
