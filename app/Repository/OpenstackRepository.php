@@ -138,7 +138,7 @@ class OpenstackRepository
         $app = Application::find($appid);
         
         //$vmHostCount = VM::where('hostname_code',$hostString)->where('active',1)->count() + 1;
-        $vmHostCount = VM::where('hostname_code',$hostString)->all();
+        $vmHostCount = VM::where('hostname_code',$hostString)->get();
         dd($vmHostCount);
         // $vmHostCount = VM::where('hostname_code',$hostString)->count() + 1;
         echo $vmHostCount.'<br>';
