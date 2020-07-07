@@ -196,8 +196,8 @@ class VmController extends Controller
             $this->ipa->login($cookieName);
 
             if (count($checkUser)){
-                $user = User::findBy('uid', 'arif');
-                dd($user->uid[0]);
+                $user = User::findBy('mail', $request->email);
+                dd($user->uid);
                 echo  "<b style='color:#08c31c'>User already exist</b><br>";
                 $user_exist = 1;
             }else{
