@@ -132,14 +132,15 @@ class OpenstackRepository
     }
     public function createHostname($hostString, $appid)
     {  
-        dd($hostString);
+        echo $hostString;
         // in<appname><openstack><os><no>
         //initial_count
         $app = Application::find($appid);
         
         //$vmHostCount = VM::where('hostname_code',$hostString)->where('active',1)->count() + 1;
         $vmHostCount = VM::where('hostname_code',$hostString)->count() + 1;
-        dd($vmHostCount);
+        echo $vmHostCount.'<br>';
+        echo "initial".$app->initial_count;
         $hostCount = $app->initial_count + $vmHostCount;
         $actualHostCount = 0;
         if($hostCount <= 9){
