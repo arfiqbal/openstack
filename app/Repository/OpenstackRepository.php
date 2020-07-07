@@ -138,6 +138,7 @@ class OpenstackRepository
         
         //$vmHostCount = VM::where('hostname_code',$hostString)->where('active',1)->count() + 1;
         $vmHostCount = VM::where('hostname_code',$hostString)->count() + 1;
+        dd($vmHostCount);
         $hostCount = $app->initial_count + $vmHostCount;
         $actualHostCount = 0;
         if($hostCount <= 9){
