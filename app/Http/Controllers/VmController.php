@@ -197,7 +197,7 @@ class VmController extends Controller
 
             if (count($checkUser)){
                 $user = User::findBy('uid', 'arif');
-                dd($user->uid);
+                dd($user->uid[0]);
                 echo  "<b style='color:#08c31c'>User already exist</b><br>";
                 $user_exist = 1;
             }else{
