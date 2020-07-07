@@ -132,6 +132,7 @@ class OpenstackRepository
     }
     public function createHostname($hostString, $appid)
     {  
+        dd($hostString);
         // in<appname><openstack><os><no>
         //initial_count
         $app = Application::find($appid);
