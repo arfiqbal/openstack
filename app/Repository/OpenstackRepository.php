@@ -133,7 +133,7 @@ class OpenstackRepository
     public function createHostname($hostString, $appid)
     {  
         $vmHostCount = VM::where('hostname_code',$hostString)->orderBy('id', 'DESC')->first();
-        dd($vm->toArray());
+        dd($vmHostCount->toArray());
         // in<appname><openstack><os><no>
         //initial_count
         $app = Application::find($appid);
