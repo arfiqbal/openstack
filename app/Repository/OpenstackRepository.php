@@ -151,7 +151,7 @@ class OpenstackRepository
             $actualHostCount =  $hostCount;
         }
         $newHostname = $hostString.''.$actualHostCount.'.cloud.vssi.com';
-        dd($newHostname);
+
         return strtolower($newHostname);
     }
 
