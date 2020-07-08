@@ -144,15 +144,14 @@ class OpenstackRepository
             $hostCount = 0;
         }
        
-        dd($hostCount);
-        $hostCount = $app->initial_count + $vmHostCount;
-        $actualHostCount = 0;
+        
         if($hostCount <= 9){
             $actualHostCount =  '0'.$hostCount;
         }else{
             $actualHostCount =  $hostCount;
         }
         $newHostname = $hostString.''.$actualHostCount.'.cloud.vssi.com';
+        dd($newHostname);
         return strtolower($newHostname);
     }
 
