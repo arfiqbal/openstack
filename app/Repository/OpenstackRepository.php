@@ -141,7 +141,7 @@ class OpenstackRepository
             $flattened = Arr::flatten($matches);
             $hostCount = $flattened[0] + 1 ;
         }else{
-            $hostCount = 0;
+            $hostCount = 1;
         }
        
         
