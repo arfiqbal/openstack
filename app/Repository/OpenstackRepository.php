@@ -135,7 +135,7 @@ class OpenstackRepository
     public function createHostname($hostString, $appid)
     {  
         $vmHostCount = VM::where('hostname_code','hdu')->orderBy('id', 'DESC')->first();
-        if(count($vmHostCount)){
+        if($vmHostCount){
             preg_match_all('!\d+!', $vmHostCount->hostname, $matches);
             $flattened = Arr::flatten($matches);
             dd($flattened);
