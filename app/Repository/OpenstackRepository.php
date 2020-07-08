@@ -8,6 +8,7 @@ use IPv4\SubnetCalculator;
 use App\VM;
 use App\Application;
 use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 
 
 class OpenstackRepository
@@ -130,7 +131,28 @@ class OpenstackRepository
 
         return $host;
     }
+
     public function createHostname($hostString, $appid)
+    {  
+        $vmHostCount = VM::where('hostname_code',$hostString)->orderBy('id', 'DESC')->first();
+        preg_match_all('!\d+!', $vmHostCount->hostname, $matches);
+        $flattened = Arr::flatten($matches);
+        dd($flattened);
+        
+        $hostCount = $app->initial_count + $vmHostCount;
+        $actualHostCount = 0;
+        if($hostCount <= 9){
+            $actualHostCount =  '0'.$hostCount;
+        }else{
+            $actualHostCount =  $hostCount;
+        }
+        $newHostname = $hostString.''.$actualHostCount.'.cloud.vssi.com';
+        return strtolower($newHostname);
+    }
+
+
+
+    public function oldcreateHostname($hostString, $appid)
     {  
         $vmHostCount = VM::where('hostname_code',$hostString)->orderBy('id', 'DESC')->first();
         dd($vmHostCount->toArray());
