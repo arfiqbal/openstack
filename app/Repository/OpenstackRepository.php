@@ -132,6 +132,8 @@ class OpenstackRepository
     }
     public function createHostname($hostString, $appid)
     {  
+        $vmHostCount = VM::where('hostname_code',$hostString)->last();
+        dd($vm->toArray());
         // in<appname><openstack><os><no>
         //initial_count
         $app = Application::find($appid);
