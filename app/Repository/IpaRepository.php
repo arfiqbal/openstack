@@ -54,7 +54,7 @@ class IpaRepository
         curl_setopt($ch, CURLOPT_COOKIEJAR, $cookiePath);
         curl_setopt($ch, CURLOPT_COOKIEFILE, $cookiePath);
         curl_setopt($ch, CURLOPT_POST, true);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, "user=arif&password=redhat12");
+        curl_setopt($ch, CURLOPT_POSTFIELDS, "user=ldapbind&password=redhat");
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
         curl_setopt($ch, CURLOPT_CAINFO, $certPath);
         curl_setopt($ch, CURLOPT_CAPATH, $certPath);
