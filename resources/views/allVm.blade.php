@@ -235,7 +235,7 @@ All Instances | VSSI Cloud
                         data: {jira :jira},
                           
                         }).done(function(data) {
-                          //console.log(data)
+                          console.log(data)
                           $('#deleteModal').modal('hide');
                           //$('#'+data).hide();
                           $('#orderHidden').val("");
@@ -243,7 +243,7 @@ All Instances | VSSI Cloud
                           $('#jira').val("");
                           alert('VM Deleted');
                           
-                          location.reload(true);
+                          //location.reload(true);
                          
                           
                           
