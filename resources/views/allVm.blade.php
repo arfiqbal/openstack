@@ -72,9 +72,9 @@ All Instances | VSSI Cloud
                                             <i class="far fa-trash-alt"></i></i>
                                           </a>
                                             
-                                            <a class="btn btn-warning " href="{{route('vmRecreate', ['id' => $myVM->id])}}" data-toggle="tooltip" data-placement="top" title="Re-create VM">
+                                            {{--  <a class="btn btn-warning " href="{{route('vmRecreate', ['id' => $myVM->id])}}" data-toggle="tooltip" data-placement="top" title="Re-create VM">
                                               <i class="fas fa-retweet"></i>
-                                            </a>
+                                            </a>  --}}
                                             <a class="btn btn-info " href="{{route('showVM', ['id' => $myVM->id, 'vmid' => $myVM->vm_uid ])}}" data-toggle="tooltip" data-placement="top" title="View Server Detail">
                                               <i class="far fa-eye"></i>
                                             </a>
