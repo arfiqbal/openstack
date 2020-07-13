@@ -220,7 +220,7 @@ class VmController extends Controller
             $size = round($sizeRound,0,PHP_ROUND_HALF_ODD);
             //terraform apply -var="nic1=10.85.50.130" -var="nic2=10.38.107.130" -var="vmname=inapou06.cloud.vssi.com" -var="app=apix" -var="emailid=hiral.ajitbhaijethva@vodafone.com|flav_8c_16m"
             
-            $command = 'terraform12 apply -lock=false -auto-approve  -input=false -var="project='.$request->project.'" -var="size='.$size.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$hostname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
+            $command = 'terraform12 apply -lock=false -auto-approve -no-color -input=false -var="project='.$request->project.'" -var="size='.$size.'" -var="nic1='.$nicIps['non_routable'].'" -var="nic2='.$nicIps['routeable'].'" -var="netname='.$nicIps['netName'].'" -var="vmname='.$hostname.'" -var="app='.$app->uid.'" -var="flavor='.$request->flavor.'" -var="script_source='.$script_source.'" -var="private_key='.$private_key.'" -var="hostname='.$hostname.'" -var="emailid='.$request->email.'" -var="jira='.$request->jira.'" -var="user='.Auth::user()->name.'"';
 
             if(!File::isDirectory($path)){
 
@@ -421,7 +421,7 @@ class VmController extends Controller
         $deleteVM =  VM::with('rework')->find($id);
        
         $path = storage_path('app/'.$deleteVM->dir);
-        $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -lock=false -auto-approve');
+        $process = new Process('terraform12 destroy -var="project='.$deleteVM->project.'" -lock=false -no-color -auto-approve');
         //$process = new Process('ping -c 50 www.google.com');
         $process->setTimeout(3600);
         $process->setWorkingDirectory($path);
