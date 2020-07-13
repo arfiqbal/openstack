@@ -17,7 +17,7 @@ class IpaRepository
 
     protected function credential(){
         $data = array(
-            'username' => 'arif',
+            'username' => 'ldapbind',
             'password' => env('LDAP_PASSWORD')
         );
         return json_encode(array($data));

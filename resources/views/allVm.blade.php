@@ -242,10 +242,7 @@ All Instances | VSSI Cloud
                           $('#orderRouteHidden').val("");
                           $('#jira').val("");
                           alert('VM Deleted');
-                          
                           //location.reload(true);
-                         
-                          
                           
                     }).fail(function() {
                         
